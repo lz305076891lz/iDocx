@@ -1,6 +1,11 @@
 import React from 'react';
 import styles from './HeaderNav.css';
 
+import {
+  Route,
+  Link
+} from 'react-router-dom';
+
 import UserAvatar from '../UserAvatar/UserAvatar';
 
 class HeaderNav extends React.Component {
@@ -11,7 +16,7 @@ class HeaderNav extends React.Component {
   render() {
     let classNames = styles['header-nav'];
     if (this.props.isThrough) {
-      classNames += ' through'
+      classNames += ' ' + styles['through']
     }
 
     let user = null;
@@ -22,7 +27,7 @@ class HeaderNav extends React.Component {
     return (
       <div className={classNames}>
         <div className="container">
-          <h1><a href="#">iDocx</a></h1>
+          <h1><Link to="/">iDocx</Link></h1>
           <ul>
             <li>模版库</li>
             <li>帮助</li>
