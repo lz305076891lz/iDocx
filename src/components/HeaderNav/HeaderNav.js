@@ -27,7 +27,7 @@ class HeaderNav extends React.Component {
     return (
       <div className={classNames}>
         <div className="container">
-          <h1><Link to="/">iDocx</Link></h1>
+          <h1><Link to="/">AIDoc</Link></h1>
           <ul>
             <li><Link to="/template">模版库</Link></li>
             <li>帮助</li>

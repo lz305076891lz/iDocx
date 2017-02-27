@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e748e7a1aa81bf926128"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6e306ae04691938d1620"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -42740,7 +42740,7 @@ var HeaderNav = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Link */],
               { to: '/' },
-              'iDocx'
+              'AIDoc'
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
