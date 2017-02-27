@@ -9,6 +9,7 @@ import {
 
 import HeaderNav from './HeaderNav/HeaderNav';
 import IndexWall from  './IndexWall/IndexWall'
+import TemplateList from  './TemplateList/TemplateList'
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class App extends React.Component {
       <div className={styles.app}>
         <HeaderNav isThrough={this.props.location.pathname == '/'} isLogin={this.state.isLogin}/>
         <Route exact path="/" component={IndexWall}/>
-        <Route path="/template" component={IndexWall}/>
+        <Route path="/template" component={TemplateList}/>
       </div>
     );
   }
