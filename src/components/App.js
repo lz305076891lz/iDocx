@@ -8,8 +8,9 @@ import {
 } from 'react-router-dom';
 
 import HeaderNav from './HeaderNav/HeaderNav';
-import IndexWall from  './IndexWall/IndexWall'
-import TemplateList from  './TemplateList/TemplateList'
+import IndexWall from  './IndexWall/IndexWall';
+import TemplateList from  './TemplateList/TemplateList';
+import UploadFile from './UploadFile/UploadFile';
 
 class App extends React.Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class App extends React.Component {
       ]
     }
   }
+
   render() {
     return (
       <div className={styles.app}>
@@ -59,6 +61,9 @@ class App extends React.Component {
         <Route exact path="/" component={IndexWall}/>
         <Route path="/template" render={(matchData) => (
           <TemplateList tplData={this.state.tplData}/>
+        )}/>
+        <Route path="/uploadfile/:id" render={(matchData) => (
+          <UploadFile {...matchData} tplData={this.state.tplData}/>
         )}/>
       </div>
     );
