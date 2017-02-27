@@ -1,0 +1,24 @@
+@import "../../css/_colors.css";
+
+.finish {
+  & :global(.container) {
+    padding: 40px;
+    text-align: center;
+  }
+  & li {
+    display: inline-block;
+    color: var(--mainFontColor);
+    width: 30%;
+    text-align: center;
+    background-color: var(--mainColor);
+    margin: 1%;
+    border-radius: 5px;
+    & a{
+      display: block;
+      line-height: 3;
+    }
+  }
+  & h2 {
+    line-height: 3;
+  }
+}

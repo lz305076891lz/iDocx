@@ -11,6 +11,7 @@ import HeaderNav from './HeaderNav/HeaderNav';
 import IndexWall from  './IndexWall/IndexWall';
 import TemplateList from  './TemplateList/TemplateList';
 import UploadFile from './UploadFile/UploadFile';
+import Finish from  './Finish/Finish'
 
 class App extends React.Component {
   constructor(props) {
@@ -64,6 +65,9 @@ class App extends React.Component {
         )}/>
         <Route path="/uploadfile/:id" render={(matchData) => (
           <UploadFile {...matchData} tplData={this.state.tplData}/>
+        )}/>
+        <Route path="/finish" render={(matchData) => (
+          <Finish {...matchData} tplData={this.state.tplData}/>
         )}/>
       </div>
     );

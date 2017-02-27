@@ -13,8 +13,8 @@ Gulp.task('clean', () =>
 );
 
 Gulp.task('copy', ['clean'], () =>
-  Gulp.src('./src/**/*.html')
-    .pipe(Gulp.dest('./dist/'))
+  Gulp.src('./src/img/**/*')
+    .pipe(Gulp.dest('./dist/img'))
 );
 
 Gulp.task('build', ['copy'], function () {
