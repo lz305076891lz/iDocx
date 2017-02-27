@@ -1,3 +1,26 @@
+@import "../../css/_colors.css";
+
 .template {
+
+  & .search {
+    & input {
+      font-size: 20px;
+      line-height: 2;
+      padding: 0 20px;
+      margin-left: 40px;
+      border-radius: 100px;
+      width: 50%;
+      outline: none;
+      border: 1px solid transparent;
+      transition: border .5s;
+      &:focus {
+        border-color: var(--mainColor);
+      }
+    }
+    text-align: center;
+  }
+
+
   width: 100%;
+  padding-top: 30px;
 }
