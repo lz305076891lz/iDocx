@@ -1,9 +1,15 @@
 import React from 'react';
-import './App.css';
+import styles from './App.css';
+
+import HeaderNav from './HeaderNav/HeaderNav';
 
 class App extends React.Component {
   render() {
-    return <div>{ "hello world!!" }</div>
+    return (
+      <div className={styles.app}>
+        <HeaderNav isThrough={true} isLogin={true}/>
+      </div>
+    );
   }
 }
 

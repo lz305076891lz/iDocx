@@ -1,0 +1,34 @@
+@import "../../css/_colors.css";
+
+.header-nav {
+  & h1 {
+    display: inline-block;
+    font-weight: normal;
+    & a {
+      display: inline-block;
+      padding: 0 40px 0 20px;
+    }
+  }
+
+  & ul {
+    & li {
+      display: inline-block;
+      line-height: 80px;
+      margin-left: 20px;
+    }
+    display: inline-block;
+  }
+  & .user {
+    position: absolute;
+    right: 0;
+    line-height: 80px;
+    padding-right: 20px;
+  }
+  &.through {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  color: var(--mainColor);
+}

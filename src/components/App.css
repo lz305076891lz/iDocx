@@ -1,7 +1,10 @@
-:root {
-    --color: red;
+@import "../css/_colors.css";
+
+.app {
 }
 
-body {
-    background: var(--color);
+:global(.container) {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1000px;
 }
