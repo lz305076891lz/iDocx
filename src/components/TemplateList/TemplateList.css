@@ -19,6 +19,37 @@
     }
     text-align: center;
   }
+  & ul {
+    padding-top: 20px;
+    margin-left: -20px;
+  }
+
+  & .list-item {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 180px;
+    height: 260px;
+    background-color: var(--level2Color);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform .5s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+    & div {
+      height: 80%;
+      background-color: var(--mainColor);
+    }
+    & h4 {
+      padding: 0 8px;
+      line-height: 3;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
 
 
   width: 100%;

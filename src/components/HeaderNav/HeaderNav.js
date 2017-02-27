@@ -29,7 +29,7 @@ class HeaderNav extends React.Component {
         <div className="container">
           <h1><Link to="/">iDocx</Link></h1>
           <ul>
-            <li>模版库</li>
+            <li><Link to="/template">模版库</Link></li>
             <li>帮助</li>
           </ul>
           <span className={styles.user}>{user}</span>
