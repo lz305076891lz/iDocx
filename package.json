@@ -1,0 +1,8 @@
+{
+  "name": "M-iDocx",
+  "version": "0.0.1",
+  "main": "gulpfile.js",
+  "repository": "git@github.com:MondoGao/M-iDocx.git",
+  "author": "Mondo <mondogao@gmail.com>",
+  "license": "GPL"
+}
