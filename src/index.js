@@ -1,21 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import { AppContainer } from 'react-hot-loader';
 
-import './css/_reset.css'
-
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom';
-
-import {AppContainer} from 'react-hot-loader';
+import reducers from './reducers/index'
 
 import App from './components/App';
+
+let store = createStore(reducers)
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      {Component}
+      <Provider store={store}>
+        {Component}
+      </Provider>
     </AppContainer>,
     document.getElementById('app')
   );

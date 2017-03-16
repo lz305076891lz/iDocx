@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './App.css';
+import '../css/_reset.css'
 
 import {
-  BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
