@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './App.css';
 import '../css/_reset.css'
+import 'antd/dist/antd.css';
+
 
 import {
   Route,
@@ -12,6 +14,7 @@ import IndexWall from  './IndexWall/IndexWall';
 import TemplateList from  './TemplateList/TemplateList';
 import UploadFile from './UploadFile/UploadFile';
 import Finish from  './Finish/Finish'
+import IndexContent from './IndexContent'
 
 class App extends React.Component {
   constructor(props) {
@@ -58,8 +61,8 @@ class App extends React.Component {
   render() {
     return (
       <div className={styles.app}>
-        <HeaderNav isThrough={this.props.location.pathname == '/'} isLogin={this.state.isLogin}/>
-        <Route exact path="/" component={IndexWall}/>
+        {/*<HeaderNav isThrough={this.props.location.pathname == '/'} isLogin={this.state.isLogin}/>*/}
+        <Route exact path="/" component={IndexContent}/>
         <Route path="/template" render={(matchData) => (
           <TemplateList tplData={this.state.tplData}/>
         )}/>
