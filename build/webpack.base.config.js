@@ -3,16 +3,24 @@ const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  context: resolve(__dirname, '../'),
   entry: {
     index: [
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/only-dev-server',
       './src/index.js'
+    ],
+    vendor: [
+      'react',
+      'redux',
+      'react-router',
+      'react-redux',
+      'antd'
     ]
   },
   output: {
-    filename: 'js/[name].js',
+    filename: 'js/[name].[hash].js',
     path: resolve(__dirname, '../dist'),
     publicPath: '/'
   },
@@ -46,18 +54,28 @@ module.exports = {
       }
     ]
   },
-  context: resolve(__dirname, '../'),
-  devServer: {
-    hot: true,
-    contentBase: './dist',
-    publicPath: '/',
-    port: 8080
+  resolve: {
+    alias: {
+      'components': resolve(__dirname, '../src/components'),
+      'containers': resolve(__dirname, '../src/containers'),
+      'actions': resolve(__dirname, '../src/actions'),
+      'reducers': resolve(__dirname, '../src/reducers/')
+    }
   },
   plugins: [
     new Webpack.HotModuleReplacementPlugin(),
     new Webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
+    }),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
     })
-  ]
+  ],
+  devServer: {
+    hot: true,
+    contentBase: './dist',
+    publicPath: '/',
+    port: 8080
+  }
 };

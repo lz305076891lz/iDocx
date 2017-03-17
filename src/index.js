@@ -5,9 +5,9 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader';
 
-import reducers from './reducers/index'
+import reducers from 'reducers/index'
 
-import App from './components/App';
+import App from 'components/App';
 
 let store = createStore(reducers)
 
@@ -29,7 +29,11 @@ render(
 );
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    render(App)
+  module.hot.accept('components/App', () => {
+    render(
+      <Router>
+        <Route path="/" component={App}/>
+      </Router>
+    )
   });
 }
