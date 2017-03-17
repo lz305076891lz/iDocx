@@ -1,11 +1,12 @@
 import React from 'react'
 
-export default class ResbonsiveContainer extends React.Component {
-  render () {
-    return (
-      <div {...this.props} className="container">
-        {this.props.children}
-      </div>
-    )
-  }
-}
+const ResbonsiveContainer = ({children, isAbsolute, style}) => (
+  <div
+    className={`container ${isAbsolute ? 'container-absolute' : ''}`}
+    style={style}
+  >
+    {children}
+  </div>
+)
+
+export default ResbonsiveContainer

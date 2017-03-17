@@ -32,7 +32,7 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.css$/,
+        test: /\.pcss$/,
         exclude: /node_modules/,
         use: [
           'style-loader',
@@ -42,10 +42,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: /node_modules/,
         use: [
           'style-loader',
-          'css-loader'
+          'css-loader',
+          'postcss-loader'
         ]
       },
       {

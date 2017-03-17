@@ -1,16 +1,12 @@
 import React from 'react';
 import styles from './App.css';
-import 'antd/dist/antd.css';
-
+import 'antd/dist/antd.css'
 
 import {
   Route,
   Link
 } from 'react-router-dom';
 
-import TemplateList from  './TemplateList/TemplateList';
-import UploadFile from './UploadFile/UploadFile';
-import Finish from  './Finish/Finish'
 import IndexContent from './IndexContent'
 
 class App extends React.Component {
@@ -60,17 +56,8 @@ class App extends React.Component {
       <div className={styles.app}>
         {/*<HeaderNav isThrough={this.props.location.pathname == '/'} isLogin={this.state.isLogin}/>*/}
         <Route exact path="/" component={IndexContent}/>
-        <Route path="/template" render={(matchData) => (
-          <TemplateList tplData={this.state.tplData}/>
-        )}/>
-        <Route path="/uploadfile/:id" render={(matchData) => (
-          <UploadFile {...matchData} tplData={this.state.tplData}/>
-        )}/>
-        <Route path="/finish" render={(matchData) => (
-          <Finish {...matchData} tplData={this.state.tplData}/>
-        )}/>
       </div>
-    );
+    )
   }
 }
 

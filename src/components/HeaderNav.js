@@ -1,22 +1,22 @@
 import React from 'react'
 import { Menu } from 'antd'
+import Container from 'components/ResbonsiveContainer'
 
 const HeaderNav = ({menuData}) => (
-  <Menu
-    mode="horizontal"
-    defaultSelectedKeys={['1']}
-    style={{
-      position: true ? 'absolute' : 'relative',
-      border: 'none',
-      lineHeight: '64px',
-      color: '#fff',
-      backgroundColor: 'transparent',
-      zIndex: 10
-    }}
-    className="container container-absolute"
-  >
-    {menuData.map((item) => <Menu.Item key={item.id}>{item.title}</Menu.Item>)}
-  </Menu>
+  <Container isAbsolute={true} style={{zIndex: 10}}>
+    <Menu
+      mode="horizontal"
+      defaultSelectedKeys={['1']}
+      style={{
+        border: 'none',
+        lineHeight: '64px',
+        color: '#fff',
+        backgroundColor: 'transparent'
+      }}
+    >
+      {menuData.map((item) => <Menu.Item key={item.id}>{item.title}</Menu.Item>)}
+    </Menu>
+  </Container>
 )
 
 export default HeaderNav

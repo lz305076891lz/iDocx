@@ -1,28 +1,32 @@
-@import "../css/_colors.css";
-
-:global(.container) {
+.container {
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
 }
-:global(.container-absolute) {
+.container-absolute {
+  position: absolute;
   margin-left: 50%;
   transform: translateX(-50%);
 }
+.clear-fix:before, .clear-fix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
 @media (min-width: 768px) {
-  :global(.container) {
+  .container {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  :global(.container) {
+  .container {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  :global(.container) {
+  .container {
     width: 1170px;
   }
 }
