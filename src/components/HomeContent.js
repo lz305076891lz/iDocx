@@ -1,19 +1,14 @@
 import React from 'react'
 import { Layout } from 'antd'
-const { Header, Content, Footer } = Layout
+const { Content, Footer } = Layout
 
+import Header from 'components/Header'
 import WideCarousel from  'components/WideCarousel'
 import HeaderNav from 'components/HeaderNav'
 
 const HomeContent = ({menuData, pageData}) => (
   <Layout>
-        <Header
-          style={{
-            height: 'auto',
-            padding: 0,
-            backgroundColor: 'transparent',
-          }}
-        >
+        <Header>
           <HeaderNav menuData={menuData}/>
           <WideCarousel pageData={pageData}/>
         </Header>
