@@ -2,7 +2,8 @@ import React from 'react'
 import { Layout, Menu, Row, Col, Carousel, Button } from 'antd'
 const { Header, Content, Footer } = Layout
 
-import Container from 'components/ResbonsiveContainer/index'
+import WideCarousel from  'components/WideCarousel'
+import HeaderNav from 'components/HeaderNav'
 
 import pageImg1 from 'assets/home-carousel-page-1.png'
 import pageImg2 from 'assets/home-carousel-page-2.png'
@@ -62,36 +63,8 @@ export default class IndexContent extends React.Component {
             backgroundColor: 'transparent',
           }}
         >
-          <Menu
-            mode="horizontal"
-            defaultSelectedKeys={[1]}
-            style={{
-              position: true ? 'absolute' : 'relative',
-              border: 'none',
-              lineHeight: '64px',
-              color: '#fff',
-              backgroundColor: 'transparent',
-              zIndex: 10
-            }}
-            className="container container-absolute"
-          >
-            {menuData.map((item) => <Menu.Item key={item.id}>{item.title}</Menu.Item>)}
-          </Menu>
-          <Carousel
-            autoplay={true}
-            autoplaySpeed={5000}
-          >
-            {pageData.map((data) =>
-              <div key={data.id}>
-                <CarouselPage data={data} style={{
-                  paddingTop: '80px',
-                  paddingBottom: 0,
-                  height: 500,
-                  color: '#fff',
-                  overflow: 'hidden'
-                }}/>
-              </div>)}
-          </Carousel>
+          <HeaderNav menuData={menuData}/>
+          <WideCarousel pageData={pageData}/>
         </Header>
         <Content>
 
@@ -103,50 +76,6 @@ export default class IndexContent extends React.Component {
           <a href="#">帮助中心</a>
         </Footer>
       </Layout>
-    )
-  }
-}
-
-class CarouselPage extends React.Component {
-  render () {
-    return (
-      <div style={{
-        ...this.props.style,
-        backgroundColor: this.props.data.backgroundColor
-      }}>
-        <Container style={{height: '100%'}}>
-          <Row
-            type="flex"
-            align="middle"
-            style={{
-              height: '100%'
-            }}>
-            <Col span={10}>
-              <h2
-                style={{
-                  fontSize: 36
-                }}
-              >{this.props.data.title}</h2>
-              <p
-                style={{
-                  paddingBottom: 50,
-                  fontSize: 18
-                }}
-              >{this.props.data.desc}</p>
-              <Button
-                size="large"
-                style={{
-                  marginBottom: 40
-                }}
-                ghost
-              >立即开始</Button>
-            </Col>
-            <Col span={14} style={{height: '100%'}}>
-              <img src={this.props.data.img.src} alt={this.props.data.img.alt} style={{height: '100%'}}/>
-            </Col>
-          </Row>
-        </Container>
-      </div>
     )
   }
 }

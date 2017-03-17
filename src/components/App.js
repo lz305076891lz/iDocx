@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './App.css';
-import '../css/_reset.css'
 import 'antd/dist/antd.css';
 
 
@@ -9,8 +8,6 @@ import {
   Link
 } from 'react-router-dom';
 
-import HeaderNav from './HeaderNav/HeaderNav';
-import IndexWall from  './IndexWall/IndexWall';
 import TemplateList from  './TemplateList/TemplateList';
 import UploadFile from './UploadFile/UploadFile';
 import Finish from  './Finish/Finish'

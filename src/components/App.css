@@ -2,6 +2,8 @@
 
 :global(.container) {
   width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -29,6 +31,22 @@
   box-shadow: 0 2px 20px -5px rgba(0,0,0, .25);
 }
 
-body {
-  background-color: var(--level1Color);
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+a, a:hover, a:visited {
+  color: inherit;
+  text-decoration: none;
 }
