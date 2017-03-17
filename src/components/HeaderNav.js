@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu } from 'antd'
-import Container from 'components/ResbonsiveContainer'
+import Container from 'components/ResponsiveContainer'
 
 const HeaderNav = ({menuData}) => (
   <Container isAbsolute={true} style={{zIndex: 10}}>

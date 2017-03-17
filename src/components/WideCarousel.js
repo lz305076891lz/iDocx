@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Carousel, Button } from 'antd'
-import Container from 'components/ResbonsiveContainer'
+import Container from 'components/ResponsiveContainer'
 
 const WideCarousel = ({pageData}) => (
   <Carousel
