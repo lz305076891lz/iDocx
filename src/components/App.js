@@ -7,7 +7,7 @@ import {
   Link
 } from 'react-router-dom';
 
-import IndexContent from './IndexContent'
+import HomeContainer from 'containers/HomeContainer'
 
 class App extends React.Component {
   constructor(props) {
@@ -55,7 +55,7 @@ class App extends React.Component {
     return (
       <div className={styles.app}>
         {/*<HeaderNav isThrough={this.props.location.pathname == '/'} isLogin={this.state.isLogin}/>*/}
-        <Route exact path="/" component={IndexContent}/>
+        <Route exact path="/" component={HomeContainer}/>
       </div>
     )
   }
