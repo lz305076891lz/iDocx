@@ -1,12 +1,28 @@
 @import "../css/_colors.css";
 
-.app {
-}
-
 :global(.container) {
-  position: relative;
-  margin: 0 auto;
-  max-width: 1000px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+:global(.container-absolute) {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+@media (min-width: 768px) {
+  :global(.container) {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  :global(.container) {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  :global(.container) {
+    width: 1170px;
+  }
 }
 
 :global(.shadow-box) {
