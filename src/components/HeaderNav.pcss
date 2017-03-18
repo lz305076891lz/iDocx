@@ -1,14 +1,37 @@
 .menu:global(.ant-menu) {
   border: none;
+  width: 9999px;
   line-height: 64px;
   color: #fff;
   background-color: transparent;
-  white-space: nowrap;
   & > li:global(.ant-menu-item) {
     color: #fff;
   }
   & > li:global(.ant-menu-item-active), & > li:global(.ant-menu-item-selected) {
     color: #fff;
     border-color: #fff;
+  }
+}
+.sign {
+  & :global(.ant-btn) {
+    display: inline-block;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    line-height: 64px;
+    border: 0 transparent;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    -webkit-appearance: none;
+    &:hover, &:focus {
+      color: #fff;
+      border-color: #fff;
+    }
+    &:focus {
+      background-color: rgba(0, 0, 0, .05) !important;
+    }
+  }
+  & :global(.ant-btn-clicked):after {
+    display: none;
   }
 }
