@@ -1,16 +1,44 @@
 import React from 'react'
-import { Layout } from 'antd'
+import { Row, Col, Layout } from 'antd'
 const { Footer } = Layout
 
 import Container from 'components/ResponsiveContainer'
 
+import styles from './FooterNav.pcss'
+
+const footerData = [
+  {
+    id: 1,
+    text: '联系我们',
+    href: '#'
+  },
+  {
+    id: 2,
+    text: '关于我们',
+    href: '#'
+  },
+  {
+    id: 3,
+    text: '意见反馈',
+    href: '#'
+  },
+  {
+    id: 4,
+    text: '帮助中心',
+    href: '#'
+  },
+]
+
 const FooterNav = (props) => (
-  <Footer>
+  <Footer className={styles['footer-nav']}>
     <Container>
-      <a href="#">联系我们</a>
-      <a href="#">关于我们</a>
-      <a href="#">意见反馈</a>
-      <a href="#">帮助中心</a>
+      <Row>
+        {footerData.map((link) =>
+        <Col xs={12} sm={6}>
+          <a href={link.href}>{link.text}</a>
+        </Col>
+        )}
+      </Row>
     </Container>
   </Footer>
 )
