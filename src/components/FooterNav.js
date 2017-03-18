@@ -34,7 +34,7 @@ const FooterNav = (props) => (
     <Container>
       <Row>
         {footerData.map((link) =>
-        <Col xs={12} sm={6}>
+        <Col key={link.id} xs={12} sm={6}>
           <a href={link.href}>{link.text}</a>
         </Col>
         )}
