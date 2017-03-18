@@ -6,7 +6,7 @@ import styles from  './HeaderNav.pcss'
 const FormItem = Form.Item
 
 const HeaderNav = ({menuData}) => (
-  <Container isAbsolute={true} style={{zIndex: 10}}>
+  <Container style={{position: 'relative', zIndex: 10}}>
     <Row>
       <Col xs={20}>
         <Menu
@@ -28,7 +28,7 @@ class SignInOut extends React.Component{
   constructor (props) {
     super(props)
     this.state = {
-      isLoginVisible: true
+      isLoginVisible: false
     }
 
     this.handleLoginCancel = this.handleLoginCancel.bind(this)

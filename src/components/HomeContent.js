@@ -14,7 +14,7 @@ const HomeContent = ({menuData, pageData, introData}) => (
   <Layout>
     <Header>
       <HeaderNav menuData={menuData}/>
-      <WideCarousel pageData={pageData}/>
+      <WideCarousel pageData={pageData} style={{marginBottom: -66, transform: 'translateY(-66px)'}}/>
     </Header>
     <Content style={{textAlign: 'center'}}>
       <div style={{backgroundColor: '#fff'}}>

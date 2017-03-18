@@ -2,22 +2,24 @@ import React from 'react'
 import { Row, Col, Carousel, Button } from 'antd'
 import Container from 'components/ResponsiveContainer'
 
-const WideCarousel = ({pageData}) => (
-  <Carousel
-    autoplay={true}
-    autoplaySpeed={5000}
-  >
-    {pageData.map((data) =>
-      <div key={data.id}>
-        <CarouselPage data={data} style={{
-          paddingTop: '80px',
-          paddingBottom: 0,
-          height: 500,
-          color: '#fff',
-          overflow: 'hidden'
-        }}/>
-      </div>)}
-  </Carousel>
+const WideCarousel = ({pageData, style}) => (
+  <div style={style}>
+    <Carousel
+      autoplay={true}
+      autoplaySpeed={5000}
+    >
+      {pageData.map((data) =>
+        <div key={data.id}>
+          <CarouselPage data={data} style={{
+            paddingTop: '80px',
+            paddingBottom: 0,
+            height: 500,
+            color: '#fff',
+            overflow: 'hidden'
+          }}/>
+        </div>)}
+    </Carousel>
+  </div>
 )
 
 const CarouselPage = ({style, data, children}) => (
