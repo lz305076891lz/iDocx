@@ -1,6 +1,7 @@
 const {resolve} = require('path');
 const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: resolve(__dirname, '../'),
@@ -20,7 +21,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'js/[name].[hash].js',
+    filename: 'scripts/[name].[hash].js',
     path: resolve(__dirname, '../dist'),
     publicPath: '/'
   },
@@ -34,23 +35,31 @@ module.exports = {
       {
         test: /\.pcss$/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
-          'postcss-loader'
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
+            'postcss-loader'
+          ]
+        })
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader'
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            'postcss-loader'
+            ]
+        })
       },
       {
         test: /\.(jpg|png|gif|ico|svg)/,
-        use: 'url-loader'
+        loader: 'url-loader',
+        options: {
+          limit: 1024,
+          name: 'assets/[name].[ext]?[hash:7]'
+        }
       }
     ]
   },
@@ -71,6 +80,9 @@ module.exports = {
     }),
     new Webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
+    }),
+    new ExtractTextPlugin({
+      filename: 'styles/[name].[hash].css'
     })
   ],
   devServer: {

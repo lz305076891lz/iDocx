@@ -12,15 +12,10 @@ Gulp.task('clean', () =>
     .pipe(GulpClean())
 );
 
-Gulp.task('copy', ['clean'], () =>
-  Gulp.src('./src/img/**/*')
-    .pipe(Gulp.dest('./dist/img'))
-);
-
-Gulp.task('build', ['copy'], function () {
+Gulp.task('build', ['clean'], function () {
   utils.build(Webpack, webpackConfig);
 });
 
-Gulp.task('serve', ['copy'], function () {
+Gulp.task('serve', function () {
   utils.serve(Webpack, WebpackDevServer, webpackConfig);
 });

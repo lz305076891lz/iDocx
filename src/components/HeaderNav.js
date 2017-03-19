@@ -9,7 +9,7 @@ const FormItem = Form.Item
 const HeaderNav = ({menuData}) => (
   <Container style={{position: 'relative', zIndex: 10}}>
     <Row>
-      <Col xs={20}>
+      <Col xs={20} style={{overflow: 'hidden'}}>
         <Menu
           mode="horizontal"
           defaultSelectedKeys={['1']}
