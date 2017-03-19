@@ -8,7 +8,7 @@ const webpackConfig = require('./build/webpack.base.config');
 const utils = require('./build/utils');
 
 Gulp.task('clean', () =>
-  Gulp.src('./dist/**/*', {read: false})
+  Gulp.src('./dist', {read: false})
     .pipe(GulpClean())
 );
 

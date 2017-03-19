@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './App.css';
-import 'antd/dist/antd.css'
 
 import {
   Route,
