@@ -29,28 +29,7 @@ const pageData = [
     }
   }
 ]
-const menuData = [
-  {
-    id: 1,
-    name: 'home',
-    title: '首页'
-  },
-  {
-    id: 2,
-    name: 'compose',
-    title: '智能排版'
-  },
-  {
-    id: 3,
-    name: 'essay',
-    title: '范文库'
-  },
-  {
-    id: 4,
-    name: 'help',
-    title: '帮助'
-  }
-]
+
 const introData = [
   {
     id: 1,
@@ -90,10 +69,6 @@ const introData = [
   },
 ]
 
-function headerNav(state = menuData, action) {
-  return state
-}
-
 function homePages(state = pageData, action) {
   return state
 }
@@ -103,7 +78,6 @@ function homeIntro(state = introData, action) {
 }
 
 const combinedReducer = combineReducers({
-  headerNav,
   homePages,
   homeIntro
 })

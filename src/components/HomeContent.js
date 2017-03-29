@@ -10,10 +10,10 @@ import FooterNav from 'components/FooterNav'
 
 import styles from './HomeContent.pcss'
 
-const HomeContent = ({menuData, pageData, introData}) => (
+const HomeContent = ({pageData, introData}) => (
   <Layout>
     <Header>
-      <HeaderNav menuData={menuData}/>
+      <HeaderNav/>
       <WideCarousel pageData={pageData} style={{marginBottom: -66, transform: 'translateY(-66px)'}}/>
     </Header>
     <Content style={{textAlign: 'center'}}>
