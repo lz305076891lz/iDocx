@@ -1,14 +1,16 @@
-.menu:global(.ant-menu) {
-  border: none;
-  width: 9999px;
-  line-height: 64px;
+.menu-transparent:global(.ant-menu) {
   color: #fff;
   background-color: transparent;
-  & > li:global(.ant-menu-item) {
+  & > li:global(.ant-menu-item) a {
     color: #fff;
   }
   & > li:global(.ant-menu-item-active), & > li:global(.ant-menu-item-selected) {
-    color: #fff;
-    border-color: #fff;
+    color: #fff !important;
+    border-color: #fff !important;
   }
+}
+.menu:global(.ant-menu)  {
+  border: none;
+  width: 9999px;
+  line-height: 64px;
 }

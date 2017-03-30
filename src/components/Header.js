@@ -1,12 +1,12 @@
 import React from 'react'
 import { Layout } from 'antd'
 
-const Header = ({children}) => (
+const Header = ({children, backgroundColor = 'transparent'}) => (
   <Layout.Header
     style={{
       height: 'auto',
       padding: 0,
-      backgroundColor: 'transparent',
+      backgroundColor,
     }}
   >
     {children}

@@ -9,14 +9,8 @@ import FooterNav from 'components/FooterNav'
 
 
 const ComposeContent = ({pageData, introData}) => (
-  <Layout>
-    <Header>
-      <HeaderNav/>
-    </Header>
-    <Content>
-    </Content>
-    <FooterNav/>
-  </Layout>
+  <Content>
+  </Content>
 )
 
 export default ComposeContent

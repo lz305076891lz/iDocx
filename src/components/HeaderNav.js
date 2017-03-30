@@ -30,14 +30,14 @@ const menuData = [
   }
 ]
 
-const HeaderNav = () => (
+const HeaderNav = ({ isTransparent = true }) => (
   <Container style={{position: 'relative', zIndex: 10}}>
     <Row>
       <Col xs={20} style={{overflow: 'hidden'}}>
         <Menu
           mode="horizontal"
           defaultSelectedKeys={['1']}
-          className={styles.menu}
+          className={styles.menu + ' ' + (isTransparent ? styles['menu-transparent'] : '')}
         >
           {menuData.map((item) => <Menu.Item key={item.id}><Link to={item.name}>{item.title}</Link></Menu.Item>)}
         </Menu>

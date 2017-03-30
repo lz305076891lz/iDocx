@@ -3,20 +3,13 @@ import { Layout, Row, Col } from 'antd'
 const { Content, Footer } = Layout
 
 import Container from 'components/ResponsiveContainer'
-import Header from 'components/Header'
 import WideCarousel from  'components/WideCarousel'
-import HeaderNav from 'components/HeaderNav'
-import FooterNav from 'components/FooterNav'
 
 import styles from './HomeContent.pcss'
 
 const HomeContent = ({pageData, introData}) => (
-  <Layout>
-    <Header>
-      <HeaderNav/>
+    <div style={{textAlign: 'center'}}>
       <WideCarousel pageData={pageData} style={{marginBottom: -66, transform: 'translateY(-66px)'}}/>
-    </Header>
-    <Content style={{textAlign: 'center'}}>
       <div style={{backgroundColor: '#fff'}}>
         <Container>
           <Row>
@@ -31,9 +24,7 @@ const HomeContent = ({pageData, introData}) => (
           </Row>
         </Container>
       </div>
-    </Content>
-    <FooterNav/>
-  </Layout>
+    </div>
 )
 
 const HomeIntroItem = ({data}) => (
