@@ -43,7 +43,7 @@ const HeaderNav = ({ isTransparent = true }) => (
         </Menu>
       </Col>
       <Col xs={4}>
-        <SignInOut/>
+        <SignInOut isTransparent={isTransparent}/>
       </Col>
     </Row>
   </Container>

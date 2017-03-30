@@ -29,7 +29,7 @@ class SignInOut extends React.Component{
 
   render () {
     return (
-      <Row className={styles.sign}>
+      <Row className={`${styles.sign} ${this.props.isTransparent ? styles['sign-transparent'] : ''}`}>
         <Col offset={8} span={8}>
           <Button onClick={this.showLoginModel} ghost>登陆</Button>
           <LoginForm
