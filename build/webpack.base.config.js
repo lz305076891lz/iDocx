@@ -1,22 +1,22 @@
-const {resolve} = require('path');
-const Webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const {resolve} = require('path')
+const Webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   context: resolve(__dirname, '../'),
   entry: {
-    index: [
-      'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
-      './src/index.js'
-    ],
+    index: './src/index.js',
     vendor: [
       'react',
+      'react-dom',
+      'react-redux',
+      'react-router-dom',
       'redux',
-      'react-router',
-      'react-redux'
+      'redux-storage',
+      'redux-storage-decorator-debounce',
+      'redux-storage-decorator-filter',
+      'redux-storage-engine-localstorage',
+      'redux-thunk'
     ]
   },
   output: {
@@ -30,27 +30,6 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
-      },
-      {
-        test: /\.pcss$/,
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
-            'postcss-loader'
-          ]
-        })
-      },
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            'postcss-loader'
-            ]
-        })
       },
       {
         test: /\.(jpg|png|gif|ico|svg)/,
@@ -68,26 +47,17 @@ module.exports = {
       'components': resolve(__dirname, '../src/components'),
       'containers': resolve(__dirname, '../src/containers'),
       'actions': resolve(__dirname, '../src/actions'),
-      'reducers': resolve(__dirname, '../src/reducers/')
+      'reducers': resolve(__dirname, '../src/reducers/'),
+      'styles': resolve(__dirname, '../src/styles'),
+      'sources': resolve(__dirname, '../src/sources')
     }
   },
   plugins: [
-    new Webpack.HotModuleReplacementPlugin(),
-    new Webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
     new Webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
-    }),
-    new ExtractTextPlugin({
-      filename: 'styles/[name].[hash].css'
     })
-  ],
-  devServer: {
-    hot: true,
-    contentBase: './dist',
-    publicPath: '/',
-    port: 8080
-  }
-};
+  ]
+}
