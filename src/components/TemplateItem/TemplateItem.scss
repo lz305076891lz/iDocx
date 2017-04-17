@@ -1,0 +1,38 @@
+.template-item-wrapper {
+  min-width: 200px;
+  max-width: 250px;
+  margin-bottom: 20px;
+  padding: 0 8px;
+}
+
+.template-item {
+  height: 300px;
+  cursor: pointer;
+  
+  .img-wrapper {
+    height: 210px;
+    img {
+      width: 100%;
+      min-height: 100%;
+    }
+  }
+  h5 {
+    line-height: 28px;
+    color: #666;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: auto;
+  }
+  p span {
+    font-size: 12px;
+  }
+  .type {
+    float: right;
+  }
+  
+  .preview {
+    color: #108ee9;
+  }
+}

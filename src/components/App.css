@@ -46,6 +46,10 @@ ul {
   list-style: none;
 }
 
+a:focus {
+  text-decoration: none;
+}
+
 .slick-list {
   width: 100%;
 }
