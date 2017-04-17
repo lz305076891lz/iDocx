@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader';
 
@@ -9,7 +11,17 @@ import reducers from 'reducers/index'
 
 import App from 'components/App';
 
-let store = createStore(reducers)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+let store = createStore(
+  reducers,
+  composeEnhancers(
+    applyMiddleware(
+      thunk,
+      logger
+    )
+  )
+)
 
 const render = (Component) => {
   ReactDOM.render(

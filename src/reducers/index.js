@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
 
+import entities from 'reducers/entities'
+
 import pageImg1 from 'assets/home-carousel-page-1.png'
 import pageImg2 from 'assets/home-carousel-page-2.png'
 import introImg1 from 'assets/home-intro-light.png'
@@ -77,10 +79,8 @@ function homeIntro(state = introData, action) {
   return state
 }
 
-const combinedReducer = combineReducers({
+export default combineReducers({
   homePages,
-  homeIntro
+  homeIntro,
+  entities
 })
-
-export default combinedReducer
-

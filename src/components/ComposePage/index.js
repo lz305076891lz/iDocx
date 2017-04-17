@@ -1,14 +1,17 @@
 import React from 'react'
 import { Layout, Row, Col, Input } from 'antd'
 
-import Container from 'components/ResponsiveContainer'
-
 import styles from './ComposePage.scss'
+
+import Container from 'components/ResponsiveContainer'
+import EntityList from 'components/EntityList'
+import TemplateItemContainer from 'containers/TemplateItemContainer'
 
 const ComposePage = ({}) => (
   <div>
     <Container className={styles['compose-container']}>
       <SearchInput/>
+      <EntityList entityIds={[1,2,3]} entity={TemplateItemContainer}/>
     </Container>
   </div>
 )
