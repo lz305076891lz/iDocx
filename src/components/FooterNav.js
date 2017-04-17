@@ -4,7 +4,7 @@ const { Footer } = Layout
 
 import Container from 'components/ResponsiveContainer'
 
-import styles from './FooterNav.pcss'
+import styles from './FooterNav.scss'
 
 const footerData = [
   {

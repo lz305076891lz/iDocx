@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Row, Col, Modal, Form, Input, Tabs, Checkbox } from 'antd'
 const FormItem = Form.Item
 
-import styles from './SignInOut.pcss'
+import styles from './SignInOut.scss'
 
 class SignInOut extends React.Component{
   constructor (props) {

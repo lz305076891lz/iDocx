@@ -6,7 +6,7 @@ import Header from 'components/Header'
 import HeaderNav from 'components/HeaderNav'
 import FooterNav from 'components/FooterNav'
 
-import styles from './ComposeContent.pcss'
+// import styles from './ComposeContent.pcss'
 
 const ComposeContent = ({}) => (
   <div>
