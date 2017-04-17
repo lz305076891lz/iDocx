@@ -19,11 +19,11 @@ const App = (props) => (
   <Layout className={styles.app}>
     {props.match.isExact ? (
       <Header>
-        <HeaderNav/>
+        <HeaderNav {...props}/>
       </Header>
     ) : (
       <Header backgroundColor="#fff">
-        <HeaderNav isTransparent={false}/>
+        <HeaderNav isTransparent={false} {...props}/>
       </Header>
     )}
     <Content>
