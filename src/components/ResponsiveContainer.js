@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ResbonsiveContainer = ({children, isAbsolute, style}) => (
+const ResbonsiveContainer = ({children, isAbsolute, style, className = ''}) => (
   <div
-    className={`container ${isAbsolute ? 'container-absolute' : ''}`}
+    className={`container ${isAbsolute ? 'container-absolute' : ''} ${className}`}
     style={style}
   >
     {children}
