@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import { Layout, Row, Col, Input, Button, Pagination } from 'antd'
 
 import styles from './ComposePage.scss'
@@ -6,19 +7,27 @@ import styles from './ComposePage.scss'
 import Container from 'components/ResponsiveContainer'
 import EntityList from 'components/EntityList'
 import TemplateItemContainer from 'containers/TemplateItemContainer'
-/**
- * @todo Fake Data
- * @constructor
- */
+import UploadPage from 'components/ComposePage/UploadPage'
+
 const ComposePage = ({}) => (
   <div>
     <Container className={styles['compose-container']}>
-      <SearchInput/>
-      <EntityList className={styles.list} entityIds={[1,2,3,
-      4, 5, 6]} entity={TemplateItemContainer}/>
-      <Pagination simple defaultCurrent={1} total={6} className={styles['pagination']}/>
+      <Route path="/compose/upload" component={UploadPage}/>
+      <Route exact path="/compose" component={TemplateSelect}/>
     </Container>
-    <NoFitTip/>
+    <Route exact path="/compose" component={NoFitTip}/>
+  </div>
+)
+
+/**
+ * @todo Fake Data
+ */
+const TemplateSelect = () => (
+  <div>
+    <SearchInput/>
+    <EntityList className={styles.list} entityIds={[1,2,3,
+      4, 5, 6]} entity={TemplateItemContainer}/>
+    <Pagination simple defaultCurrent={1} total={6} className={styles['pagination']}/>
   </div>
 )
 

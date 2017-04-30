@@ -1,0 +1,75 @@
+.seleted-template-tip {
+  margin-bottom: 31px;
+  height: 53px;
+  padding: 0 40px;
+  line-height: 53px;
+  background: #e7f3fd;
+  border: 1px solid #cfe8fb;
+  border-radius: 5px;
+  font-size: 16px;
+  > span {
+    margin-left: 25px;
+    color: #666;
+  }
+  .icon {
+    color: #38a0eb;
+    font-size: 24px;
+    vertical-align: middle;
+  }
+  > a {
+    float: right;
+  }
+}
+
+.upload-file-container {
+  padding: 34px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.upload-area {
+  position: relative;
+  height: 250px;
+  .btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 168px;
+    height: 34px;
+    i {
+      margin-right: 16px;
+    }
+  }
+  :global(.ant-upload-list) {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 580px;
+    height: 210px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    pointer-events: none;
+  }
+  &.has-item {
+    :global(.ant-upload-list) {
+      pointer-events: auto;
+    }
+  }
+}
+
+.upload-tip {
+  .icon {
+    font-size: 80px;
+    font-weight: bold;
+    color: #108ee9;
+  }
+  h3 {
+    margin-top: 22px;
+    font-size: 18px;
+    color: #108ee9;
+  }
+  p {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+}

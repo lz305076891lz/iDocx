@@ -28,7 +28,7 @@ const menuData = [
 
 const HeaderNav = ({ isTransparent = true, location }) => {
   let pathname = location.pathname.match(/^\/\w+\/?/) || ['\/home']
-  pathname = pathname[0].slice(1)
+  pathname = pathname[0].slice(1).replace('/', '')
   
   return (
     <Container style={{position: 'relative', zIndex: 10}}>
@@ -40,7 +40,7 @@ const HeaderNav = ({ isTransparent = true, location }) => {
             selectedKeys={[pathname]}
             className={styles.menu + ' ' + (isTransparent ? styles['menu-transparent'] : '')}
           >
-            {menuData.map((item) => <Menu.Item key={item.name}><Link to={item.name}>{item.title}</Link></Menu.Item>)}
+            {menuData.map((item) => <Menu.Item key={item.name}><Link to={'/' + item.name}>{item.title}</Link></Menu.Item>)}
           </Menu>
         </Col>
         <Col span={6}>

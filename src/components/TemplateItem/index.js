@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Card, Col } from 'antd'
 
 import styles from './TemplateItem.scss'
@@ -7,16 +8,19 @@ import styles from './TemplateItem.scss'
 const TemplateItem = ({ template }) => {
   return (
     <Col span={6} className={styles['template-item-wrapper']}>
-      <Card bordered={false} className={styles['template-item']}>
-        <div className={styles['img-wrapper']}>
-          <img src={template.imgSrc} alt={template.title}/>
-        </div>
-        <h5>{template.title}</h5>
-        <p>
-          <span className={styles.preview}>预览</span>
-          <span className={styles.type}>{template.type}</span>
-        </p>
-      </Card>
+      <Link to={`/compose/upload`}>
+        
+        <Card bordered={false} className={styles['template-item']}>
+          <div className={styles['img-wrapper']}>
+            <img src={template.imgSrc} alt={template.title}/>
+          </div>
+          <h5>{template.title}</h5>
+          <p>
+            <span className={styles.preview}>预览</span>
+            <span className={styles.type}>{template.type}</span>
+          </p>
+        </Card>
+      </Link>
     </Col>
   )
 }
