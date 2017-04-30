@@ -1,18 +1,22 @@
 import React from 'react'
-import { Layout, Row, Col, Input, Button } from 'antd'
+import { Layout, Row, Col, Input, Button, Pagination } from 'antd'
 
 import styles from './ComposePage.scss'
 
 import Container from 'components/ResponsiveContainer'
 import EntityList from 'components/EntityList'
 import TemplateItemContainer from 'containers/TemplateItemContainer'
-
+/**
+ * @todo Fake Data
+ * @constructor
+ */
 const ComposePage = ({}) => (
   <div>
     <Container className={styles['compose-container']}>
       <SearchInput/>
       <EntityList className={styles.list} entityIds={[1,2,3,
       4, 5, 6]} entity={TemplateItemContainer}/>
+      <Pagination simple defaultCurrent={1} total={6} className={styles['pagination']}/>
     </Container>
     <NoFitTip/>
   </div>
