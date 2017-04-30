@@ -30,6 +30,22 @@
 .upload-area {
   position: relative;
   height: 250px;
+  .upload-tip {
+    .icon {
+      font-size: 80px;
+      font-weight: bold;
+      color: #108ee9;
+    }
+    h3 {
+      margin-top: 22px;
+      font-size: 18px;
+      color: #108ee9;
+    }
+    p {
+      margin-top: 12px;
+      font-size: 14px;
+    }
+  }
   .btn {
     position: absolute;
     top: 30px;
@@ -57,19 +73,28 @@
   }
 }
 
-.upload-tip {
-  .icon {
-    font-size: 80px;
-    font-weight: bold;
-    color: #108ee9;
+.cover-select-list-container {
+  position: relative;
+  margin-top: 22px;
+  .tip {
+    font-size: 16px;
+    > span {
+      position: absolute;
+      top: 1.6em;
+      left: 0;
+      font-size: 14px;
+      color: #ccc;
+    }
   }
-  h3 {
-    margin-top: 22px;
-    font-size: 18px;
-    color: #108ee9;
+  .cover-select-list {
+    margin-left: 20px;
+    width: 670px;
+    white-space: nowrap;
   }
-  p {
-    margin-top: 12px;
-    font-size: 14px;
-  }
+}
+
+.cover-meta-container {
+  margin-top: 40px;
+  background: #fff;
+  border-radius: 5px;
 }
