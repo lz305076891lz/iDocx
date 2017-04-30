@@ -7,7 +7,7 @@ module.exports = WebpackMerge(baseConfig, {
   entry: {
     index: [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
+      'webpack-dev-server/client?http://localhost:9080',
       'webpack/hot/only-dev-server',
       'whatwg-fetch',
       './src/index.js'
@@ -45,7 +45,7 @@ module.exports = WebpackMerge(baseConfig, {
     hot: true,
     contentBase: './dist',
     publicPath: '/',
-    port: 8080,
+    port: 9080,
     host: '0.0.0.0',
     compress: true
   }

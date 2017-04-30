@@ -28,7 +28,7 @@ const HomeContent = ({pageData, introData}) => (
 )
 
 const HomeIntroItem = ({data}) => (
-  <Col xs={24} sm={12} className={styles['intro-item']}>
+  <Col span={12} className={styles['intro-item']}>
     <div className={styles['img-wrapper']}>
       <img src={data.img.src} alt={data.img.alt}/>
     </div>

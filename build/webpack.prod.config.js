@@ -14,12 +14,11 @@ module.exports = WebpackMerge(baseConfig, {
   module: {
     rules: [
       {
-        test   : /\.scss$/,
+        test: /\.scss$/,
         exclude: /node_modules/,
-        use    : ExtractTextPlugin.extract({
+        use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use     : [
-            'style-loader',
+          use: [
             'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
             'postcss-loader',
             'sass-loader'
@@ -28,10 +27,9 @@ module.exports = WebpackMerge(baseConfig, {
       },
       {
         test: /\.css$/,
-        use : ExtractTextPlugin.extract({
+        use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use     : [
-            'style-loader',
+          use: [
             'css-loader',
           ]
         })

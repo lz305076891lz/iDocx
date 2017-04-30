@@ -43,6 +43,7 @@ class SearchInput extends React.Component {
   }
 }
 
+
 import imgNoFitTip from 'assets/compose-no-fit-tip.png'
 
 const NoFitTip = () => {

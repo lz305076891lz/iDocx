@@ -34,7 +34,7 @@ const CarouselPage = ({style, data, children}) => (
         style={{
           height: '100%'
         }}>
-        <Col xs={24} sm={10}>
+        <Col span={10}>
           <h2
             style={{
               fontSize: 36
@@ -55,7 +55,7 @@ const CarouselPage = ({style, data, children}) => (
             ghost
           >立即开始</Button>
         </Col>
-        <Col xs= {0} sm={14} style={{height: '100%'}}>
+        <Col span={14} style={{height: '100%'}}>
           <img src={data.img.src} alt={data.img.alt} style={{height: '100%'}}/>
         </Col>
       </Row>
