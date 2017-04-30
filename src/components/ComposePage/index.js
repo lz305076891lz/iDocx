@@ -11,7 +11,8 @@ const ComposePage = ({}) => (
   <div>
     <Container className={styles['compose-container']}>
       <SearchInput/>
-      <EntityList className={styles.list} entityIds={[1,2,3]} entity={TemplateItemContainer}/>
+      <EntityList className={styles.list} entityIds={[1,2,3,
+      4, 5, 6]} entity={TemplateItemContainer}/>
     </Container>
     <NoFitTip/>
   </div>

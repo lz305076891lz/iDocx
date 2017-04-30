@@ -33,7 +33,7 @@ const HeaderNav = ({ isTransparent = true, location }) => {
   return (
     <Container style={{position: 'relative', zIndex: 10}}>
       <Row>
-        <Col span={20} style={{overflow: 'hidden'}}>
+        <Col span={18} style={{overflow: 'hidden'}}>
           <Menu
             mode="horizontal"
             defaultSelectedKeys={['home']}
@@ -43,7 +43,7 @@ const HeaderNav = ({ isTransparent = true, location }) => {
             {menuData.map((item) => <Menu.Item key={item.name}><Link to={item.name}>{item.title}</Link></Menu.Item>)}
           </Menu>
         </Col>
-        <Col span={4}>
+        <Col span={6}>
           <SignInOut isTransparent={isTransparent}/>
         </Col>
       </Row>

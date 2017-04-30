@@ -47,6 +47,7 @@ module.exports = WebpackMerge(baseConfig, {
     publicPath: '/',
     port: 9080,
     host: '0.0.0.0',
-    compress: true
+    compress: true,
+    historyApiFallback: true
   }
 })
