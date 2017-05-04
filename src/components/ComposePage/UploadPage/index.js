@@ -70,6 +70,11 @@ class UploadPage extends React.Component {
         <div className={styles['cover-meta-container']}>
           封面信息补充
         </div>
+        <div className={styles['btn-wrapper']}>
+          <Button type="primary" className={styles['start-btn']}>
+            开始排版
+          </Button>
+        </div>
       </div>
     )
   }
