@@ -95,8 +95,38 @@
 
 .cover-meta-container {
   margin-top: 40px;
-  background: #fff;
+  height: 448px;
   border-radius: 5px;
+  overflow: hidden;
+  transition: all .8s;
+  &.hide {
+    margin-top: 0px;
+    height: 0;
+  }
+  > :global(.ant-tabs .ant-tabs-bar) {
+    margin-bottom: 0;
+    :global(.ant-tabs-tab) {
+      border-color: transparent;
+      margin-right: 5px;
+    }
+    :global(.ant-tabs-tab-active) {
+      border-bottom: 1px solid #fff;
+    }
+  }
+  :global(.ant-tabs-content) {
+    background: #fff;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    :global(.ant-tabs-tabpane) {
+      background: #fff;
+      height: 408px;
+      padding: 40px 50px;
+      &:global(.ant-tabs-tabpane-inactive) {
+        opacity: 1;
+        height: 408px;
+      }
+    }
+  }
 }
 
 .btn-wrapper {
@@ -104,7 +134,7 @@
 }
 
 .start-btn {
-  margin-top: 45px;
+  margin: 45px 0;
   width: 206px;
   height: 47px;
   font-size: 18px;

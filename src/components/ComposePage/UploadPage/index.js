@@ -1,7 +1,8 @@
 import React from 'react'
-import { Icon, Upload, Button, Select } from 'antd'
+import { Icon, Upload, Button, Select, Tabs } from 'antd'
 import { Link } from 'react-router-dom'
 const Option = Select.Option
+const TabPane = Tabs.TabPane
 
 import styles from './UploadPage.scss'
 
@@ -36,7 +37,8 @@ class UploadPage extends React.Component {
       type: '硕士',
       imgSrc: require('assets/home-carousel-page-1.png')
     }
-    
+    const successList = this.state.fileList.filter(file => file.status === 'done')
+  
     return (
       <div>
         <div className={styles['seleted-template-tip']}>
@@ -61,15 +63,12 @@ class UploadPage extends React.Component {
               onChange={this.handleCoverSelectChange}
             >
               {
-                this.state.fileList.filter(file => file.status === 'done')
-                  .map(file => <Option key={file.uid}>{file.name}</Option>)
+                successList.map(file => <Option key={file.uid}>{file.name}</Option>)
               }
             </Select>
           </div>
         </div>
-        <div className={styles['cover-meta-container']}>
-          封面信息补充
-        </div>
+        <CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/>
         <div className={styles['btn-wrapper']}>
           <Button type="primary" className={styles['start-btn']}>
             开始排版
@@ -111,6 +110,49 @@ class FileUpload extends React.Component {
               </p>
             </div>}
         </Upload.Dragger>
+      </div>
+    )
+  }
+}
+
+class CoverInfo extends React.Component {
+  state = {
+    activeKey: -1
+  }
+  
+  handleChange = key => {
+    this.setState({
+      activeKey: key
+    })
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    if (!~this.state.activeKey && nextProps.fileList.length > 0) {
+      this.setState({
+        activeKey: nextProps.fileList[0].uid
+      })
+    }
+  }
+  
+  render() {
+    const panels = this.props.fileList.map(file => (
+      <TabPane
+        tab={file.name}
+        key={file.uid}
+      >
+        {file.name}
+      </TabPane>
+    ))
+  
+    return (
+      <div className={`${styles['cover-meta-container']} ${panels.length > 0 ? '' : styles['hide']}`}>
+        <Tabs
+          type="card"
+          activeKey={this.state.activeKey}
+          onChange={this.handleChange}
+        >
+          {panels}
+        </Tabs>
       </div>
     )
   }
