@@ -8,11 +8,13 @@ import Container from 'components/ResponsiveContainer'
 import EntityList from 'components/EntityList'
 import TemplateItemContainer from 'containers/TemplateItemContainer'
 import UploadPage from 'components/ComposePage/UploadPage'
+import DownloadPage from 'components/ComposePage/DownloadPage'
 
 const ComposePage = ({}) => (
   <div>
     <Container className={styles['compose-container']}>
       <Route path="/compose/upload" component={UploadPage}/>
+      <Route path="/compose/download" component={DownloadPage}/>
       <Route exact path="/compose" component={TemplateSelect}/>
     </Container>
     <Route exact path="/compose" component={NoFitTip}/>

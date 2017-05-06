@@ -77,7 +77,7 @@ class UploadPage extends React.Component {
             className={styles['start-btn']}
             disabled={successList.length < 1}
           >
-            开始排版
+            <Link to='/compose/download'>开始排版</Link>
           </Button>
         </div>
       </div>
