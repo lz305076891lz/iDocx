@@ -127,7 +127,8 @@ class CoverInfo extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    if (!~this.state.activeKey && nextProps.fileList.length > 0) {
+    console.log(nextProps.fileList.filter(file => file.uid === this.state.activeKey))
+    if (nextProps.fileList.length > 0  && (!~this.state.activeKey || nextProps.fileList.filter(file => file.uid === this.state.activeKey).length < 1)) {
       this.setState({
         activeKey: nextProps.fileList[0].uid
       })
