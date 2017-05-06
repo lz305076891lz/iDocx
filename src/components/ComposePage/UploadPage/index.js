@@ -7,6 +7,8 @@ const FormItem = Form.Item
 
 import styles from './UploadPage.scss'
 
+import InFlowTip from 'components/InFlowTip'
+
 /**
  * @todo Fake Data
  */
@@ -42,11 +44,10 @@ class UploadPage extends React.Component {
   
     return (
       <div>
-        <div className={styles['seleted-template-tip']}>
-          <Icon type="check-circle" className={styles['icon']}/>
-          <span>已选模板：{template.title}</span>
-          <Link to="/compose">修改模板</Link>
-        </div>
+        <InFlowTip
+          tip={`已选模板：${template.title}`}
+          linkTo="/compose"
+          linkText="修改模板"/>
         <div className={styles['upload-file-container']}>
           <FileUpload
             handleFileListChange={this.handleFileListChange}
