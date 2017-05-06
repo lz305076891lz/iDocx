@@ -129,6 +129,30 @@
   }
 }
 
+.cover-info-form {
+  h4 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #666;
+  }
+  section {
+    border-top: 1px dashed #ccc;
+    padding: 25px 110px 5px;
+    :global(.ant-form-item) {
+      margin-right: 0;
+      margin-bottom: 20px;
+      width: 310px;
+    }
+  }
+  section:first-of-type {
+    margin-top: 18px;
+    :global(.ant-form-item) {
+      width: 100%;
+    }
+    }
+}
+
 .btn-wrapper {
   text-align: center;
 }

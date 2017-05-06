@@ -1,8 +1,9 @@
 import React from 'react'
-import { Icon, Upload, Button, Select, Tabs } from 'antd'
+import { Icon, Upload, Button, Select, Tabs, Form, Input } from 'antd'
 import { Link } from 'react-router-dom'
 const Option = Select.Option
 const TabPane = Tabs.TabPane
+const FormItem = Form.Item
 
 import styles from './UploadPage.scss'
 
@@ -121,7 +122,7 @@ class FileUpload extends React.Component {
 
 class CoverInfo extends React.Component {
   state = {
-    activeKey: -1
+    activeKey: ''
   }
   
   handleChange = key => {
@@ -132,7 +133,7 @@ class CoverInfo extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     console.log(nextProps.fileList.filter(file => file.uid === this.state.activeKey))
-    if (nextProps.fileList.length > 0  && (!~this.state.activeKey || nextProps.fileList.filter(file => file.uid === this.state.activeKey).length < 1)) {
+    if (nextProps.fileList.length > 0  && (!this.state.activeKey || nextProps.fileList.filter(file => file.uid === this.state.activeKey).length < 1)) {
       this.setState({
         activeKey: nextProps.fileList[0].uid
       })
@@ -145,7 +146,7 @@ class CoverInfo extends React.Component {
         tab={file.name}
         key={file.uid}
       >
-        {file.name}
+        <WrappedCoverInfoForm/>
       </TabPane>
     ))
   
@@ -162,5 +163,107 @@ class CoverInfo extends React.Component {
     )
   }
 }
+
+class CoverInfoForm extends React.Component {
+  render() {
+    const { getFieldDecorator } = this.props.form;
+    const formItemLayout = {
+      labelCol: {
+        xs: 6
+      },
+      wrapperCol: {
+        xs: 18
+      }
+    }
+    
+    const formItemLayoutLarge = {
+      labelCol: {
+        xs: 3
+      },
+      wrapperCol: {
+        xs: 21
+      }
+    }
+    
+    return (
+      <Form
+        inline
+        className={styles['cover-info-form']}
+      >
+        <h4>封面信息</h4>
+        <section>
+          <FormItem
+            {...formItemLayoutLarge}
+            label="中文题目"
+          >
+            {getFieldDecorator('chineseTitle')(
+              <Input/>
+            )}
+          </FormItem>
+          <FormItem
+            label="英文题目"
+            {...formItemLayoutLarge}
+          >
+            {getFieldDecorator('chineseTitle')(
+              <Input/>
+            )}
+          </FormItem>
+        </section>
+        <section>
+          <FormItem
+            {...formItemLayout}
+            label="学位"
+          >
+            {getFieldDecorator('chineseTitle')(
+              <Input/>
+            )}
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label="作者"
+          >
+            {getFieldDecorator('chineseTitle')(
+              <Input/>
+            )}
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label="院系"
+          >
+            {getFieldDecorator('chineseTitle')(
+              <Input/>
+            )}
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label="学校"
+          >
+            {getFieldDecorator('chineseTitle')(
+              <Input/>
+            )}
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label="方向"
+          >
+            {getFieldDecorator('chineseTitle')(
+              <Input/>
+            )}
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label="专业"
+          >
+            {getFieldDecorator('chineseTitle')(
+              <Input/>
+            )}
+          </FormItem>
+        </section>
+      </Form>
+    )
+  }
+}
+
+const WrappedCoverInfoForm = Form.create()(CoverInfoForm)
 
 export default UploadPage
