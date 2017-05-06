@@ -70,7 +70,11 @@ class UploadPage extends React.Component {
         </div>
         <CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/>
         <div className={styles['btn-wrapper']}>
-          <Button type="primary" className={styles['start-btn']}>
+          <Button
+            type="primary"
+            className={styles['start-btn']}
+            disabled={successList.length < 1}
+          >
             开始排版
           </Button>
         </div>
