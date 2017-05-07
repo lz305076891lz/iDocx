@@ -5,8 +5,7 @@ import { Layout, Row, Col, Input, Button, Pagination } from 'antd'
 import styles from './ComposePage.scss'
 
 import Container from 'components/ResponsiveContainer'
-import EntityList from 'components/EntityList'
-import TemplateItemContainer from 'containers/TemplateItemContainer'
+import TemplatesPage from 'components/ComposePage/TemplatesPage'
 import UploadPage from 'components/ComposePage/UploadPage'
 import DownloadPage from 'components/ComposePage/DownloadPage'
 
@@ -15,50 +14,11 @@ const ComposePage = ({}) => (
     <Container className={styles['compose-container']}>
       <Route path="/compose/upload" component={UploadPage}/>
       <Route path="/compose/download" component={DownloadPage}/>
-      <Route exact path="/compose" component={TemplateSelect}/>
+      <Route exact path="/compose" component={TemplatesPage}/>
     </Container>
     <Route exact path="/compose" component={NoFitTip}/>
   </div>
 )
-
-/**
- * @todo Fake Data
- */
-const TemplateSelect = () => (
-  <div>
-    <SearchInput/>
-    <EntityList className={styles.list} entityIds={[1,2,3,
-      4, 5, 6]} entity={TemplateItemContainer}/>
-    <Pagination simple defaultCurrent={1} total={6} className={styles['pagination']}/>
-  </div>
-)
-
-class SearchInput extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: ''
-    }
-  }
-  
-  handleChange = (e) => {
-    this.setState({value: e.target.value})
-  }
-  
-  render() {
-    return (
-      <div className={styles['search-input']}>
-        <Input.Search size="large" placeholder={"输入学校名称查找相应模板"} value={this.state.value} onChange={this.handleChange}/>
-        <p>
-          <span>国家标准格式论文模板</span>
-          <span>华中科技大学硕士论文模板</span>
-          <span>华中科技大学博士论文模板</span>
-        </p>
-      </div>
-    )
-  }
-}
-
 
 import imgNoFitTip from 'assets/compose-no-fit-tip.png'
 
