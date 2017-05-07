@@ -5,7 +5,7 @@ import { Layout, Row, Col, Input, Button, Pagination } from 'antd'
 import styles from './ComposePage.scss'
 
 import Container from 'components/ResponsiveContainer'
-import TemplatesPage from 'components/ComposePage/TemplatesPage'
+import TemplatesPageContainer from 'containers/TemplatesPageContainer'
 import UploadPage from 'components/ComposePage/UploadPage'
 import DownloadPage from 'components/ComposePage/DownloadPage'
 
@@ -14,7 +14,7 @@ const ComposePage = ({}) => (
     <Container className={styles['compose-container']}>
       <Route path="/compose/upload" component={UploadPage}/>
       <Route path="/compose/download" component={DownloadPage}/>
-      <Route exact path="/compose" component={TemplatesPage}/>
+      <Route exact path="/compose" component={TemplatesPageContainer}/>
     </Container>
     <Route exact path="/compose" component={NoFitTip}/>
   </div>

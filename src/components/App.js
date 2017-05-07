@@ -13,7 +13,7 @@ import FooterNav from 'components/FooterNav'
 import Header from 'components/Header'
 
 import HomeContainer from 'containers/HomeContainer'
-import ComposeContainer from 'containers/ComposeContainer'
+import ComposePageContainer from 'containers/ComposePageContainer'
 
 const App = (props) => (
   <Layout className={styles.app}>
@@ -29,7 +29,7 @@ const App = (props) => (
     <Content>
       <Route exact path="/" component={HomeContainer}/>
       <Route path="/home" render={() => <Redirect to="/"/>}/>
-      <Route path="/compose" component={ComposeContainer}/>
+      <Route path="/compose" component={ComposePageContainer}/>
     </Content>
     <FooterNav/>
   </Layout>
