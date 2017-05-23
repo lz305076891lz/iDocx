@@ -45,19 +45,8 @@ paths:
           schema:
             type: object
             properties:
-              uid:
-                type: string
-              name:
-                type: string
-              status:
-                type: string
-                enum:
-                  - uploading
-                  - done
-                  - error
-                  - removed
-              response:
-                type: string
+              id:
+                $ref: '#/definitions/Id'
   /files/compose:
     post:
       description: 请求已上传的文件让服务器开始排版并返回已排版文件的 id
