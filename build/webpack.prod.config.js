@@ -2,6 +2,8 @@ const { resolve } = require('path')
 const Webpack = require('webpack')
 const WebpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ImageminPlugin = require('imagemin-webpack-plugin').default
+
 const baseConfig = require('./webpack.base.config')
 
 module.exports = WebpackMerge(baseConfig, {
@@ -53,6 +55,7 @@ module.exports = WebpackMerge(baseConfig, {
     }),
     new Webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
-    })
+    }),
+    new ImageminPlugin()
   ]
 })

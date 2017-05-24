@@ -14,10 +14,14 @@ Gulp.task('clean', () =>
 );
 
 Gulp.task('build', ['clean'], function () {
+  process.env.NODE_ENV = 'production'
+  
   utils.build(Webpack, prodConfig);
 });
 
 Gulp.task('serve', function () {
+  process.env.NODE_ENV = 'develop'
+  
   utils.serve(Webpack, WebpackDevServer, devConfig);
 });
 
