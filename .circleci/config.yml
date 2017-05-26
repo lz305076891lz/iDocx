@@ -21,12 +21,16 @@ jobs:
       - run:
           name: commit
           command: |
-            git config --global user.email "mondogao@gmail.com"
-            git config --global user.name "Mondo"
-            git add .
-            git commit -m "release"
-            git status
-            git push -u origin release
+            st=`git log -1 --pretty=oneline`
+            if [[ $st == *Merge* ]]
+              then
+                git config --global user.email "mondogao@gmail.com"
+                git config --global user.name "Mondo"
+                git add .
+                git commit -m "release"
+                git status
+                git push -u origin release
+            fi
       - store_artifacts:
           path: dist/
           destination: dist
