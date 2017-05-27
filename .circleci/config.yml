@@ -29,7 +29,7 @@ jobs:
                 git add .
                 git commit -m "release"
                 git status
-                git push -u origin release
+                git push -u origin release-dev
             fi
       - store_artifacts:
           path: dist/
