@@ -16,7 +16,7 @@ const ComposePage = ({}) => (
       <Route path="/compose/download" component={DownloadPage}/>
       <Route exact path="/compose" component={TemplatesPageContainer}/>
     </Container>
-    <Route exact path="/compose" component={NoFitTip}/>
+    {/*<Route exact path="/compose" component={NoFitTip}/>*/}
   </div>
 )
 

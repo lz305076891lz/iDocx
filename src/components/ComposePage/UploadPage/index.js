@@ -53,24 +53,24 @@ class UploadPage extends React.Component {
             handleFileListChange={this.handleFileListChange}
             fileList={this.state.fileList}
           />
-          <div className={styles['cover-select-list-container']}>
-            <span className={styles['tip']}>
-              选择需要生成封面的论文:
-              <span>不需生成封面，可跳过此步</span>
-            </span>
-            <Select
-              mode="multiple"
-              className={styles['cover-select-list']}
-              value={this.state.coverList}
-              onChange={this.handleCoverSelectChange}
-            >
-              {
-                successList.map(file => <Option key={file.uid}>{file.name}</Option>)
-              }
-            </Select>
-          </div>
+          {/*<div className={styles['cover-select-list-container']}>*/}
+            {/*<span className={styles['tip']}>*/}
+              {/*选择需要生成封面的论文:*/}
+              {/*<span>不需生成封面，可跳过此步</span>*/}
+            {/*</span>*/}
+            {/*<Select*/}
+              {/*mode="multiple"*/}
+              {/*className={styles['cover-select-list']}*/}
+              {/*value={this.state.coverList}*/}
+              {/*onChange={this.handleCoverSelectChange}*/}
+            {/*>*/}
+              {/*{*/}
+                {/*successList.map(file => <Option key={file.uid}>{file.name}</Option>)*/}
+              {/*}*/}
+            {/*</Select>*/}
+          {/*</div>*/}
         </div>
-        <CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/>
+        {/*<CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/>*/}
         <div className={styles['btn-wrapper']}>
           <Button
             type="primary"
