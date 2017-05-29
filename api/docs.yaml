@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: 鱼尾
-  version: 1.0.2
+  version: 1.0.3
   description: 鱼尾网后台基本 API 文档
   contact:
     name: Mondo
@@ -25,9 +25,19 @@ paths:
         '200':
           description: OK
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Template'
+            type: object
+            properties:
+              total:
+                type: number
+              page:
+                type: number
+              search:
+                type: string
+                default: ''
+              list:
+                type: array
+                items:
+                  $ref: '#/definitions/Template'
   /files:
     post:
       description: 上传文件接口
