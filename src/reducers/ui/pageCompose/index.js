@@ -60,8 +60,33 @@ const pageUpload = (state = pageUploadDefault, action) => {
   }
 }
 
+const pageDownloadDefault = {
+  isLoading: false,
+  fishList: []
+}
+
+const pageDownload = (state = pageDownloadDefault, action) => {
+  switch (action.type) {
+    case actions.fishes.COMPOSE_START: {
+      return {
+        ...state,
+        isLoading: true
+      }
+    }
+    case actions.fishes.COMPOSE_END: {
+      return {
+        ...state,
+        isLoading: false,
+        fishList: action.payload.result
+      }
+    }
+    default:
+      return state
+  }
+}
 
 export default combineReducers({
   pageTemplates,
-  pageUpload
+  pageUpload,
+  pageDownload
 })

@@ -1,3 +1,5 @@
+import sources from 'sources'
+
 export const CHANGE_CHOSEN_TEMPLATE = 'CHANGE_CHOSEN_TEMPLATE'
 
 export const CHANGE_TEMPLATES_PAGE = 'CHANGE_TEMPLATES_PAGE'

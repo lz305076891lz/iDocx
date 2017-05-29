@@ -76,7 +76,7 @@ class UploadPage extends React.Component {
               type="primary"
               className={styles['start-btn']}
               disabled={successList.length < 1}
-            >
+              onClick={() => this.props.composeStart(successList.map(file => file.response.id))}>
               开始排版
             </Button>
           </Link>
@@ -284,6 +284,9 @@ const mapState = state => {
 const mapDispatch = dispatch => ({
   changeUploadFileList(fileList) {
     dispatch(actions.ui.changeUploadFileList(fileList))
+  },
+  composeStart(fileIds) {
+    return dispatch(actions.fishes.composeStart(fileIds))
   }
 })
 
