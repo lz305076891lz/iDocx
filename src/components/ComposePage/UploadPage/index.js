@@ -11,7 +11,7 @@ import InFlowTip from 'components/InFlowTip'
 
 class UploadPage extends React.Component {
   state = {
-    fileList: [],
+    fileList: this.props.fileList,
     coverList: []
   }
   
@@ -22,6 +22,8 @@ class UploadPage extends React.Component {
         return fileList.map(file => file.uid).includes(cover)
       })
     }))
+  
+    this.props.changeUploadFileList(fileList.filter(file => file.status === 'done'))
   }
   
   handleCoverSelectChange = value => {
@@ -51,31 +53,33 @@ class UploadPage extends React.Component {
             fileList={this.state.fileList}
           />
           {/*<div className={styles['cover-select-list-container']}>*/}
-            {/*<span className={styles['tip']}>*/}
-              {/*选择需要生成封面的论文:*/}
-              {/*<span>不需生成封面，可跳过此步</span>*/}
-            {/*</span>*/}
-            {/*<Select*/}
-              {/*mode="multiple"*/}
-              {/*className={styles['cover-select-list']}*/}
-              {/*value={this.state.coverList}*/}
-              {/*onChange={this.handleCoverSelectChange}*/}
-            {/*>*/}
-              {/*{*/}
-                {/*successList.map(file => <Option key={file.uid}>{file.name}</Option>)*/}
-              {/*}*/}
-            {/*</Select>*/}
+          {/*<span className={styles['tip']}>*/}
+          {/*选择需要生成封面的论文:*/}
+          {/*<span>不需生成封面，可跳过此步</span>*/}
+          {/*</span>*/}
+          {/*<Select*/}
+          {/*mode="multiple"*/}
+          {/*className={styles['cover-select-list']}*/}
+          {/*value={this.state.coverList}*/}
+          {/*onChange={this.handleCoverSelectChange}*/}
+          {/*>*/}
+          {/*{*/}
+          {/*successList.map(file => <Option key={file.uid}>{file.name}</Option>)*/}
+          {/*}*/}
+          {/*</Select>*/}
           {/*</div>*/}
         </div>
         {/*<CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/>*/}
         <div className={styles['btn-wrapper']}>
-          <Button
-            type="primary"
-            className={styles['start-btn']}
-            disabled={successList.length < 1}
-          >
-            <Link to='/compose/download'>开始排版</Link>
-          </Button>
+          <Link to='/compose/download'>
+            <Button
+              type="primary"
+              className={styles['start-btn']}
+              disabled={successList.length < 1}
+            >
+              开始排版
+            </Button>
+          </Link>
         </div>
       </div>
     )
@@ -93,6 +97,7 @@ class FileUpload extends React.Component {
       action: '//jsonplaceholder.typicode.com/posts/',
       onChange: this.handleChange,
       multiple: true,
+      accept: '.doc, .docx, .pdf',
       fileList: this.props.fileList
     }
     const hasFile = this.props.fileList.length > 0
@@ -264,8 +269,8 @@ class CoverInfoForm extends React.Component {
 
 const WrappedCoverInfoForm = Form.create()(CoverInfoForm)
 
-
 import { connect } from 'react-redux'
+import actions from 'actions'
 
 const mapState = state => {
   const page = state.ui.pageCompose.pageUpload
@@ -277,7 +282,9 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-
+  changeUploadFileList(fileList) {
+    dispatch(actions.ui.changeUploadFileList(fileList))
+  }
 })
 
 export default connect(mapState, mapDispatch)(UploadPage)

@@ -37,15 +37,22 @@ const pageTemplates = (state = pageTemplatesDefault, action) => {
 }
 
 const pageUploadDefault = {
-  chosenTemplateId: ''
+  chosenTemplateId: '',
+  fileList: []
 }
 
-const pageUpload = (state = {}, action) => {
+const pageUpload = (state = pageUploadDefault, action) => {
   switch (action.type) {
     case actions.ui.CHANGE_CHOSEN_TEMPLATE: {
       return {
         ...state,
         chosenTemplateId: action.payload
+      }
+    }
+    case actions.ui.CHANGE_UPLOAD_FILE_LIST: {
+      return {
+        ...state,
+        fileList: action.payload
       }
     }
     default:
