@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: 鱼尾
-  version: 1.0.4
+  version: 1.0.5
   description: 鱼尾网后台基本 API 文档
   contact:
     name: Mondo
@@ -175,6 +175,8 @@ definitions:
     properties:
       id:
         $ref: '#/definitions/Id'
+      fileName:
+        type: string
       previewHref:
         $ref: '#/definitions/Link'
       downloadLinks:
