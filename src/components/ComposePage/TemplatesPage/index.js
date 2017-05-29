@@ -9,11 +9,12 @@ import TemplateItem from 'components/TemplateItem'
 
 class TemplatesPage extends React.Component {
   handleChange = e => {
-  
+    this.props.changeSearchValue(e.target.value)
   }
   
   handlePageChange = (page, pageSize) => {
-  
+    this.props.changePage(page)
+    this.props.getTemplates(page)
   }
   
   componentDidMount() {
@@ -75,6 +76,12 @@ const mapState = state => {
 const mapDispatch = dispatch => ({
   getTemplates(page, search) {
     return dispatch(actions.templates.getTemplates(page, search))
+  },
+  changePage(page) {
+    return dispatch(actions.ui.changeTemplatesPage(page))
+  },
+  changeSearchValue(value) {
+    return dispatch(actions.ui.changeTemplatesSearch(value))
   }
 })
 
