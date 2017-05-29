@@ -7,27 +7,29 @@ import EntityList from 'components/EntityList'
 import TemplateItem from 'components/TemplateItem'
 
 class TemplatesPage extends React.Component {
-  state = {
-    searchValue: ''
+  handleChange = e => {
+    
   }
   
-  handleChange = e => {
-    this.setState({
-      searchValue: e.target.value
-    })
+  handlePageChange = (page, pageSize) => {
+  
   }
   
   render() {
-    let templateIds = Object.keys(this.props.templates)
-    
     return (
       <div>
         <SearchInput
-          value={this.state.searchValue}
+          value={this.props.searchValue}
           onChange={this.handleChange}
         />
-        <EntityList className={styles.list} entityIds={templateIds} entity={TemplateItem}/>
-        <Pagination simple defaultCurrent={1} total={6} className={styles['pagination']}/>
+        <EntityList className={styles.list} entityIds={this.props.templateList} entity={TemplateItem}/>
+        <Pagination
+          simple
+          defaultCurrent={1}
+          total={6}
+          pageSize={8}
+          onChange={this.handlePageChange}
+          className={styles['pagination']}/>
       </div>
     )
   }
@@ -54,11 +56,16 @@ class SearchInput extends React.Component {
   }
 }
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-const mapState = state => ({
-  templates: state.entities.templates
-})
+const mapState = state => {
+  const page = state.ui.pageCompose.pageTemplates
+  
+  return {
+    templateList: page.list,
+    searchValue: page.searchValue
+  }
+}
 
 const mapDispatch = dispatch => ({})
 
