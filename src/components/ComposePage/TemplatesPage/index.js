@@ -8,7 +8,7 @@ import TemplateItem from 'components/TemplateItem'
 
 class TemplatesPage extends React.Component {
   handleChange = e => {
-    
+  
   }
   
   handlePageChange = (page, pageSize) => {
