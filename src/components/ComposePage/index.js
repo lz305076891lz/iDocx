@@ -5,7 +5,7 @@ import { Layout, Row, Col, Input, Button, Pagination } from 'antd'
 import styles from './ComposePage.scss'
 
 import Container from 'components/ResponsiveContainer'
-import TemplatesPageContainer from 'containers/TemplatesPageContainer'
+import TemplatesPage from 'components/ComposePage/TemplatesPage'
 import UploadPage from 'components/ComposePage/UploadPage'
 import DownloadPage from 'components/ComposePage/DownloadPage'
 
@@ -14,9 +14,9 @@ const ComposePage = ({}) => (
     <Container className={styles['compose-container']}>
       <Route path="/compose/upload" component={UploadPage}/>
       <Route path="/compose/download" component={DownloadPage}/>
-      <Route exact path="/compose" component={TemplatesPageContainer}/>
+      <Route exact path="/compose" component={TemplatesPage}/>
     </Container>
-    <Route exact path="/compose" component={NoFitTip}/>
+    {/*<Route exact path="/compose" component={NoFitTip}/>*/}
   </div>
 )
 
@@ -39,4 +39,11 @@ const NoFitTip = () => {
   )
 }
 
-export default ComposePage
+import { connect } from 'react-redux'
+
+const mapState = state => ({
+})
+
+const ComposePageContainer = connect(mapState)(ComposePage)
+
+export default ComposePageContainer

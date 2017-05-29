@@ -4,12 +4,10 @@ import { Card, Col } from 'antd'
 
 import styles from './TemplateItem.scss'
 
-
-const TemplateItem = ({ template }) => {
+const TemplateItem = ({ template, linkTo = `/compose/upload`, onClick }) => {
   return (
     <Col span={6} className={styles['template-item-wrapper']}>
-      <Link to={`/compose/upload`}>
-        
+      <Link to={linkTo} onClick={() => onClick(template.id)}>
         <Card bordered={false} className={styles['template-item']}>
           <div className={styles['img-wrapper']}>
             <img src={template.imgSrc} alt={template.title}/>
@@ -17,7 +15,7 @@ const TemplateItem = ({ template }) => {
           <h5>{template.title}</h5>
           <p>
             <span className={styles.preview}>预览</span>
-            <span className={styles.type}>{template.type}</span>
+            <span className={styles.type}>{template.type.title}</span>
           </p>
         </Card>
       </Link>
@@ -25,4 +23,14 @@ const TemplateItem = ({ template }) => {
   )
 }
 
-export default TemplateItem
+import { connect } from 'react-redux'
+
+const mapState = (state, ownProps) => ({
+  template: state.entities.templates[ownProps.entityId]
+})
+
+const mapDispatch = dispatch => ({
+
+})
+
+export default connect(mapState, mapDispatch)(TemplateItem)

@@ -2,39 +2,51 @@ import React from 'react'
 import { Input, Pagination } from 'antd'
 
 import styles from './TemplatesPage.scss'
+import actions from 'actions'
 
 import EntityList from 'components/EntityList'
-import TemplateItemContainer from 'containers/TemplateItemContainer'
+import TemplateItem from 'components/TemplateItem'
 
 class TemplatesPage extends React.Component {
-  state = {
-    searchValue: ''
+  handleChange = e => {
+    this.props.changeSearchValue(e.target.value)
   }
   
-  handleChange = e => {
-    this.setState({
-      searchValue: e.target.value
-    })
+  handlePageChange = (page, pageSize) => {
+    this.props.changePage(page)
+    this.props.getTemplates(page)
+  }
+  
+  handleTmplClick = tmplId => {
+    this.props.changeChosenTemplate(tmplId)
+  }
+  
+  componentDidMount() {
+    this.props.getTemplates(~this.props.page ? this.props.page : 1)
   }
   
   render() {
-    let templateIds = Object.keys(this.props.templates)
-    
     return (
       <div>
         <SearchInput
-          value={this.state.searchValue}
+          value={this.props.searchValue}
           onChange={this.handleChange}
         />
-        <EntityList className={styles.list} entityIds={templateIds} entity={TemplateItemContainer}/>
-        <Pagination simple defaultCurrent={1} total={6} className={styles['pagination']}/>
+        <EntityList className={styles.list} entityIds={this.props.list} entity={TemplateItem} onItemClick={this.handleTmplClick}/>
+        <Pagination
+          simple
+          current={this.props.page}
+          defaultCurrent={1}
+          total={this.props.total}
+          pageSize={8}
+          onChange={this.handlePageChange}
+          className={styles['pagination']}/>
       </div>
     )
   }
 }
 
 class SearchInput extends React.Component {
-  
   render() {
     return (
       <div className={styles['search-input']}>
@@ -44,14 +56,34 @@ class SearchInput extends React.Component {
           value={this.props.value}
           onChange={this.props.onChange}
         />
-        <p>
-          <span>国家标准格式论文模板</span>
-          <span>华中科技大学硕士论文模板</span>
-          <span>华中科技大学博士论文模板</span>
-        </p>
       </div>
     )
   }
 }
 
-export default TemplatesPage
+import { connect } from 'react-redux'
+
+const mapState = state => {
+  const page = state.ui.pageCompose.pageTemplates
+  
+  return {
+    ...page
+  }
+}
+
+const mapDispatch = dispatch => ({
+  getTemplates(page, search) {
+    return dispatch(actions.templates.getTemplates(page, search))
+  },
+  changePage(page) {
+    dispatch(actions.ui.changeTemplatesPage(page))
+  },
+  changeSearchValue(value) {
+    dispatch(actions.ui.changeTemplatesSearch(value))
+  },
+  changeChosenTemplate(id) {
+    dispatch(actions.ui.changeChosenTemplate(id))
+  }
+})
+
+export default connect(mapState, mapDispatch)(TemplatesPage)

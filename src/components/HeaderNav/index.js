@@ -16,14 +16,14 @@ const menuData = [
     name: 'compose',
     title: '智能排版'
   },
-  {
-    name: 'essay',
-    title: '范文库'
-  },
-  {
-    name: 'help',
-    title: '帮助'
-  }
+  // {
+  //   name: 'essay',
+  //   title: '范文库'
+  // },
+  // {
+  //   name: 'help',
+  //   title: '帮助'
+  // }
 ]
 
 const HeaderNav = ({ isTransparent = true, location }) => {
