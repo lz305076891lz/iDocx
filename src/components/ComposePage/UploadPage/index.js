@@ -9,9 +9,6 @@ import styles from './UploadPage.scss'
 
 import InFlowTip from 'components/InFlowTip'
 
-/**
- * @todo Fake Data
- */
 class UploadPage extends React.Component {
   state = {
     fileList: [],

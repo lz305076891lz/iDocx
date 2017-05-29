@@ -56,11 +56,6 @@ class SearchInput extends React.Component {
           value={this.props.value}
           onChange={this.props.onChange}
         />
-        <p>
-          <span>国家标准格式论文模板</span>
-          <span>华中科技大学硕士论文模板</span>
-          <span>华中科技大学博士论文模板</span>
-        </p>
       </div>
     )
   }
