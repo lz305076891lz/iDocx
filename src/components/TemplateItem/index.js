@@ -25,4 +25,14 @@ const TemplateItem = ({ template }) => {
   )
 }
 
-export default TemplateItem
+import { connect } from 'react-redux'
+
+const mapState = (state, ownProps) => ({
+  template: state.entities.templates[ownProps.entityId]
+})
+
+const mapDispatch = dispatch => ({
+
+})
+
+export default connect(mapState, mapDispatch)(TemplateItem)

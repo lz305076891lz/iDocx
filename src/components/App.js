@@ -12,8 +12,8 @@ import HeaderNav from 'components/HeaderNav'
 import FooterNav from 'components/FooterNav'
 import Header from 'components/Header'
 
-import HomeContainer from 'containers/HomeContainer'
-import ComposePageContainer from 'containers/ComposePageContainer'
+import HomeContent from 'components/HomeContent'
+import ComposePage from 'components/ComposePage'
 
 const App = (props) => (
   <Layout className={styles.app}>
@@ -27,9 +27,9 @@ const App = (props) => (
       </Header>
     )}
     <Content>
-      <Route exact path="/" component={HomeContainer}/>
+      <Route exact path="/" component={HomeContent}/>
       <Route path="/home" render={() => <Redirect to="/"/>}/>
-      <Route path="/compose" component={ComposePageContainer}/>
+      <Route path="/compose" component={ComposePage}/>
     </Content>
     <FooterNav/>
   </Layout>

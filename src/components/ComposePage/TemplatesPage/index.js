@@ -4,7 +4,7 @@ import { Input, Pagination } from 'antd'
 import styles from './TemplatesPage.scss'
 
 import EntityList from 'components/EntityList'
-import TemplateItemContainer from 'containers/TemplateItemContainer'
+import TemplateItem from 'components/TemplateItem'
 
 class TemplatesPage extends React.Component {
   state = {
@@ -26,7 +26,7 @@ class TemplatesPage extends React.Component {
           value={this.state.searchValue}
           onChange={this.handleChange}
         />
-        <EntityList className={styles.list} entityIds={templateIds} entity={TemplateItemContainer}/>
+        <EntityList className={styles.list} entityIds={templateIds} entity={TemplateItem}/>
         <Pagination simple defaultCurrent={1} total={6} className={styles['pagination']}/>
       </div>
     )
@@ -54,4 +54,12 @@ class SearchInput extends React.Component {
   }
 }
 
-export default TemplatesPage
+import {connect} from 'react-redux'
+
+const mapState = state => ({
+  templates: state.entities.templates
+})
+
+const mapDispatch = dispatch => ({})
+
+export default connect(mapState, mapDispatch)(TemplatesPage)
