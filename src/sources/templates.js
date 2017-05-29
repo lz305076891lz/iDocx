@@ -2,24 +2,64 @@ import { normalize } from 'normalizr'
 
 import { templates } from 'sources/schemas'
 
+const defaultTemplates = [
+  {
+    id: 1,
+    title: '国家标准格式通用模板',
+    type: '硕士',
+    imgSrc: require('assets/home-carousel-page-1.png')
+  },
+  {
+    id: 2,
+    title: '国家标准格式通用模板',
+    type: '硕士',
+    imgSrc: require('assets/home-carousel-page-2.png')
+  },
+  {
+    id: 3,
+    title: '国家标准格式通用模板',
+    type: '硕士',
+    imgSrc: require('assets/home-carousel-page-1.png')
+  },
+  {
+    id: 4,
+    title: '国家标准格式通用模板',
+    type: '硕士',
+    imgSrc: require('assets/home-carousel-page-2.png')
+  },
+  {
+    id: 5,
+    title: '国家标准格式通用模板',
+    type: '硕士',
+    imgSrc: require('assets/home-carousel-page-1.png')
+  },
+  {
+    id: 6,
+    title: '国家标准格式通用模板',
+    type: '硕士',
+    imgSrc: require('assets/home-carousel-page-2.png')
+  },
+  {
+    id: 7,
+    title: '国家标准格式通用模板',
+    type: '硕士',
+    imgSrc: require('assets/home-carousel-page-1.png')
+  },
+  {
+    id: 8,
+    title: '国家标准格式通用模板',
+    type: '硕士',
+    imgSrc: require('assets/home-carousel-page-2.png')
+  }
+]
+
 export const getTemplates = (page, search) => {
   return Promise.resolve({
-    "total": 0,
-    "page": 0,
-    "search": "string",
+    "total": 9,
+    "page": 1,
+    "search": "",
     "list": [
-      {
-        "id": "string",
-        "title": "string",
-        "type": {
-          "id": "string",
-          "name": "string"
-        },
-        "coverSrc": "/assets/templates/0d9e-dfki-dfkj-eie2",
-        "tags": [
-          "string"
-        ]
-      }
+      ...defaultTemplates
     ]
   })
     .then(data => ({

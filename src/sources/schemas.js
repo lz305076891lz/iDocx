@@ -1,8 +1,8 @@
 import { schema } from 'normalizr'
 
-export const template = schema.Entity('templates')
+export const template = new schema.Entity('templates')
 export const templates = [ template ]
 
-export const fish = schema.Entity('fishes')
+export const fish = new schema.Entity('fishes')
 
-export const user = schema.Entity('users')
+export const user = new schema.Entity('users')

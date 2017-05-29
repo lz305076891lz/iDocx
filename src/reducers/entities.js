@@ -1,64 +1,14 @@
 import { combineReducers } from 'redux'
+import actions from 'actions'
 
-const defaultTemplates = {
-  1: {
-    id: 1,
-    title: '国家标准格式通用模板',
-    type: '硕士',
-    imgSrc: require('assets/home-carousel-page-1.png')
-  },
-  2: {
-    id: 2,
-    title: '国家标准格式通用模板',
-    type: '硕士',
-    imgSrc: require('assets/home-carousel-page-2.png')
-  },
-  3: {
-    id: 3,
-    title: '国家标准格式通用模板',
-    type: '硕士',
-    imgSrc: require('assets/home-carousel-page-1.png')
-  },
-  4: {
-    id: 4,
-    title: '国家标准格式通用模板',
-    type: '硕士',
-    imgSrc: require('assets/home-carousel-page-2.png')
-  },
-  5: {
-    id: 5,
-    title: '国家标准格式通用模板',
-    type: '硕士',
-    imgSrc: require('assets/home-carousel-page-1.png')
-  },
-  6: {
-    id: 6,
-    title: '国家标准格式通用模板',
-    type: '硕士',
-    imgSrc: require('assets/home-carousel-page-2.png')
-  },
-  7: {
-    id: 7,
-    title: '国家标准格式通用模板',
-    type: '硕士',
-    imgSrc: require('assets/home-carousel-page-1.png')
-  },
-  8: {
-    id: 8,
-    title: '国家标准格式通用模板',
-    type: '硕士',
-    imgSrc: require('assets/home-carousel-page-2.png')
-  },
-  9: {
-    id: 9,
-    title: '国家标准格式通用模板',
-    type: '硕士',
-    imgSrc: require('assets/home-carousel-page-2.png')
-  }
-}
-
-const templates = (state = defaultTemplates, action) => {
+const templates = (state = {}, action) => {
   switch (action.type) {
+    case actions.templates.GET_TEMPLATES: {
+      return {
+        ...state,
+        ...action.payload.list.entities.templates
+      }
+    }
     default:
       return state
   }

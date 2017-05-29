@@ -4,7 +4,6 @@ import { Card, Col } from 'antd'
 
 import styles from './TemplateItem.scss'
 
-
 const TemplateItem = ({ template }) => {
   return (
     <Col span={6} className={styles['template-item-wrapper']}>
@@ -17,7 +16,7 @@ const TemplateItem = ({ template }) => {
           <h5>{template.title}</h5>
           <p>
             <span className={styles.preview}>预览</span>
-            <span className={styles.type}>{template.type}</span>
+            <span className={styles.type}>{template.type.title}</span>
           </p>
         </Card>
       </Link>

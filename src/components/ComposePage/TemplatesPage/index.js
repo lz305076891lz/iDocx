@@ -2,6 +2,7 @@ import React from 'react'
 import { Input, Pagination } from 'antd'
 
 import styles from './TemplatesPage.scss'
+import actions from 'actions'
 
 import EntityList from 'components/EntityList'
 import TemplateItem from 'components/TemplateItem'
@@ -15,6 +16,10 @@ class TemplatesPage extends React.Component {
   
   }
   
+  componentDidMount() {
+    this.props.getTemplates(~this.props.page ? this.props.page : 1)
+  }
+  
   render() {
     return (
       <div>
@@ -22,11 +27,12 @@ class TemplatesPage extends React.Component {
           value={this.props.searchValue}
           onChange={this.handleChange}
         />
-        <EntityList className={styles.list} entityIds={this.props.templateList} entity={TemplateItem}/>
+        <EntityList className={styles.list} entityIds={this.props.list} entity={TemplateItem}/>
         <Pagination
           simple
+          current={this.props.page}
           defaultCurrent={1}
-          total={6}
+          total={this.props.total}
           pageSize={8}
           onChange={this.handlePageChange}
           className={styles['pagination']}/>
@@ -62,11 +68,14 @@ const mapState = state => {
   const page = state.ui.pageCompose.pageTemplates
   
   return {
-    templateList: page.list,
-    searchValue: page.searchValue
+    ...page
   }
 }
 
-const mapDispatch = dispatch => ({})
+const mapDispatch = dispatch => ({
+  getTemplates(page, search) {
+    return dispatch(actions.templates.getTemplates(page, search))
+  }
+})
 
 export default connect(mapState, mapDispatch)(TemplatesPage)
