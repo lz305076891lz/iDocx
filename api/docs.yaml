@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: 鱼尾
-  version: 1.0.3
+  version: 1.0.4
   description: 鱼尾网后台基本 API 文档
   contact:
     name: Mondo
@@ -75,10 +75,9 @@ paths:
         '200':
           description: OK
           schema:
-            type: object
-            properties:
-              fishId:
-                $ref: '#/definitions/Id'
+            type: array
+            items:
+              $ref: '#/definitions/Fish'
   '/fishes/{id}':
     get:
       description: 获取已经排版完毕的文件的信息
@@ -90,19 +89,7 @@ paths:
         '200':
           description: OK
           schema:
-            type: object
-            properties:
-              id:
-                $ref: '#/definitions/Id'
-              previewHref:
-                $ref: '#/definitions/Link'
-              downloadLinks:
-                type: object
-                properties:
-                  standard:
-                    $ref: '#/definitions/DownloadType'
-                  list:
-                    $ref: '#/definitions/DownloadType'
+            $ref: '#/definitions/Fish'
   /users/signup:
     post:
       description: 创建新用户
@@ -183,6 +170,20 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Tag'
+  Fish:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/Id'
+      previewHref:
+        $ref: '#/definitions/Link'
+      downloadLinks:
+        type: object
+        properties:
+          standard:
+            $ref: '#/definitions/DownloadType'
+          list:
+            $ref: '#/definitions/DownloadType'
   Type:
     type: object
     properties:
