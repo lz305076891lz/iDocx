@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon, Upload, Button, Select, Tabs, Form, Input } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 const Option = Select.Option
 const TabPane = Tabs.TabPane
 const FormItem = Form.Item
@@ -34,18 +34,18 @@ class UploadPage extends React.Component {
   }
   
   render() {
-    const template = {
-      id: 1,
-      title: '国家标准格式通用模板',
-      type: '硕士',
-      imgSrc: require('assets/home-carousel-page-1.png')
+    if (!this.props.chosenTemplate) {
+      return (
+        <Redirect to={`/compose`}/>
+      )
     }
+    
     const successList = this.state.fileList.filter(file => file.status === 'done')
   
     return (
       <div>
         <InFlowTip
-          tip={`已选模板：${template.title}`}
+          tip={`已选模板：${this.props.chosenTemplate.title}`}
           linkTo="/compose"
           linkText="修改模板"/>
         <div className={styles['upload-file-container']}>
@@ -267,4 +267,20 @@ class CoverInfoForm extends React.Component {
 
 const WrappedCoverInfoForm = Form.create()(CoverInfoForm)
 
-export default UploadPage
+
+import { connect } from 'react-redux'
+
+const mapState = state => {
+  const page = state.ui.pageCompose.pageUpload
+  
+  return {
+    ...page,
+    chosenTemplate: state.entities.templates[page.chosenTemplateId]
+  }
+}
+
+const mapDispatch = dispatch => ({
+
+})
+
+export default connect(mapState, mapDispatch)(UploadPage)

@@ -4,11 +4,10 @@ import { Card, Col } from 'antd'
 
 import styles from './TemplateItem.scss'
 
-const TemplateItem = ({ template }) => {
+const TemplateItem = ({ template, linkTo = `/compose/upload`, onClick }) => {
   return (
     <Col span={6} className={styles['template-item-wrapper']}>
-      <Link to={`/compose/upload`}>
-        
+      <Link to={linkTo} onClick={() => onClick(template.id)}>
         <Card bordered={false} className={styles['template-item']}>
           <div className={styles['img-wrapper']}>
             <img src={template.imgSrc} alt={template.title}/>

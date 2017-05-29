@@ -17,6 +17,10 @@ class TemplatesPage extends React.Component {
     this.props.getTemplates(page)
   }
   
+  handleTmplClick = tmplId => {
+    this.props.changeChosenTemplate(tmplId)
+  }
+  
   componentDidMount() {
     this.props.getTemplates(~this.props.page ? this.props.page : 1)
   }
@@ -28,7 +32,7 @@ class TemplatesPage extends React.Component {
           value={this.props.searchValue}
           onChange={this.handleChange}
         />
-        <EntityList className={styles.list} entityIds={this.props.list} entity={TemplateItem}/>
+        <EntityList className={styles.list} entityIds={this.props.list} entity={TemplateItem} onItemClick={this.handleTmplClick}/>
         <Pagination
           simple
           current={this.props.page}
@@ -43,7 +47,6 @@ class TemplatesPage extends React.Component {
 }
 
 class SearchInput extends React.Component {
-  
   render() {
     return (
       <div className={styles['search-input']}>
@@ -78,10 +81,13 @@ const mapDispatch = dispatch => ({
     return dispatch(actions.templates.getTemplates(page, search))
   },
   changePage(page) {
-    return dispatch(actions.ui.changeTemplatesPage(page))
+    dispatch(actions.ui.changeTemplatesPage(page))
   },
   changeSearchValue(value) {
-    return dispatch(actions.ui.changeTemplatesSearch(value))
+    dispatch(actions.ui.changeTemplatesSearch(value))
+  },
+  changeChosenTemplate(id) {
+    dispatch(actions.ui.changeChosenTemplate(id))
   }
 })
 

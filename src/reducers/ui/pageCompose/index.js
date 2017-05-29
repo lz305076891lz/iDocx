@@ -36,6 +36,25 @@ const pageTemplates = (state = pageTemplatesDefault, action) => {
   }
 }
 
+const pageUploadDefault = {
+  chosenTemplateId: ''
+}
+
+const pageUpload = (state = {}, action) => {
+  switch (action.type) {
+    case actions.ui.CHANGE_CHOSEN_TEMPLATE: {
+      return {
+        ...state,
+        chosenTemplateId: action.payload
+      }
+    }
+    default:
+      return state
+  }
+}
+
+
 export default combineReducers({
-  pageTemplates
+  pageTemplates,
+  pageUpload
 })
