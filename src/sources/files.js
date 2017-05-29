@@ -9,22 +9,25 @@ export const postFiles = formData => {
 
 export const postCompose = fileIds => {
   return Promise.resolve([
-    {
-      "id": "string",
-      "previewHref": "/assets/templates/0d9e-dfki-dfkj-eie2",
-      "downloadLinks": {
-        "standard": {
-          "id": "string",
-          "price": 0,
-          "downloadLink": "/assets/templates/0d9e-dfki-dfkj-eie2"
-        },
-        "list": {
-          "id": "string",
-          "price": 0,
-          "downloadLink": "/assets/templates/0d9e-dfki-dfkj-eie2"
+      {
+        "id": "string",
+        "fileName": "string",
+        "previewHref": "/assets/templates/0d9e-dfki-dfkj-eie2",
+        "downloadLinks": {
+          "standard": {
+            "id": "string",
+            "name": "标准版",
+            "price": 0,
+            "downloadLink": "/assets/templates/0d9e-dfki-dfkj-eie2"
+          },
+          "list": {
+            "id": "string",
+            "name": "标准版",
+            "price": 0,
+            "downloadLink": "/assets/templates/0d9e-dfki-dfkj-eie2"
+          }
         }
       }
-    }
-  ])
+    ])
     .then(data => normalize(data, fishes))
 }
