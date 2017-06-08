@@ -38,7 +38,8 @@ const pageTemplates = (state = pageTemplatesDefault, action) => {
 
 const pageUploadDefault = {
   chosenTemplateId: '',
-  fileList: []
+  fileList: [],
+  isComposing: false
 }
 
 const pageUpload = (state = pageUploadDefault, action) => {
@@ -53,6 +54,18 @@ const pageUpload = (state = pageUploadDefault, action) => {
       return {
         ...state,
         fileList: action.payload
+      }
+    }
+    case actions.fishes.COMPOSE_START: {
+      return {
+        ...state,
+        isComposing: true
+      }
+    }
+    case actions.fishes.COMPOSE_END: {
+      return {
+        ...state,
+        isComposing: false
       }
     }
     default:

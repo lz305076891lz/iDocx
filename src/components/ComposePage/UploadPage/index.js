@@ -32,14 +32,25 @@ class UploadPage extends React.Component {
     })
   }
   
+  handleComposeClick = e => {
+    this.props.composeStart(this.getSuccessList().map(file => file.response.id))
+      .then(() => {
+        this.props.history.push(`/compose/download`)
+      })
+  }
+  
+  getSuccessList = () => {
+    return this.state.fileList.filter(file => file.status === 'done')
+  }
+  
   render() {
     if (!this.props.chosenTemplate) {
       return (
         <Redirect to={`/compose`}/>
       )
     }
-    
-    const successList = this.state.fileList.filter(file => file.status === 'done')
+  
+    const successList = this.getSuccessList()
   
     return (
       <div>
@@ -51,6 +62,7 @@ class UploadPage extends React.Component {
           <FileUpload
             handleFileListChange={this.handleFileListChange}
             fileList={this.state.fileList}
+            loading={this.props.isComposing}
           />
           {/*<div className={styles['cover-select-list-container']}>*/}
           {/*<span className={styles['tip']}>*/}
@@ -71,15 +83,14 @@ class UploadPage extends React.Component {
         </div>
         {/*<CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/>*/}
         <div className={styles['btn-wrapper']}>
-          <Link to='/compose/download'>
-            <Button
-              type="primary"
-              className={styles['start-btn']}
-              disabled={successList.length < 1}
-              onClick={() => this.props.composeStart(successList.map(file => file.response.id))}>
-              开始排版
-            </Button>
-          </Link>
+          <Button
+            type="primary"
+            className={styles['start-btn']}
+            disabled={successList.length < 1}
+            onClick={this.handleComposeClick}
+            loading={this.props.isComposing}>
+            开始排版
+          </Button>
         </div>
       </div>
     )
