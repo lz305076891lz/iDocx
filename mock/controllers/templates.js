@@ -6,7 +6,7 @@ router.get(`/`, (req, res) => {
   const query = req.query
   const page = query.page > 0 ? +query.page : 1
   const search = query.search ? query.search : ''
-  const pageSize = 1
+  const pageSize = 8
   
   let searchResult = [
     ...data
