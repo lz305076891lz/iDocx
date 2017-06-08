@@ -48,6 +48,16 @@ module.exports = WebpackMerge(baseConfig, {
     port: 9080,
     host: '0.0.0.0',
     compress: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/api/templates': {
+        target: `http://localhost:9081`,
+        changeOrigin: true
+      },
+      '/statics': {
+        target: `http://localhost:9081`,
+        changeOrigin: true
+      }
+    }
   }
 })

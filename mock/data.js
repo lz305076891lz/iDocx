@@ -7,7 +7,7 @@ module.exports = {
         id: "string",
         name: "本科论文"
       },
-      coverSrc: "/api/statics/cover.png",
+      coverSrc: "/statics/cover.png",
       tags: [
         "string"
       ]
@@ -19,7 +19,7 @@ module.exports = {
         id: "string",
         name: "硕士论文"
       },
-      coverSrc: "/api/statics/cover.png",
+      coverSrc: "/statics/cover.png",
       tags: [
         "string"
       ]
@@ -31,7 +31,7 @@ module.exports = {
         id: "string",
         name: "法律文章"
       },
-      coverSrc: "/api/statics/cover.png",
+      coverSrc: "/statics/cover.png",
       tags: [
         "string"
       ]

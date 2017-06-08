@@ -9,7 +9,7 @@ app.get(`/`, (req, res) => {
   res.send(``)
 })
 
-app.use(`/templates`, templates)
+app.use(`/api/templates`, templates)
 
 app.use(`/statics`, express.static(resolve(__dirname, `public`)))
 
