@@ -3,6 +3,7 @@ import { Input, Pagination } from 'antd'
 
 import styles from './TemplatesPage.scss'
 import actions from 'actions'
+import imgNoResultTip from 'assets/templates-no-result-tip.png'
 
 import EntityList from 'components/EntityList'
 import TemplateItem from 'components/TemplateItem'
@@ -37,7 +38,13 @@ class TemplatesPage extends React.Component {
           onChange={this.handleChange}
           onSearch={this.handleSearch}
         />
-        <EntityList className={styles.list} entityIds={this.props.list} entity={TemplateItem} onItemClick={this.handleTmplClick}/>
+        {this.props.list.length > 0 ?
+          <EntityList className={styles.list} entityIds={this.props.list} entity={TemplateItem} onItemClick={this.handleTmplClick}/> :
+          <div className={styles['no-result-tip']}>
+            <p>抱歉，没有找到您需要的模板</p>
+            <img src={imgNoResultTip} alt="没有找到模板"/>
+          </div>
+        }
         <Pagination
           simple
           current={this.props.page}
