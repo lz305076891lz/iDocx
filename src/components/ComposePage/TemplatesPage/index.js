@@ -12,6 +12,10 @@ class TemplatesPage extends React.Component {
     this.props.changeSearchValue(e.target.value)
   }
   
+  handleSearch = e => {
+    this.props.getTemplates(undefined, this.props.searchValue)
+  }
+  
   handlePageChange = (page, pageSize) => {
     this.props.changePage(page)
     this.props.getTemplates(page)
@@ -31,6 +35,7 @@ class TemplatesPage extends React.Component {
         <SearchInput
           value={this.props.searchValue}
           onChange={this.handleChange}
+          onSearch={this.handleSearch}
         />
         <EntityList className={styles.list} entityIds={this.props.list} entity={TemplateItem} onItemClick={this.handleTmplClick}/>
         <Pagination
@@ -55,6 +60,7 @@ class SearchInput extends React.Component {
           placeholder={"输入学校名称查找相应模板"}
           value={this.props.value}
           onChange={this.props.onChange}
+          onSearch={this.props.onSearch}
         />
       </div>
     )
