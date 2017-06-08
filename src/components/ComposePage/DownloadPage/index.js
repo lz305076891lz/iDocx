@@ -33,7 +33,7 @@ const DownloadPage = ({ fishList, fishes }) => {
               {fishes.map(fish => (
                 <TabPane tab={fish.fileName} key={fish.id}>
                   <div className={styles['preview-wrapper']}>
-                    {fish.previewHref}
+                    <iframe src="http://www.baidu.com" frameBorder="0"/>
                   </div>
                 </TabPane>
               ))}
