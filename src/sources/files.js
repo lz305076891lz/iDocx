@@ -25,7 +25,7 @@ export const postCompose = fileList => {
           },
         }
       })))
-    }, 1000)
+    }, 200)
   })
     .then(data => normalize(data, fishes))
 }
