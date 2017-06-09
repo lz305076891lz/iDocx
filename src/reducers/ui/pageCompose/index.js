@@ -47,7 +47,8 @@ const pageUpload = (state = pageUploadDefault, action) => {
     case actions.ui.CHANGE_CHOSEN_TEMPLATE: {
       return {
         ...state,
-        chosenTemplateId: action.payload
+        chosenTemplateId: action.payload,
+        fileList: []
       }
     }
     case actions.ui.CHANGE_UPLOAD_FILE_LIST: {

@@ -126,7 +126,7 @@ class FileUpload extends React.Component {
       action: '/apiword/index.php/api/files',
       onChange: this.handleChange,
       multiple: true,
-      accept: '.doc, .docx, .pdf',
+      accept: '.doc, .docx',
       fileList: this.props.fileList,
       customRequest: this.props.customRequest
     }
