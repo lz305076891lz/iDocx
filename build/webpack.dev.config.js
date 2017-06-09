@@ -57,6 +57,9 @@ module.exports = WebpackMerge(baseConfig, {
       '/statics': {
         target: `http://localhost:9081`,
         changeOrigin: true
+      },
+      '/apiword': {
+        target: `http://aidocx.com`
       }
     }
   }

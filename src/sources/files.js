@@ -7,30 +7,24 @@ export const postFiles = formData => {
     })
 }
 
-export const postCompose = fileIds => {
+export const postCompose = fileList => {
+  console.log(fileList)
+  
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve([
-        {
-          "id": "string",
-          "fileName": "string",
-          "previewHref": "/assets/templates/0d9e-dfki-dfkj-eie2",
-          "downloadLinks": {
-            "standard": {
-              "id": "string",
-              "name": "标准版",
-              "price": 0,
-              "downloadLink": "/assets/templates/0d9e-dfki-dfkj-eie2"
-            },
-            "list": {
-              "id": "string",
-              "name": "标准版",
-              "price": 0,
-              "downloadLink": "/assets/templates/0d9e-dfki-dfkj-eie2"
-            }
-          }
+      resolve(fileList.map(fileInfo => ({
+        id: fileInfo.response.id,
+        fileName: fileInfo.name,
+        previewHref: `http://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(`http://www.aidocx.com${fileInfo.response.file_path}`)}`,
+        downloadLinks: {
+          standard: {
+            id: "1",
+            name: "标准版",
+            price: 0,
+            downloadLink: `http://www.aidocx.com${fileInfo.response.file_path}`
+          },
         }
-      ])
+      })))
     }, 1000)
   })
     .then(data => normalize(data, fishes))

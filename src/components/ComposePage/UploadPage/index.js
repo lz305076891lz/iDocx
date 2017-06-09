@@ -33,7 +33,7 @@ class UploadPage extends React.Component {
   }
   
   handleComposeClick = e => {
-    this.props.composeStart(this.getSuccessList().map(file => file.response.id))
+    this.props.composeStart(this.getSuccessList())
       .then(() => {
         this.props.history.push(`/compose/download`)
       })
@@ -41,6 +41,23 @@ class UploadPage extends React.Component {
   
   getSuccessList = () => {
     return this.state.fileList.filter(file => file.status === 'done')
+  }
+  
+  customRequest = (args) => {
+    console.log(args)
+    
+    let data = new FormData()
+    data.append(`file`, args.file)
+    data.append(`template_name`, this.props.chosenTemplate.id)
+    
+    fetch(args.action, {
+      method: 'POST',
+      body: data
+    })
+      .then(data => data.json())
+      .then(data => {
+        args.onSuccess(data)
+      })
   }
   
   render() {
@@ -63,6 +80,7 @@ class UploadPage extends React.Component {
             handleFileListChange={this.handleFileListChange}
             fileList={this.state.fileList}
             loading={this.props.isComposing}
+            customRequest={this.customRequest}
           />
           {/*<div className={styles['cover-select-list-container']}>*/}
           {/*<span className={styles['tip']}>*/}
@@ -105,11 +123,12 @@ class FileUpload extends React.Component {
   }
   render() {
     const props = {
-      action: '//jsonplaceholder.typicode.com/posts/',
+      action: '/apiword/index.php/api/files',
       onChange: this.handleChange,
       multiple: true,
       accept: '.doc, .docx, .pdf',
-      fileList: this.props.fileList
+      fileList: this.props.fileList,
+      customRequest: this.props.customRequest
     }
     const hasFile = this.props.fileList.length > 0
     
@@ -296,8 +315,8 @@ const mapDispatch = dispatch => ({
   changeUploadFileList(fileList) {
     dispatch(actions.ui.changeUploadFileList(fileList))
   },
-  composeStart(fileIds) {
-    return dispatch(actions.fishes.composeStart(fileIds))
+  composeStart(fileList) {
+    return dispatch(actions.fishes.composeStart(fileList))
   }
 })
 

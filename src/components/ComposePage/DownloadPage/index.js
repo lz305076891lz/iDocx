@@ -19,10 +19,17 @@ const DownloadPage = ({ fishList, fishes }) => {
           <div className={styles['wrapper']}>
             <Card title="下载">
               <Select placeholder="请选择下载版本">
-                <Option value="standard">打印标准版</Option>
-                <Option value="list">自动编号版</Option>
+                {Object.keys(fishes[0].downloadLinks).map(typeName => {
+                  let type = fishes[0].downloadLinks[typeName]
+                  
+                  return <Option value={type.id} key={type.id}>{type.name}</Option>
+                })}
               </Select>
-              <Button type="primary" className={styles['btn-download']}>下载</Button>
+              <Button type="primary" className={styles['btn-download']} onClick={e => {
+                
+              }}>
+                下载
+              </Button>
             </Card>
           </div>
         </Col>
@@ -33,7 +40,7 @@ const DownloadPage = ({ fishList, fishes }) => {
               {fishes.map(fish => (
                 <TabPane tab={fish.fileName} key={fish.id}>
                   <div className={styles['preview-wrapper']}>
-                    <iframe src="http://www.baidu.com" frameBorder="0"/>
+                    <iframe src={fish.previewHref} frameBorder="0"/>
                   </div>
                 </TabPane>
               ))}
