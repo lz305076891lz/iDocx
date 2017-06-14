@@ -3,7 +3,7 @@ function serve(Webpack, WebpackDevServer, webpackConfig) {
   const compiler = Webpack(webpackConfig);
   const server = new WebpackDevServer(compiler, webpackConfig.devServer);
 
-  require(`../mock/index`)
+  // require(`../mock/index`)
 
   server.listen(webpackConfig.devServer.port, "0.0.0.0", function () {
     console.log("Starting sever");

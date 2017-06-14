@@ -25,6 +25,18 @@ module.exports = {
       ]
     },
     {
+      id: "华中科技大学博士论文",
+      title: "华中科技大学博士论文",
+      type: {
+        id: "string",
+        name: "博士论文"
+      },
+      coverSrc: "/statics/cover.png",
+      tags: [
+        "string"
+      ]
+    },
+    {
       id: "华中科技大学硕士论文初稿",
       title: "华中科技大学硕士论文初稿",
       type: {
