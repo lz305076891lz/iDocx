@@ -4,7 +4,7 @@ import { templates } from 'sources/schemas'
 import { checkStatus } from 'sources/utils'
 
 export const getTemplates = (page = 1, search = '') => {
-  return fetch(`/ciapi/index.php/api/templates`)
+  return fetch(`/apiword/index.php/api/templates`)
     .then(checkStatus)
     .then(data => data.json())
     .then(data => ({
