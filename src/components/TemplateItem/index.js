@@ -15,7 +15,7 @@ const TemplateItem = ({ template, linkTo = `/compose/upload`, onClick }) => {
           <h5>{template.title}</h5>
           <p>
             {/*<span className={styles.preview}>预览</span>*/}
-            <span className={styles.type}>{template.type.name}</span>
+            {/*<span className={styles.type}>{template.type.name}</span>*/}
           </p>
         </Card>
       </Link>
