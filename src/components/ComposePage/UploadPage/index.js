@@ -23,7 +23,7 @@ class UploadPage extends React.Component {
       })
     }))
   
-    this.props.changeUploadFileList(fileList.filter(file => file.status === 'done'))
+    this.props.changeUploadFileList(this.getSuccessList())
   }
   
   handleCoverSelectChange = value => {
@@ -33,7 +33,7 @@ class UploadPage extends React.Component {
   }
   
   handleComposeClick = e => {
-    this.props.composeStart(this.getSuccessList())
+    this.props.composeStart(this.getSuccessList().map(file => file.response.id), this.props.chosenTemplateId)
       .then(() => {
         this.props.history.push(`/compose/download`)
       })
@@ -48,7 +48,7 @@ class UploadPage extends React.Component {
     
     let data = new FormData()
     data.append(`file`, args.file)
-    data.append(`template_name`, this.props.chosenTemplate.id)
+    // data.append(`template_name`, this.props.chosenTemplate.id)
     
     fetch(args.action, {
       method: 'POST',
@@ -315,8 +315,8 @@ const mapDispatch = dispatch => ({
   changeUploadFileList(fileList) {
     dispatch(actions.ui.changeUploadFileList(fileList))
   },
-  composeStart(fileList) {
-    return dispatch(actions.fishes.composeStart(fileList))
+  composeStart(fileIds, chosenTemplateId) {
+    return dispatch(actions.fishes.composeStart(fileIds, chosenTemplateId))
   }
 })
 
