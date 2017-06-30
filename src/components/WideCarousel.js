@@ -38,7 +38,8 @@ const CarouselPage = ({style, data, children}) => (
         <Col span={10}>
           <h2
             style={{
-              fontSize: 36
+              fontSize: 36,
+              color: 'inherit'
             }}
           >{data.title}</h2>
           <p
