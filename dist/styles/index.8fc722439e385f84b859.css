@@ -482,6 +482,14 @@ input::-ms-reveal {
   background: #108ee9;
   color: #fff;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgba(0, 0, 0, 0.85);
+}
 a {
   color: #108ee9;
   background: transparent;
@@ -1408,12 +1416,14 @@ samp {
           animation-name: antFadeIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .fade-leave.fade-leave-active {
   -webkit-animation-name: antFadeOut;
           animation-name: antFadeOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .fade-enter,
 .fade-appear {
@@ -1480,12 +1490,14 @@ samp {
           animation-name: antMoveUpIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .move-up-leave.move-up-leave-active {
   -webkit-animation-name: antMoveUpOut;
           animation-name: antMoveUpOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .move-up-enter,
 .move-up-appear {
@@ -1520,12 +1532,14 @@ samp {
           animation-name: antMoveDownIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .move-down-leave.move-down-leave-active {
   -webkit-animation-name: antMoveDownOut;
           animation-name: antMoveDownOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .move-down-enter,
 .move-down-appear {
@@ -1560,12 +1574,14 @@ samp {
           animation-name: antMoveLeftIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .move-left-leave.move-left-leave-active {
   -webkit-animation-name: antMoveLeftOut;
           animation-name: antMoveLeftOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .move-left-enter,
 .move-left-appear {
@@ -1600,12 +1616,14 @@ samp {
           animation-name: antMoveRightIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .move-right-leave.move-right-leave-active {
   -webkit-animation-name: antMoveRightOut;
           animation-name: antMoveRightOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .move-right-enter,
 .move-right-appear {
@@ -1924,12 +1942,14 @@ samp {
           animation-name: antSlideUpIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .slide-up-leave.slide-up-leave-active {
   -webkit-animation-name: antSlideUpOut;
           animation-name: antSlideUpOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .slide-up-enter,
 .slide-up-appear {
@@ -1964,12 +1984,14 @@ samp {
           animation-name: antSlideDownIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .slide-down-leave.slide-down-leave-active {
   -webkit-animation-name: antSlideDownOut;
           animation-name: antSlideDownOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .slide-down-enter,
 .slide-down-appear {
@@ -2004,12 +2026,14 @@ samp {
           animation-name: antSlideLeftIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .slide-left-leave.slide-left-leave-active {
   -webkit-animation-name: antSlideLeftOut;
           animation-name: antSlideLeftOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .slide-left-enter,
 .slide-left-appear {
@@ -2044,12 +2068,14 @@ samp {
           animation-name: antSlideRightIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .slide-right-leave.slide-right-leave-active {
   -webkit-animation-name: antSlideRightOut;
           animation-name: antSlideRightOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .slide-right-enter,
 .slide-right-appear {
@@ -2402,12 +2428,14 @@ samp {
           animation-name: antZoomIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-leave.zoom-leave-active {
   -webkit-animation-name: antZoomOut;
           animation-name: antZoomOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-enter,
 .zoom-appear {
@@ -2444,12 +2472,14 @@ samp {
           animation-name: antZoomBigIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-big-leave.zoom-big-leave-active {
   -webkit-animation-name: antZoomBigOut;
           animation-name: antZoomBigOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-big-enter,
 .zoom-big-appear {
@@ -2486,12 +2516,14 @@ samp {
           animation-name: antZoomBigIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-big-fast-leave.zoom-big-fast-leave-active {
   -webkit-animation-name: antZoomBigOut;
           animation-name: antZoomBigOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-big-fast-enter,
 .zoom-big-fast-appear {
@@ -2528,12 +2560,14 @@ samp {
           animation-name: antZoomUpIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-up-leave.zoom-up-leave-active {
   -webkit-animation-name: antZoomUpOut;
           animation-name: antZoomUpOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-up-enter,
 .zoom-up-appear {
@@ -2570,12 +2604,14 @@ samp {
           animation-name: antZoomDownIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-down-leave.zoom-down-leave-active {
   -webkit-animation-name: antZoomDownOut;
           animation-name: antZoomDownOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-down-enter,
 .zoom-down-appear {
@@ -2612,12 +2648,14 @@ samp {
           animation-name: antZoomLeftIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-left-leave.zoom-left-leave-active {
   -webkit-animation-name: antZoomLeftOut;
           animation-name: antZoomLeftOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-left-enter,
 .zoom-left-appear {
@@ -2654,12 +2692,14 @@ samp {
           animation-name: antZoomRightIn;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-right-leave.zoom-right-leave-active {
   -webkit-animation-name: antZoomRightOut;
           animation-name: antZoomRightOut;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+  pointer-events: none;
 }
 .zoom-right-enter,
 .zoom-right-appear {
@@ -3050,7 +3090,6 @@ samp {
   -webkit-box-flex: 1;
       -ms-flex: auto;
           flex: auto;
-  overflow: auto;
 }
 .ant-layout-sider {
   transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -6375,7 +6414,6 @@ a:focus {
 .ant-menu-dark.ant-menu-horizontal > .ant-menu-submenu {
   border-color: #404040;
   border-bottom: 0;
-  top: 0;
 }
 .ant-menu-dark .ant-menu-item,
 .ant-menu-dark .ant-menu-item-group-title,
@@ -6427,9 +6465,6 @@ a:focus {
   color: #fff;
 }
 .ant-menu.ant-menu-dark .ant-menu-item-selected {
-  background-color: transparent;
-}
-.ant-menu-dark.ant-menu-inline .ant-menu-item-selected {
   background-color: #108ee9;
 }
 .ant-menu-dark .ant-menu-item-disabled,
@@ -8551,6 +8586,7 @@ form .ant-cascader-picker:only-child {
   opacity: 0;
   height: 0;
   padding: 0!important;
+  pointer-events: none;
 }
 .ant-tabs:not(.ant-tabs-vertical) > .ant-tabs-content-animated {
   display: -webkit-box;
@@ -8604,20 +8640,20 @@ form .ant-cascader-picker:only-child {
   width: auto;
   margin-top: 0!important;
 }
-.ant-tabs-vertical .ant-tabs-tab-next {
+.ant-tabs-vertical > .ant-tabs-bar .ant-tabs-tab-next {
   width: 100%;
   bottom: 0;
   height: 32px;
 }
-.ant-tabs-vertical .ant-tabs-tab-next-icon:before {
+.ant-tabs-vertical > .ant-tabs-bar .ant-tabs-tab-next-icon:before {
   content: "\E61D";
 }
-.ant-tabs-vertical .ant-tabs-tab-prev {
+.ant-tabs-vertical > .ant-tabs-bar .ant-tabs-tab-prev {
   top: 0;
   width: 100%;
   height: 32px;
 }
-.ant-tabs-vertical .ant-tabs-tab-prev-icon:before {
+.ant-tabs-vertical > .ant-tabs-bar .ant-tabs-tab-prev-icon:before {
   content: "\E61E";
 }
 .ant-tabs-vertical.ant-tabs-left > .ant-tabs-bar {
@@ -8776,6 +8812,9 @@ form .ant-cascader-picker:only-child {
 .ant-checkbox-indeterminate .ant-checkbox-inner {
   background-color: #108ee9;
   border-color: #108ee9;
+}
+.ant-checkbox-disabled {
+  cursor: not-allowed;
 }
 .ant-checkbox-disabled.ant-checkbox-checked .ant-checkbox-inner:after {
   -webkit-animation-name: none;
@@ -9347,6 +9386,10 @@ textarea.ant-input {
   border-bottom-right-radius: 4px;
   border-right-width: 1px;
 }
+.ant-input-group-wrapper {
+  display: inline-block;
+  vertical-align: top;
+}
 .ant-input-affix-wrapper {
   position: relative;
   display: inline-block;
@@ -9738,9 +9781,10 @@ textarea.ant-input {
 }
 .ant-pagination-total-text {
   display: inline-block;
-  height: 30px;
-  line-height: 30px;
-  margin-right: 10px;
+  vertical-align: middle;
+  height: 28px;
+  line-height: 28px;
+  margin-right: 8px;
 }
 .ant-pagination-item {
   cursor: pointer;
@@ -9755,10 +9799,12 @@ textarea.ant-input {
   text-align: center;
   list-style: none;
   display: inline-block;
+  vertical-align: middle;
   border: 1px solid #d9d9d9;
   background-color: #fff;
   margin-right: 8px;
   font-family: Arial;
+  outline: 0;
 }
 .ant-pagination-item a {
   text-decoration: none;
@@ -9766,10 +9812,12 @@ textarea.ant-input {
   transition: none;
   margin: 0 6px;
 }
+.ant-pagination-item:focus,
 .ant-pagination-item:hover {
-  transition: all 0.3s ease;
+  transition: all .3s;
   border-color: #108ee9;
 }
+.ant-pagination-item:focus a,
 .ant-pagination-item:hover a {
   color: #108ee9;
 }
@@ -9777,9 +9825,19 @@ textarea.ant-input {
   background-color: #108ee9;
   border-color: #108ee9;
 }
+.ant-pagination-item-active:focus,
+.ant-pagination-item-active:hover {
+  background-color: #49a9ee;
+  border-color: #49a9ee;
+}
 .ant-pagination-item-active a,
+.ant-pagination-item-active:focus a,
 .ant-pagination-item-active:hover a {
   color: #fff;
+}
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
+  outline: 0;
 }
 .ant-pagination-jump-prev:after,
 .ant-pagination-jump-next:after {
@@ -9789,6 +9847,8 @@ textarea.ant-input {
   color: rgba(0, 0, 0, 0.25);
   text-align: center;
 }
+.ant-pagination-jump-prev:focus:after,
+.ant-pagination-jump-next:focus:after,
 .ant-pagination-jump-prev:hover:after,
 .ant-pagination-jump-next:hover:after {
   color: #108ee9;
@@ -9804,18 +9864,24 @@ textarea.ant-input {
   letter-spacing: -1px;
   font-family: "anticon";
 }
+:root .ant-pagination-jump-prev:focus:after,
+:root .ant-pagination-jump-next:focus:after,
 :root .ant-pagination-jump-prev:hover:after,
 :root .ant-pagination-jump-next:hover:after {
   -webkit-filter: none;
           filter: none;
 }
+:root .ant-pagination-jump-prev:focus:after,
+:root .ant-pagination-jump-next:focus:after,
 :root .ant-pagination-jump-prev:hover:after,
 :root .ant-pagination-jump-next:hover:after {
   font-size: 12px;
 }
+.ant-pagination-jump-prev:focus:after,
 .ant-pagination-jump-prev:hover:after {
   content: "\E620\E620";
 }
+.ant-pagination-jump-next:focus:after,
 .ant-pagination-jump-next:hover:after {
   content: "\E61F\E61F";
 }
@@ -9837,17 +9903,20 @@ textarea.ant-input {
   height: 28px;
   line-height: 28px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all .3s;
   display: inline-block;
+  vertical-align: middle;
 }
 .ant-pagination-prev,
 .ant-pagination-next {
   border: 1px solid #d9d9d9;
   background-color: #fff;
+  outline: 0;
 }
 .ant-pagination-prev a,
 .ant-pagination-next a {
   color: rgba(0, 0, 0, 0.65);
+  outline: none;
 }
 .ant-pagination-prev a:after,
 .ant-pagination-next a:after {
@@ -9862,7 +9931,7 @@ textarea.ant-input {
   zoom: 1;
   display: block;
   height: 26px;
-  line-height: 27px;
+  line-height: 26px;
   font-family: "anticon";
   text-align: center;
 }
@@ -9875,10 +9944,14 @@ textarea.ant-input {
 :root .ant-pagination-next a:after {
   font-size: 12px;
 }
+.ant-pagination-prev:focus,
+.ant-pagination-next:focus,
 .ant-pagination-prev:hover,
 .ant-pagination-next:hover {
   border-color: #108ee9;
 }
+.ant-pagination-prev:focus a,
+.ant-pagination-next:focus a,
 .ant-pagination-prev:hover a,
 .ant-pagination-next:hover a {
   color: #108ee9;
@@ -9909,11 +9982,12 @@ textarea.ant-input {
 }
 .ant-pagination-options {
   display: inline-block;
-  margin-left: 15px;
+  vertical-align: middle;
+  margin-left: 16px;
 }
 .ant-pagination-options-size-changer {
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 .ant-pagination-options-quick-jumper {
   display: inline-block;
@@ -9988,6 +10062,7 @@ textarea.ant-pagination-options-quick-jumper input {
 }
 .ant-pagination-simple .ant-pagination-simple-pager {
   display: inline-block;
+  vertical-align: middle;
   margin-right: 8px;
 }
 .ant-pagination-simple .ant-pagination-simple-pager input {
@@ -9998,10 +10073,9 @@ textarea.ant-pagination-options-quick-jumper input {
   border: 1px solid #d9d9d9;
   outline: none;
   padding: 5px 8px;
-  width: 30px;
   height: 24px;
   text-align: center;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s;
 }
 .ant-pagination-simple .ant-pagination-simple-pager input:hover {
   border-color: #108ee9;
@@ -10276,6 +10350,7 @@ textarea.ant-pagination-options-quick-jumper input {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: left;
 }
 .ant-select-search__field__placeholder {
   left: 8px;
@@ -10283,6 +10358,7 @@ textarea.ant-pagination-options-quick-jumper input {
 .ant-select-search--inline {
   position: absolute;
   height: 100%;
+  width: 100%;
 }
 .ant-select-selection--multiple .ant-select-search--inline {
   float: left;
@@ -10630,6 +10706,14 @@ textarea.ant-pagination-options-quick-jumper input {
       display: inline-block;
       margin-right: 35px; }
 
+.TemplatesPage__no-result-tip-31Aph {
+  padding: 100px 0;
+  text-align: center; }
+  .TemplatesPage__no-result-tip-31Aph p {
+    margin-bottom: 40px;
+    font-size: 18px;
+    color: #bbb; }
+
 .TemplatesPage__list-269zc {
   margin: 36px 0; }
 
@@ -10720,7 +10804,8 @@ textarea.ant-pagination-options-quick-jumper input {
   height: 300px;
   cursor: pointer; }
   .TemplateItem__template-item-206c5 .TemplateItem__img-wrapper-19gR0 {
-    height: 210px; }
+    height: 210px;
+    overflow: hidden; }
     .TemplateItem__template-item-206c5 .TemplateItem__img-wrapper-19gR0 img {
       width: 100%;
       min-height: 100%; }
@@ -11190,8 +11275,8 @@ textarea.ant-pagination-options-quick-jumper input {
   padding-right: 0;
 }
 .ant-progress-show-info .ant-progress-outer {
-  padding-right: 45px;
-  margin-right: -45px;
+  padding-right: 2.75em;
+  margin-right: -2.75em;
 }
 .ant-progress-inner {
   display: inline-block;
@@ -11213,14 +11298,12 @@ textarea.ant-pagination-options-quick-jumper input {
   position: relative;
 }
 .ant-progress-text {
-  width: 35px;
+  width: 2em;
   text-align: left;
   font-size: 1em;
-  margin-left: 10px;
+  margin-left: 0.75em;
   vertical-align: middle;
   display: inline-block;
-  position: relative;
-  top: -1px;
 }
 .ant-progress-text .anticon {
   font-size: 12px;
@@ -11584,6 +11667,9 @@ textarea.ant-pagination-options-quick-jumper input {
 .DownloadPage__preview-container-2hgTf .ant-tabs-ink-bar {
   display: none !important; }
 
+.DownloadPage__preview-container-2hgTf .ant-tabs-bar {
+  margin-bottom: 0; }
+
 .DownloadPage__preview-container-2hgTf .ant-tabs-tab {
   margin-top: 14px;
   height: auto;
@@ -11595,3 +11681,6 @@ textarea.ant-pagination-options-quick-jumper input {
 
 .DownloadPage__preview-wrapper-3ahlo {
   height: 600px; }
+  .DownloadPage__preview-wrapper-3ahlo iframe {
+    height: 100%;
+    width: 100%; }
