@@ -2,6 +2,7 @@ const {resolve} = require('path')
 const Webpack = require('webpack')
 const WebpackMerge = require('webpack-merge')
 const baseConfig = require('./webpack.base.config')
+const settings = require(`../settings`)
 
 module.exports = WebpackMerge(baseConfig, {
   entry: {
@@ -44,7 +45,7 @@ module.exports = WebpackMerge(baseConfig, {
   devServer: {
     hot: true,
     contentBase: './dist',
-    publicPath: '/',
+    publicPath: settings.publicPath,
     port: 9080,
     host: '0.0.0.0',
     compress: true,
