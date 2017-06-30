@@ -9463,7 +9463,7 @@ textarea.ant-input {
 .SignInOut__login-panel-TTK9p .ant-tabs-nav-wrap {
   padding-top: 120px;
   color: #fff;
-  background: url(/assets/signinout-bg.png?11a0227) no-repeat center/cover;
+  background: url(/apiword/dist/assets/signinout-bg.png?11a0227) no-repeat center/cover;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   text-align: center; }
@@ -10824,7 +10824,7 @@ textarea.ant-pagination-options-quick-jumper input {
   .TemplateItem__template-item-206c5 .TemplateItem__preview-ciyQB {
     padding-left: 26px;
     color: #108ee9;
-    background: url(/assets/icon-eye.png?2ab15a5) no-repeat center left; }
+    background: url(/apiword/dist/assets/icon-eye.png?2ab15a5) no-repeat center left; }
 .ant-upload {
   font-size: 12px;
   outline: 0;
