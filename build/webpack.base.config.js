@@ -1,6 +1,7 @@
 const {resolve} = require('path')
 const Webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const settings = require(`../settings`)
 
 module.exports = {
   context: resolve(__dirname, '../'),
@@ -22,7 +23,7 @@ module.exports = {
   output: {
     filename: 'scripts/[name].[hash].js',
     path: resolve(__dirname, '../dist'),
-    publicPath: '/'
+    publicPath: settings.publicPath
   },
   module: {
     rules: [

@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader';
 
 import reducers from 'reducers/index'
+import settings from '../settings'
 
 import App from 'components/App';
 
@@ -35,7 +36,7 @@ const render = (Component) => {
 };
 
 render(
-  <Router>
+  <Router basename={settings.publicPath}>
     <Route path="/" component={App}/>
   </Router>
 );
@@ -43,7 +44,7 @@ render(
 if (module.hot) {
   module.hot.accept('components/App', () => {
     render(
-      <Router>
+      <Router basename={settings.publicPath}>
         <Route path="/" component={App}/>
       </Router>
     )
