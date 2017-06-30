@@ -85,7 +85,7 @@ const mapState = state => {
   const page = state.ui.pageCompose.pageDownload
   return ({
     ...page,
-    fishes: page.fishList.map(fishId => state.entities.fishes[fishId])
+    fishes: page.fishIds ? page.fishIds.map(fishId => state.entities.fishes[fishId]) : []
   })
 }
 

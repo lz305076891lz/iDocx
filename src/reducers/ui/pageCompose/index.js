@@ -91,7 +91,7 @@ const pageDownload = (state = pageDownloadDefault, action) => {
       return {
         ...state,
         isLoading: false,
-        fishList: action.payload.result
+        fishIds: action.payload.result
       }
     }
     default:
