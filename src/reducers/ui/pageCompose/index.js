@@ -38,7 +38,8 @@ const pageTemplates = (state = pageTemplatesDefault, action) => {
 
 const pageUploadDefault = {
   chosenTemplateId: '',
-  fileList: []
+  fileList: [],
+  isComposing: false
 }
 
 const pageUpload = (state = pageUploadDefault, action) => {
@@ -46,13 +47,26 @@ const pageUpload = (state = pageUploadDefault, action) => {
     case actions.ui.CHANGE_CHOSEN_TEMPLATE: {
       return {
         ...state,
-        chosenTemplateId: action.payload
+        chosenTemplateId: action.payload,
+        fileList: []
       }
     }
     case actions.ui.CHANGE_UPLOAD_FILE_LIST: {
       return {
         ...state,
         fileList: action.payload
+      }
+    }
+    case actions.fishes.COMPOSE_START: {
+      return {
+        ...state,
+        isComposing: true
+      }
+    }
+    case actions.fishes.COMPOSE_END: {
+      return {
+        ...state,
+        isComposing: false
       }
     }
     default:
@@ -77,7 +91,7 @@ const pageDownload = (state = pageDownloadDefault, action) => {
       return {
         ...state,
         isLoading: false,
-        fishList: action.payload.result
+        fishIds: action.payload.result
       }
     }
     default:

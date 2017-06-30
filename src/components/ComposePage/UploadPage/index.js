@@ -23,7 +23,7 @@ class UploadPage extends React.Component {
       })
     }))
   
-    this.props.changeUploadFileList(fileList.filter(file => file.status === 'done'))
+    this.props.changeUploadFileList(this.getSuccessList())
   }
   
   handleCoverSelectChange = value => {
@@ -32,14 +32,42 @@ class UploadPage extends React.Component {
     })
   }
   
+  handleComposeClick = e => {
+    this.props.composeStart(this.getSuccessList().map(file => file.response.id), this.props.chosenTemplateId)
+      .then(() => {
+        this.props.history.push(`/compose/download`)
+      })
+  }
+  
+  getSuccessList = () => {
+    return this.state.fileList.filter(file => file.status === 'done')
+  }
+  
+  customRequest = (args) => {
+    console.log(args)
+    
+    let data = new FormData()
+    data.append(`file`, args.file)
+    // data.append(`template_name`, this.props.chosenTemplate.id)
+    
+    fetch(args.action, {
+      method: 'POST',
+      body: data
+    })
+      .then(data => data.json())
+      .then(data => {
+        args.onSuccess(data)
+      })
+  }
+  
   render() {
     if (!this.props.chosenTemplate) {
       return (
         <Redirect to={`/compose`}/>
       )
     }
-    
-    const successList = this.state.fileList.filter(file => file.status === 'done')
+  
+    const successList = this.getSuccessList()
   
     return (
       <div>
@@ -51,6 +79,8 @@ class UploadPage extends React.Component {
           <FileUpload
             handleFileListChange={this.handleFileListChange}
             fileList={this.state.fileList}
+            loading={this.props.isComposing}
+            customRequest={this.customRequest}
           />
           {/*<div className={styles['cover-select-list-container']}>*/}
           {/*<span className={styles['tip']}>*/}
@@ -71,15 +101,14 @@ class UploadPage extends React.Component {
         </div>
         {/*<CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/>*/}
         <div className={styles['btn-wrapper']}>
-          <Link to='/compose/download'>
-            <Button
-              type="primary"
-              className={styles['start-btn']}
-              disabled={successList.length < 1}
-              onClick={() => this.props.composeStart(successList.map(file => file.response.id))}>
-              开始排版
-            </Button>
-          </Link>
+          <Button
+            type="primary"
+            className={styles['start-btn']}
+            disabled={successList.length < 1}
+            onClick={this.handleComposeClick}
+            loading={this.props.isComposing}>
+            开始排版
+          </Button>
         </div>
       </div>
     )
@@ -94,11 +123,12 @@ class FileUpload extends React.Component {
   }
   render() {
     const props = {
-      action: '//jsonplaceholder.typicode.com/posts/',
+      action: '/apiword/index.php/api/files',
       onChange: this.handleChange,
       multiple: true,
-      accept: '.doc, .docx, .pdf',
-      fileList: this.props.fileList
+      accept: '.doc, .docx',
+      fileList: this.props.fileList,
+      customRequest: this.props.customRequest
     }
     const hasFile = this.props.fileList.length > 0
     
@@ -285,8 +315,8 @@ const mapDispatch = dispatch => ({
   changeUploadFileList(fileList) {
     dispatch(actions.ui.changeUploadFileList(fileList))
   },
-  composeStart(fileIds) {
-    return dispatch(actions.fishes.composeStart(fileIds))
+  composeStart(fileIds, chosenTemplateId) {
+    return dispatch(actions.fishes.composeStart(fileIds, chosenTemplateId))
   }
 })
 

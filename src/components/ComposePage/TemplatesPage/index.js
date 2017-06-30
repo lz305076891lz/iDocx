@@ -3,6 +3,7 @@ import { Input, Pagination } from 'antd'
 
 import styles from './TemplatesPage.scss'
 import actions from 'actions'
+import imgNoResultTip from 'assets/templates-no-result-tip.png'
 
 import EntityList from 'components/EntityList'
 import TemplateItem from 'components/TemplateItem'
@@ -10,6 +11,10 @@ import TemplateItem from 'components/TemplateItem'
 class TemplatesPage extends React.Component {
   handleChange = e => {
     this.props.changeSearchValue(e.target.value)
+  }
+  
+  handleSearch = e => {
+    this.props.getTemplates(undefined, this.props.searchValue)
   }
   
   handlePageChange = (page, pageSize) => {
@@ -31,8 +36,15 @@ class TemplatesPage extends React.Component {
         <SearchInput
           value={this.props.searchValue}
           onChange={this.handleChange}
+          onSearch={this.handleSearch}
         />
-        <EntityList className={styles.list} entityIds={this.props.list} entity={TemplateItem} onItemClick={this.handleTmplClick}/>
+        {this.props.list.length > 0 ?
+          <EntityList className={styles.list} entityIds={this.props.list} entity={TemplateItem} onItemClick={this.handleTmplClick}/> :
+          <div className={styles['no-result-tip']}>
+            <p>抱歉，没有找到您需要的模板</p>
+            <img src={imgNoResultTip} alt="没有找到模板"/>
+          </div>
+        }
         <Pagination
           simple
           current={this.props.page}
@@ -55,6 +67,7 @@ class SearchInput extends React.Component {
           placeholder={"输入学校名称查找相应模板"}
           value={this.props.value}
           onChange={this.props.onChange}
+          onSearch={this.props.onSearch}
         />
       </div>
     )

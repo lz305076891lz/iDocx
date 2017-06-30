@@ -7,27 +7,32 @@ export const postFiles = formData => {
     })
 }
 
-export const postCompose = fileIds => {
-  return Promise.resolve([
-      {
-        "id": "string",
-        "fileName": "string",
-        "previewHref": "/assets/templates/0d9e-dfki-dfkj-eie2",
-        "downloadLinks": {
-          "standard": {
-            "id": "string",
-            "name": "标准版",
-            "price": 0,
-            "downloadLink": "/assets/templates/0d9e-dfki-dfkj-eie2"
-          },
-          "list": {
-            "id": "string",
-            "name": "标准版",
-            "price": 0,
-            "downloadLink": "/assets/templates/0d9e-dfki-dfkj-eie2"
-          }
-        }
-      }
-    ])
-    .then(data => normalize(data, fishes))
+export const postCompose = (fileIds, tempId) => {
+  console.log(fileIds)
+  
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve(fileList.map(fileInfo => ({
+  //       id: fileInfo.response.id,
+  //       fileName: fileInfo.name,
+  //       previewHref: `http://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(`http://www.aidocx.com${fileInfo.response.file_path}`)}`,
+  //       downloadLinks: {
+  //         standard: {
+  //           id: "1",
+  //           name: "标准版",
+  //           price: 0,
+  //           downloadLink: `http://www.aidocx.com${fileInfo.response.file_path}`
+  //         },
+  //       }
+  //     })))
+  //   }, 200)
+  // })
+  
+    const fetchArr = fileIds.map(fileId => (
+      fetch(`/apiword/index.php/api/compose/${fileId}/${tempId}`)
+        .then(data => data.json())
+    ))
+  
+    return Promise.all(fetchArr)
+      .then(data => normalize(data, fishes))
 }

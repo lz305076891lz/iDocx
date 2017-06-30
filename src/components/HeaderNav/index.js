@@ -43,9 +43,9 @@ const HeaderNav = ({ isTransparent = true, location }) => {
             {menuData.map((item) => <Menu.Item key={item.name}><Link to={'/' + item.name}>{item.title}</Link></Menu.Item>)}
           </Menu>
         </Col>
-        <Col span={6}>
-          <SignInOut isTransparent={isTransparent}/>
-        </Col>
+        {/*<Col span={6}>*/}
+          {/*<SignInOut isTransparent={isTransparent}/>*/}
+        {/*</Col>*/}
       </Row>
     </Container>
   )

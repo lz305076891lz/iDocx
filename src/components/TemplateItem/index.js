@@ -10,12 +10,12 @@ const TemplateItem = ({ template, linkTo = `/compose/upload`, onClick }) => {
       <Link to={linkTo} onClick={() => onClick(template.id)}>
         <Card bordered={false} className={styles['template-item']}>
           <div className={styles['img-wrapper']}>
-            <img src={template.imgSrc} alt={template.title}/>
+            <img src={template.coverSrc} alt={template.title}/>
           </div>
           <h5>{template.title}</h5>
           <p>
-            <span className={styles.preview}>预览</span>
-            <span className={styles.type}>{template.type.title}</span>
+            {/*<span className={styles.preview}>预览</span>*/}
+            {/*<span className={styles.type}>{template.type.name}</span>*/}
           </p>
         </Card>
       </Link>
