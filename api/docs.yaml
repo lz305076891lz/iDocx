@@ -13,11 +13,11 @@ schemes:
   - https
   - ws
 paths:
-  /templates:
+  /templates/page:
     get:
       description: 获取模板实体列表
       tags:
-        - templates
+        - template
       parameters:
         - $ref: '#/parameters/pageParam'
         - $ref: '#/parameters/searchParam'
@@ -31,9 +31,7 @@ paths:
                 type: number
               page:
                 type: number
-              search:
-                type: string
-                default: ''
+                default: 1
               list:
                 type: array
                 items:
@@ -57,19 +55,36 @@ paths:
             properties:
               id:
                 $ref: '#/definitions/Id'
-  /files/compose:
-    post:
-      description: 请求已上传的文件让服务器开始排版并返回已排版文件的 id
+              sign:
+                $ref: '#/definitions/Sign'
+  /files/comp_id:
+    get:
+      description: 下载文件接口
       tags:
         - files
       parameters:
-        - name: files
-          description: 已上传的文件与封面信息数组
-          in: body
+        - $ref: '#/parameters/downloadParam'
+      responses:
+        '200':
+          description: OK
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/File'
+            type: object
+  /compose/doc_id/template_id:
+    get:
+      description: 请求已上传的文件让服务器开始排版并返回已排版文件的 id
+      tags:
+        - compose
+      parameters:
+        - name: doc_id
+          description: 已上传的文件id
+          in: path
+          required: true
+        - name: template_id
+          description: 模板id
+          in: path
+          required: true
+        - name: sign
+          in: body
           required: true
       responses:
         '200':
@@ -78,19 +93,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Fish'
-  '/fishes/{id}':
-    get:
-      description: 获取已经排版完毕的文件的信息
-      tags:
-        - fishes
-      parameters:
-        - $ref: '#/parameters/idPathParam'
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Fish'
-  /users/signup:
+  /users/register:
     post:
       description: 创建新用户
       tags:
@@ -98,32 +101,25 @@ paths:
       consumes:
         - multipart/form-data
       parameters:
-        - name: nickName
-          in: formData
-          description: 昵称
-          type: string
-          required: true
-        - name: phone
+        - name: tel
           in: formData
           description: 手机号
           type: string
           required: true
-        - name: verificationCode
+        - name: username
           in: formData
-          description: 验证码
+          description: 用户名
           type: string
           required: true
-        - name: email
-          in: formData
-          description: 邮箱
-          type: string
-          format: email
         - $ref: '#/parameters/passwordParam'
       responses:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/User'
+            type: object
+            properties:
+              message:
+                type: string
   /users/login:
     post:
       description: 登陆
@@ -132,29 +128,21 @@ paths:
       consumes:
         - multipart/form-data
       parameters:
-        - name: userName
-          description: 用户名（邮箱、手机号）
+        - name: tel
+          description: 手机号
           in: formData
           type: string
           required: true
         - $ref: '#/parameters/passwordParam'
-        - name: isRemembered
-          description: 是否记住登陆状态
-          in: formData
-          type: boolean
-          default: false
-          required: true
       responses:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/User'
+            type: object
+            properties:
+              sign:
+                type: string
 definitions:
-  User:
-    type: object
-    properties:
-      id:
-        $ref: '#/definitions/Id'
   Template:
     type: object
     properties:
@@ -162,8 +150,6 @@ definitions:
         $ref: '#/definitions/Id'
       title:
         type: string
-      type:
-        $ref: '#/definitions/Type'
       coverSrc:
         $ref: '#/definitions/Link'
       tags:
@@ -173,47 +159,26 @@ definitions:
   Fish:
     type: object
     properties:
-      id:
+      comp_id:
         $ref: '#/definitions/Id'
-      fileName:
+      comp_path:
         type: string
-      previewHref:
-        $ref: '#/definitions/Link'
-      downloadLinks:
-        type: object
-        properties:
-          standard:
-            $ref: '#/definitions/DownloadType'
-          list:
-            $ref: '#/definitions/DownloadType'
-  Type:
-    type: object
-    properties:
-      id:
-        $ref: '#/definitions/Id'
-      name:
-        type: string
-  Tag:
+  Sign:
     type: string
-  File:
+  Tag:
     type: object
     properties:
-      id:
-        $ref: '#/definitions/Id'
+      organization:
+        type: string
+      degree:
+        type: string
+      type:
+        type: string
   Id:
     type: string
   Link:
     type: string
     example: /assets/templates/0d9e-dfki-dfkj-eie2
-  DownloadType:
-    type: object
-    properties:
-      id:
-        $ref: '#/definitions/Id'
-      price:
-        type: number
-      downloadLink:
-        $ref: '#/definitions/Link'
 parameters:
   passwordParam:
     name: password
@@ -244,5 +209,11 @@ parameters:
     name: id
     in: path
     description: file id
+    type: string
+    required: true
+  downloadParam:
+    name: comp_id
+    in: path
+    description: 排版文件ID
     type: string
     required: true
