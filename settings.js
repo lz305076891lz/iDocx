@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: `/apiword/dist/`
+  publicPath: '/apiword/dist/',
 };

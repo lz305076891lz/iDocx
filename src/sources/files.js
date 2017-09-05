@@ -1,15 +1,13 @@
-import { normalize } from 'normalizr'
-import { fishes } from 'sources/schemas'
+import { normalize } from 'normalizr';
+import { fishes } from 'sources/schemas';
 
-export const postFiles = formData => {
-  return Promise.resolve({
-      id: '292'
-    })
-}
+export const postFiles = formData => Promise.resolve({
+  id: '292',
+});
 
 export const postCompose = (fileIds, tempId) => {
-  console.log(fileIds)
-  
+  console.log(fileIds);
+
   // return new Promise((resolve, reject) => {
   //   setTimeout(() => {
   //     resolve(fileList.map(fileInfo => ({
@@ -27,12 +25,12 @@ export const postCompose = (fileIds, tempId) => {
   //     })))
   //   }, 200)
   // })
-  
-    const fetchArr = fileIds.map(fileId => (
-      fetch(`/apiword/index.php/api/compose/${fileId}/${tempId}`)
-        .then(data => data.json())
-    ))
-  
-    return Promise.all(fetchArr)
-      .then(data => normalize(data, fishes))
-}
+
+  const fetchArr = fileIds.map(fileId => (
+    fetch(`/apiword/index.php/api/compose/${fileId}/${tempId}`)
+      .then(data => data.json())
+  ));
+
+  return Promise.all(fetchArr)
+    .then(data => normalize(data, fishes));
+};

@@ -1,18 +1,18 @@
-const express = require(`express`)
-const app = express()
-const resolve = require(`path`).resolve
+const express = require('express');
 
-const templates = require(`./controllers/templates`)
+const app = express();
+const resolve = require('path').resolve;
 
-app.get(`/`, (req, res) => {
-  
-  res.send(``)
-})
+const templates = require('./controllers/templates');
 
-app.use(`/api/templates`, templates)
+app.get('/', (req, res) => {
+  res.send('');
+});
 
-app.use(`/statics`, express.static(resolve(__dirname, `public`)))
+app.use('/api/templates', templates);
+
+app.use('/statics', express.static(resolve(__dirname, 'public')));
 
 app.listen(9081, () => {
-  console.info(`Mock server is running`)
-})
+  console.info('Mock server is running');
+});

@@ -1,7 +1,7 @@
-const {resolve} = require('path')
-const Webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const settings = require(`../settings`)
+const { resolve } = require('path');
+const Webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const settings = require('../settings');
 
 module.exports = {
   context: resolve(__dirname, '../'),
@@ -17,48 +17,48 @@ module.exports = {
       'redux-storage-decorator-debounce',
       'redux-storage-decorator-filter',
       'redux-storage-engine-localstorage',
-      'redux-thunk'
-    ]
+      'redux-thunk',
+    ],
   },
   output: {
     filename: 'scripts/[name].[hash].js',
     path: resolve(__dirname, '../dist'),
-    publicPath: settings.publicPath
+    publicPath: settings.publicPath,
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.(jpg|png|gif|ico|svg)/,
         loader: 'url-loader',
         options: {
           limit: 1024,
-          name: 'assets/[name].[ext]?[hash:7]'
-        }
-      }
-    ]
+          name: 'assets/[name].[ext]?[hash:7]',
+        },
+      },
+    ],
   },
   resolve: {
     alias: {
-      'assets': resolve(__dirname, '../src/assets'),
-      'components': resolve(__dirname, '../src/components'),
-      'containers': resolve(__dirname, '../src/containers'),
-      'actions': resolve(__dirname, '../src/actions'),
-      'reducers': resolve(__dirname, '../src/reducers/'),
-      'styles': resolve(__dirname, '../src/styles'),
-      'sources': resolve(__dirname, '../src/sources')
-    }
+      assets: resolve(__dirname, '../src/assets'),
+      components: resolve(__dirname, '../src/components'),
+      containers: resolve(__dirname, '../src/containers'),
+      actions: resolve(__dirname, '../src/actions'),
+      reducers: resolve(__dirname, '../src/reducers/'),
+      styles: resolve(__dirname, '../src/styles'),
+      sources: resolve(__dirname, '../src/sources'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
     }),
     new Webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
-    })
-  ]
-}
+      name: 'vendor',
+    }),
+  ],
+};

@@ -1,8 +1,9 @@
-const {resolve} = require('path')
-const Webpack = require('webpack')
-const WebpackMerge = require('webpack-merge')
-const baseConfig = require('./webpack.base.config')
-const settings = require(`../settings`)
+const { resolve } = require('path');
+const Webpack = require('webpack');
+const WebpackMerge = require('webpack-merge');
+const baseConfig = require('./webpack.base.config');
+
+const settings = require('../settings');
 
 module.exports = WebpackMerge(baseConfig, {
   entry: {
@@ -11,8 +12,8 @@ module.exports = WebpackMerge(baseConfig, {
       'webpack-dev-server/client?http://localhost:9080',
       'webpack/hot/only-dev-server',
       'whatwg-fetch',
-      './src/index.js'
-    ]
+      './src/index.js',
+    ],
   },
   module: {
     rules: [
@@ -23,24 +24,24 @@ module.exports = WebpackMerge(baseConfig, {
           'style-loader',
           'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
           'postcss-loader',
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
         test: /\.css$/,
         use: [
           'style-loader',
           'css-loader',
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
   plugins: [
     new Webpack.HotModuleReplacementPlugin(),
     new Webpack.NamedModulesPlugin(),
     new Webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('develop')
-    })
+      'process.env.NODE_ENV': JSON.stringify('develop'),
+    }),
   ],
   devServer: {
     hot: true,
@@ -52,16 +53,16 @@ module.exports = WebpackMerge(baseConfig, {
     historyApiFallback: true,
     proxy: {
       '/api/templates': {
-        target: `http://localhost:9081`,
-        changeOrigin: true
+        target: 'http://localhost:9081',
+        changeOrigin: true,
       },
       '/statics': {
-        target: `http://localhost:9081`,
-        changeOrigin: true
+        target: 'http://localhost:9081',
+        changeOrigin: true,
       },
       '/apiword': {
-        target: `http://aidocx.com`
-      }
-    }
-  }
-})
+        target: 'http://aidocx.com',
+      },
+    },
+  },
+});

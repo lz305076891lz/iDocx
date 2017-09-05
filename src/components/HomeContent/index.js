@@ -1,33 +1,34 @@
-import React from 'react'
-import { Layout, Row, Col } from 'antd'
-const { Content, Footer } = Layout
+import React from 'react';
+import { Layout, Row, Col } from 'antd';
 
-import Container from 'components/ResponsiveContainer'
-import WideCarousel from  'components/WideCarousel'
+const { Content, Footer } = Layout;
 
-import styles from './HomeContent.scss'
+import Container from 'components/ResponsiveContainer';
+import WideCarousel from 'components/WideCarousel';
 
-const HomeContent = ({pageData, introData}) => (
-    <div style={{textAlign: 'center'}}>
-      <WideCarousel pageData={pageData} style={{marginBottom: -66, transform: 'translateY(-66px)'}}/>
-      <div style={{backgroundColor: '#fff'}}>
+import styles from './HomeContent.scss';
+
+const HomeContent = ({ pageData, introData }) => (
+    <div style={{ textAlign: 'center' }}>
+      <WideCarousel pageData={pageData} style={{ marginBottom: -66, transform: 'translateY(-66px)' }}/>
+      <div style={{ backgroundColor: '#fff' }}>
         <Container>
           <Row>
-            {introData.slice(0, introData.length / 2).map((data) => <HomeIntroItem key={data.id} data={data}/>)}
+            {introData.slice(0, introData.length / 2).map(data => <HomeIntroItem key={data.id} data={data}/>)}
           </Row>
         </Container>
       </div>
-      <div style={{backgroundColor: '#fbfbfb'}}>
+      <div style={{ backgroundColor: '#fbfbfb' }}>
         <Container>
           <Row>
-            {introData.slice(introData.length / 2, introData.length).map((data) => <HomeIntroItem key={data.id} data={data}/>)}
+            {introData.slice(introData.length / 2, introData.length).map(data => <HomeIntroItem key={data.id} data={data}/>)}
           </Row>
         </Container>
       </div>
     </div>
-)
+);
 
-const HomeIntroItem = ({data}) => (
+const HomeIntroItem = ({ data }) => (
   <Col span={12} className={styles['intro-item']}>
     <div className={styles['img-wrapper']}>
       <img src={data.img.src} alt={data.img.alt}/>
@@ -35,18 +36,16 @@ const HomeIntroItem = ({data}) => (
     <h3>{data.title}</h3>
     <p>{data.desc}</p>
   </Col>
-)
+);
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-const mapStateToProps = (state,  ownProps) => ({
+const mapStateToProps = (state, ownProps) => ({
   menuData: state.headerNav,
   pageData: state.homePages,
-  introData: state.homeIntro
-})
+  introData: state.homeIntro,
+});
 
-const HomeContainer = connect(
-  mapStateToProps
-)(HomeContent)
+const HomeContainer = connect(mapStateToProps)(HomeContent);
 
-export default HomeContainer
+export default HomeContainer;

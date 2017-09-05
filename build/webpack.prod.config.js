@@ -1,17 +1,17 @@
-const { resolve } = require('path')
-const Webpack = require('webpack')
-const WebpackMerge = require('webpack-merge')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ImageminPlugin = require('imagemin-webpack-plugin').default
+const { resolve } = require('path');
+const Webpack = require('webpack');
+const WebpackMerge = require('webpack-merge');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
-const baseConfig = require('./webpack.base.config')
+const baseConfig = require('./webpack.base.config');
 
 module.exports = WebpackMerge(baseConfig, {
   entry: {
     index: [
       'whatwg-fetch',
-      './src/index.js'
-    ]
+      './src/index.js',
+    ],
   },
   module: {
     rules: [
@@ -23,9 +23,9 @@ module.exports = WebpackMerge(baseConfig, {
           use: [
             'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
             'postcss-loader',
-            'sass-loader'
-          ]
-        })
+            'sass-loader',
+          ],
+        }),
       },
       {
         test: /\.css$/,
@@ -33,14 +33,14 @@ module.exports = WebpackMerge(baseConfig, {
           fallback: 'style-loader',
           use: [
             'css-loader',
-          ]
-        })
-      }
-    ]
+          ],
+        }),
+      },
+    ],
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: 'styles/[name].[hash].css'
+      filename: 'styles/[name].[hash].css',
     }),
     new Webpack.optimize.UglifyJsPlugin({
       sourceMap: 'cheap-module-source-map',
@@ -49,13 +49,13 @@ module.exports = WebpackMerge(baseConfig, {
         screw_ie8: true,
       },
       compress: {
-        screw_ie8: true
+        screw_ie8: true,
       },
-      comments: false
+      comments: false,
     }),
     new Webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    new ImageminPlugin()
-  ]
-})
+    new ImageminPlugin(),
+  ],
+});

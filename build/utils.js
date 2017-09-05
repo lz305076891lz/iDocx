@@ -5,8 +5,8 @@ function serve(Webpack, WebpackDevServer, webpackConfig) {
 
   // require(`../mock/index`)
 
-  server.listen(webpackConfig.devServer.port, "0.0.0.0", function () {
-    console.log("Starting sever");
+  server.listen(webpackConfig.devServer.port, '0.0.0.0', () => {
+    console.log('Starting sever');
   });
 }
 
@@ -18,5 +18,5 @@ function build(Webpack, webpackConfig) {
 
 module.exports = {
   serve,
-  build
+  build,
 };

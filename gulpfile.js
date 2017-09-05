@@ -9,19 +9,18 @@ const devConfig = require('./build/webpack.dev.config');
 const utils = require('./build/utils');
 
 Gulp.task('clean', () =>
-  Gulp.src('./dist', {read: false})
-    .pipe(GulpClean())
-);
+  Gulp.src('./dist', { read: false })
+    .pipe(GulpClean()));
 
-Gulp.task('build', ['clean'], function () {
-  process.env.NODE_ENV = 'production'
-  
+Gulp.task('build', ['clean'], () => {
+  process.env.NODE_ENV = 'production';
+
   utils.build(Webpack, prodConfig);
 });
 
-Gulp.task('serve', function () {
-  process.env.NODE_ENV = 'develop'
-  
+Gulp.task('serve', () => {
+  process.env.NODE_ENV = 'develop';
+
   utils.serve(Webpack, WebpackDevServer, devConfig);
 });
 

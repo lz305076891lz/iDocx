@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux'
-import actions from 'actions'
+import { combineReducers } from 'redux';
+import actions from 'actions';
 
 const pageTemplatesDefault = {
   searchValue: '',
   list: [],
   page: -1,
-  total: 0
-}
+  total: 0,
+};
 
 const pageTemplates = (state = pageTemplatesDefault, action) => {
   switch (action.type) {
@@ -16,31 +16,31 @@ const pageTemplates = (state = pageTemplatesDefault, action) => {
         page: action.payload.page,
         list: action.payload.list.result,
         total: action.payload.total,
-        searchValue: action.payload.search
-      }
+        searchValue: action.payload.search,
+      };
     }
     case actions.ui.CHANGE_TEMPLATES_PAGE: {
       return {
         ...state,
-        page: action.payload
-      }
+        page: action.payload,
+      };
     }
     case actions.ui.CHANGE_TEMPLATES_SEARCH: {
       return {
         ...state,
-        searchValue: action.payload
-      }
+        searchValue: action.payload,
+      };
     }
     default:
-      return state
+      return state;
   }
-}
+};
 
 const pageUploadDefault = {
   chosenTemplateId: '',
   fileList: [],
-  isComposing: false
-}
+  isComposing: false,
+};
 
 const pageUpload = (state = pageUploadDefault, action) => {
   switch (action.type) {
@@ -48,59 +48,59 @@ const pageUpload = (state = pageUploadDefault, action) => {
       return {
         ...state,
         chosenTemplateId: action.payload,
-        fileList: []
-      }
+        fileList: [],
+      };
     }
     case actions.ui.CHANGE_UPLOAD_FILE_LIST: {
       return {
         ...state,
-        fileList: action.payload
-      }
+        fileList: action.payload,
+      };
     }
     case actions.fishes.COMPOSE_START: {
       return {
         ...state,
-        isComposing: true
-      }
+        isComposing: true,
+      };
     }
     case actions.fishes.COMPOSE_END: {
       return {
         ...state,
-        isComposing: false
-      }
+        isComposing: false,
+      };
     }
     default:
-      return state
+      return state;
   }
-}
+};
 
 const pageDownloadDefault = {
   isLoading: false,
-  fishList: []
-}
+  fishList: [],
+};
 
 const pageDownload = (state = pageDownloadDefault, action) => {
   switch (action.type) {
     case actions.fishes.COMPOSE_START: {
       return {
         ...state,
-        isLoading: true
-      }
+        isLoading: true,
+      };
     }
     case actions.fishes.COMPOSE_END: {
       return {
         ...state,
         isLoading: false,
-        fishIds: action.payload.result
-      }
+        fishIds: action.payload.result,
+      };
     }
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default combineReducers({
   pageTemplates,
   pageUpload,
-  pageDownload
-})
+  pageDownload,
+});

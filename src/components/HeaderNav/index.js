@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link } from  'react-router-dom'
-import { Menu, Row, Col, Form } from 'antd'
-import Container from 'components/ResponsiveContainer'
-import SignInOut from 'components/SignInOut'
-import styles from  './HeaderNav.scss'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Menu, Row, Col, Form } from 'antd';
+import Container from 'components/ResponsiveContainer';
+import SignInOut from 'components/SignInOut';
+import styles from './HeaderNav.scss';
 
-const FormItem = Form.Item
+const FormItem = Form.Item;
 
 const menuData = [
   {
@@ -14,7 +14,7 @@ const menuData = [
   },
   {
     name: 'compose',
-    title: '智能排版'
+    title: '智能排版',
   },
   // {
   //   name: 'essay',
@@ -24,33 +24,32 @@ const menuData = [
   //   name: 'help',
   //   title: '帮助'
   // }
-]
+];
 
 const HeaderNav = ({ isTransparent = true, location }) => {
-  let pathname = location.pathname.match(/^\/\w+\/?/) || ['\/home']
-  pathname = pathname[0].slice(1).replace('/', '')
-  
+  let pathname = location.pathname.match(/^\/\w+\/?/) || ['\/home'];
+  pathname = pathname[0].slice(1).replace('/', '');
+
   return (
-    <Container style={{position: 'relative', zIndex: 10}}>
+    <Container style={{ position: 'relative', zIndex: 10 }}>
       <Row>
-        <Col span={18} style={{overflow: 'hidden'}}>
+        <Col span={18} style={{ overflow: 'hidden' }}>
           <Menu
             mode="horizontal"
             defaultSelectedKeys={['home']}
             selectedKeys={[pathname]}
-            className={styles.menu + ' ' + (isTransparent ? styles['menu-transparent'] : '')}
+            className={`${styles.menu} ${isTransparent ? styles['menu-transparent'] : ''}`}
           >
-            {menuData.map((item) => <Menu.Item key={item.name}><Link to={'/' + item.name}>{item.title}</Link></Menu.Item>)}
+            {menuData.map(item => <Menu.Item key={item.name}><Link to={`/${item.name}`}>{item.title}</Link></Menu.Item>)}
           </Menu>
         </Col>
-        {/*<Col span={6}>*/}
-          {/*<SignInOut isTransparent={isTransparent}/>*/}
-        {/*</Col>*/}
+        {/* <Col span={6}> */}
+          {/* <SignInOut isTransparent={isTransparent}/> */}
+        {/* </Col> */}
       </Row>
     </Container>
-  )
-}
+  );
+};
 
 
-
-export default HeaderNav
+export default HeaderNav;
