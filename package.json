@@ -6,8 +6,7 @@
   "author": "Mondo <mondogao@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "serve": "gulp default",
-    "build": "gulp build",
+    "build": "webpack --env.prod",
     "start": "webpack --env.dev",
     "lint": "eslint . --fix"
   },
