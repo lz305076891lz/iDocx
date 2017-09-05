@@ -1,6 +1,5 @@
 const { resolve } = require('path');
 const Webpack = require('webpack');
-const WebpackMerge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -78,15 +77,12 @@ module.exports = (env = {}) => {
   if (env.dev) {
     entry.index = [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:9080',
-      'webpack/hot/only-dev-server',
       ...entry.index,
     ];
 
     plugins = [
       ...plugins,
       new Webpack.HotModuleReplacementPlugin(),
-      new Webpack.NamedModulesPlugin(),
       new Webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('develop'),
       }),
@@ -148,7 +144,7 @@ module.exports = (env = {}) => {
     },
     plugins,
     devServer: {
-      hot: true,
+      hotOnly: true,
       contentBase: './dist',
       publicPath: settings.publicPath,
       port: 9080,
