@@ -5,10 +5,11 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader'
+/* eslint import/no-extraneous-dependencies: 0 */
+import { AppContainer } from 'react-hot-loader';
 
-import App from 'components/App';
-import reducers from 'reducers/index';
+import App from './components/App';
+import reducers from './reducers/index';
 import settings from '../settings';
 
 /* eslint no-underscore-dangle:0 */

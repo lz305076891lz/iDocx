@@ -90,12 +90,13 @@ module.exports = (env = {}) => {
   } else if (env.prod) {
     module.rules = module.rules.reduce((rules, rule) => {
       if (Array.isArray(rule.use) && rule.use[0].match(/style/)) {
-        rules.push(Object.assign({}, rule, {
+        rules.push({
+          ...rule,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: rule.use.slice(1),
           }),
-        }));
+        });
       } else {
         rules.push(rule);
       }

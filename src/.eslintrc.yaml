@@ -1,7 +1,6 @@
 ---
   env:
     browser: true
-  settings:
-    import/resolver: webpack
+    es6: true
   extends:
     - plugin:react/recommended
