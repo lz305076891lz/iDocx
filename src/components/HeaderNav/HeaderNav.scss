@@ -1,6 +1,7 @@
 .menu-transparent:global(.ant-menu) {
   color: #fff;
   background-color: transparent;
+  transition: none;
   > li:global(.ant-menu-item) a {
     color: #fff;
   }
