@@ -1,28 +1,34 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import { createStore, applyMiddleware, compose } from 'redux';
-import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
 /* eslint import/no-extraneous-dependencies: 0 */
 import { AppContainer } from 'react-hot-loader';
 
 import App from './components/App';
-import reducers from './reducers/index';
+import rootReducer from './reducers';
+import rootSaga from './sagas';
 import settings from '../settings';
 
 /* eslint no-underscore-dangle:0 */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(
-  reducers,
+  rootReducer,
   composeEnhancers(applyMiddleware(
     thunk,
-    logger,
+    sagaMiddleware,
   )),
 );
 
+sagaMiddleware.run(rootSaga);
 
 const render = () => {
   let WrappedApp = (

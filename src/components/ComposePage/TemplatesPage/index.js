@@ -82,7 +82,7 @@ class SearchInput extends React.Component {
 }
 
 const mapState = (state) => {
-  const page = state.compse.templates;
+  const page = state.compose.template;
 
   return {
     ...page,
