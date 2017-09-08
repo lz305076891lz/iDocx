@@ -1,35 +1,42 @@
-import React from 'react'
-import { Input, Pagination } from 'antd'
+import React from 'react';
+import { Input, Pagination } from 'antd';
+import { connect } from 'react-redux';
 
-import styles from './TemplatesPage.scss'
-import actions from 'actions'
-import imgNoResultTip from 'assets/templates-no-result-tip.png'
+import styles from './TemplatesPage.scss';
+import imgNoResultTip from '../../../assets/templates-no-result-tip.png';
 
-import EntityList from 'components/EntityList'
-import TemplateItem from 'components/TemplateItem'
+import EntityList from '../../EntityList';
+import TemplateItem from '../../TemplateItem';
+
+import {
+  changeChosenTemplate,
+  changeTemplatesPage,
+  changeTemplatesSearch,
+} from '../../../actions/compose';
+import { getTemplates } from '../../../actions/entities.js';
 
 class TemplatesPage extends React.Component {
-  handleChange = e => {
-    this.props.changeSearchValue(e.target.value)
+  handleChange = (e) => {
+    this.props.changeTemplatesSearch(e.target.value);
   }
-  
-  handleSearch = e => {
-    this.props.getTemplates(undefined, this.props.searchValue)
+
+  handleSearch = (e) => {
+    this.props.getTemplates(undefined, this.props.searchValue);
   }
-  
+
   handlePageChange = (page, pageSize) => {
-    this.props.changePage(page)
-    this.props.getTemplates(page)
+    this.props.changeTemplatesPage(page);
+    this.props.getTemplates(page);
   }
-  
-  handleTmplClick = tmplId => {
-    this.props.changeChosenTemplate(tmplId)
+
+  handleTmplClick = (tmplId) => {
+    this.props.changeChosenTemplate(tmplId);
   }
-  
+
   componentDidMount() {
-    this.props.getTemplates(~this.props.page ? this.props.page : 1)
+    this.props.getTemplates(this.props.page !== -1 ? this.props.page : 1);
   }
-  
+
   render() {
     return (
       <div>
@@ -52,9 +59,9 @@ class TemplatesPage extends React.Component {
           total={this.props.total}
           pageSize={8}
           onChange={this.handlePageChange}
-          className={styles['pagination']}/>
+          className={styles.pagination}/>
       </div>
-    )
+    );
   }
 }
 
@@ -64,39 +71,29 @@ class SearchInput extends React.Component {
       <div className={styles['search-input']}>
         <Input.Search
           size="large"
-          placeholder={"输入学校名称查找相应模板"}
+          placeholder={'输入学校名称查找相应模板'}
           value={this.props.value}
           onChange={this.props.onChange}
           onSearch={this.props.onSearch}
         />
       </div>
-    )
+    );
   }
 }
 
-import { connect } from 'react-redux'
+const mapState = (state) => {
+  const page = state.compse.templates;
 
-const mapState = state => {
-  const page = state.ui.pageCompose.pageTemplates
-  
   return {
-    ...page
-  }
-}
+    ...page,
+  };
+};
 
-const mapDispatch = dispatch => ({
-  getTemplates(page, search) {
-    return dispatch(actions.templates.getTemplates(page, search))
-  },
-  changePage(page) {
-    dispatch(actions.ui.changeTemplatesPage(page))
-  },
-  changeSearchValue(value) {
-    dispatch(actions.ui.changeTemplatesSearch(value))
-  },
-  changeChosenTemplate(id) {
-    dispatch(actions.ui.changeChosenTemplate(id))
-  }
-})
+const mapDispatch = {
+  getTemplates,
+  changeTemplatesPage,
+  changeTemplatesSearch,
+  changeChosenTemplate,
+};
 
-export default connect(mapState, mapDispatch)(TemplatesPage)
+export default connect(mapState, mapDispatch)(TemplatesPage);
