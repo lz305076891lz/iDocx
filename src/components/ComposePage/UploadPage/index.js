@@ -17,16 +17,13 @@ class UploadPage extends React.Component {
     coverList: [],
   }
 
-  componentDidUpdate({ isComposing }) {
-    if (!this.props.isComposing && isComposing) {
-      this.props.history.push('/compose/download');
-    }
-  }
-
   handleFileListChange = (fileList) => {
     this.setState(prevState => ({
       fileList,
-      coverList: prevState.coverList.filter(cover => fileList.map(file => file.uid).includes(cover)),
+      coverList: prevState.coverList
+        .filter(cover => fileList
+          .map(file => file.uid)
+          .includes(cover)),
     }));
 
     this.props.changeUploadFileList(this.getSuccessList());

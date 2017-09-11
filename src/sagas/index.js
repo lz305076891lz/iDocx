@@ -1,5 +1,6 @@
 import { put, call, all, takeLatest, takeEvery } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
+import { push } from 'react-router-redux';
 
 import {
   gotTemplates,
@@ -56,6 +57,7 @@ export function* composeHandler({ payload: { fileIds, tempId } }) {
     const action = yield call(composeEnd, normalizedData);
 
     yield put(action);
+    yield put(push('/compose/download'));
   } catch (e) {
     const errAction = yield call(composeEnd, e);
 
