@@ -55,8 +55,9 @@ const render = () => {
 
 render();
 
+
 if (module.hot) {
-  module.hot.accept('components/App', () => {
+  module.hot.accept('./index', () => {
     render();
   });
 }

@@ -84,7 +84,7 @@ const download = handleActions(
       return {
         ...state,
         isLoading,
-        fishIds: payload.result,
+        fishIds: payload ? payload.result : [],
       };
     },
   },
