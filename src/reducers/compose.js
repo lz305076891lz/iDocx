@@ -9,7 +9,8 @@ import {
 } from '../actions/compose';
 import {
   gotTemplates,
-  composeToggle,
+  composeStart,
+  composeEnd,
 } from '../actions/entities';
 
 const template = handleActions(
@@ -51,10 +52,16 @@ const template = handleActions(
 
 const upload = handleActions(
   {
-    [composeToggle](state, { meta: { isLoading } }) {
+    [composeStart](state) {
       return {
         ...state,
-        isComposing: isLoading,
+        isComposing: true,
+      };
+    },
+    [composeEnd](state) {
+      return {
+        ...state,
+        isComposing: false,
       };
     },
     [changeChosenTemplate](state, { payload }) {
@@ -80,11 +87,17 @@ const upload = handleActions(
 
 const download = handleActions(
   {
-    [composeToggle](state, { payload, meta: { isLoading } }) {
+    [composeStart](state) {
       return {
         ...state,
-        isLoading,
-        fishIds: payload ? payload.result : [],
+        isLoading: true,
+      };
+    },
+    [composeEnd](state, { payload }) {
+      return {
+        ...state,
+        isLoading: false,
+        fishIds: payload.result,
       };
     },
   },

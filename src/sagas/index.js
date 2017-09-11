@@ -7,7 +7,7 @@ import {
   composeStart,
   composeEnd,
 } from '../actions/entities';
-import { templates, fishes } from '../actions/schemas';
+import { templates, fishes } from '../sources/schemas';
 
 export function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {

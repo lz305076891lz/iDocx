@@ -17,6 +17,12 @@ class UploadPage extends React.Component {
     coverList: [],
   }
 
+  componentDidUpdate({ isComposing }) {
+    if (!this.props.isComposing && isComposing) {
+      this.props.history.push('/compose/download');
+    }
+  }
+
   handleFileListChange = (fileList) => {
     this.setState(prevState => ({
       fileList,
@@ -33,10 +39,7 @@ class UploadPage extends React.Component {
   }
 
   handleComposeClick = (e) => {
-    this.props.composeStart(this.getSuccessList().map(file => file.response.id), this.props.chosenTemplateId)
-      .then(() => {
-        this.props.history.push('/compose/download');
-      });
+    this.props.composeStart(this.getSuccessList().map(file => file.response.id), this.props.chosenTemplateId);
   }
 
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')

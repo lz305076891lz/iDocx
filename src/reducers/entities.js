@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 
-import { gotTemplates, composeToggle } from '../actions/entities';
+import { gotTemplates, composeEnd } from '../actions/entities';
 
 const templates = handleActions({
   [gotTemplates](state, { payload }) {
@@ -13,10 +13,10 @@ const templates = handleActions({
 }, {});
 
 const fishes = handleActions({
-  [composeToggle](state, { payload, meta: { isLoading } }) {
+  [composeEnd](state, { payload }) {
     return {
       ...state,
-      ...(isLoading ? {} : payload.entities.fishes),
+      ...payload.entities.fishes,
     };
   },
 }, {});
