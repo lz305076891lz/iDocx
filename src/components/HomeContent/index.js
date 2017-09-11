@@ -78,8 +78,8 @@ const introData = [
 ];
 
 const HomeContent = () => (
-  <div style={{ textAlign: 'center' }}>
-    <WideCarousel pageData={pageData} style={{ marginBottom: -66, transform: 'translateY(-66px)' }}/>
+  <div className={styles.wrapper}>
+    <WideCarousel pageData={pageData} className={styles.carousel}/>
     <div style={{ backgroundColor: '#fff' }}>
       <Container>
         <Row>

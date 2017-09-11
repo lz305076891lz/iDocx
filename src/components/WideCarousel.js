@@ -3,8 +3,8 @@ import { Row, Col, Carousel, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import Container from 'components/ResponsiveContainer';
 
-const WideCarousel = ({ pageData, style }) => (
-  <div style={style}>
+const WideCarousel = ({ pageData, style, className }) => (
+  <div style={style} className={className}>
     <Carousel
       autoplay={true}
       autoplaySpeed={5000}
@@ -39,6 +39,7 @@ const CarouselPage = ({ style, data, children }) => (
           <h2
             style={{
               fontSize: 36,
+              color: '#fff',
             }}
           >{data.title}</h2>
           <p
