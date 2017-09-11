@@ -18,10 +18,6 @@ module.exports = (env = {}) => {
       'react-redux',
       'react-router-dom',
       'redux',
-      'redux-storage',
-      'redux-storage-decorator-debounce',
-      'redux-storage-decorator-filter',
-      'redux-storage-engine-localstorage',
       'redux-thunk',
     ],
   };
@@ -151,7 +147,9 @@ module.exports = (env = {}) => {
       port: 9080,
       host: '0.0.0.0',
       compress: true,
-      historyApiFallback: true,
+      historyApiFallback: {
+        index: settings.publicPath,
+      },
       proxy: {
         '/api/templates': {
           target: 'http://localhost:9081',
@@ -161,7 +159,7 @@ module.exports = (env = {}) => {
           target: 'http://localhost:9081',
           changeOrigin: true,
         },
-        '/apiword': {
+        '/apiword/index.php': {
           target: 'http://aidocx.com',
         },
       },
