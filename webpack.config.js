@@ -9,6 +9,7 @@ const settings = require('./settings');
 module.exports = (env = {}) => {
   const entry = {
     index: [
+      'babel-polyfill',
       'whatwg-fetch',
       './src/index.js',
     ],
