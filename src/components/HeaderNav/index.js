@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Menu, Row, Col } from 'antd';
 import Container from '../ResponsiveContainer';
-// import SignInOut from '../SignInOut';
+import SignInOut from '../SignInOut';
 import styles from './HeaderNav.scss';
 
 const menuData = [
@@ -17,14 +17,6 @@ const menuData = [
     name: 'compose',
     title: '智能排版',
   },
-  // {
-  //   name: 'essay',
-  //   title: '范文库'
-  // },
-  // {
-  //   name: 'help',
-  //   title: '帮助'
-  // }
 ];
 
 const HeaderNav = ({ isTransparent = true, location }) => {
@@ -46,9 +38,9 @@ const HeaderNav = ({ isTransparent = true, location }) => {
             {menuData.map(item => <Menu.Item key={item.name}><Link to={`/${item.name}`}>{item.title}</Link></Menu.Item>)}
           </Menu>
         </Col>
-        {/* <Col span={6}> */}
-          {/* <SignInOut isTransparent={isTransparent}/> */}
-        {/* </Col> */}
+        <Col span={6}>
+          <SignInOut isTransparent={isTransparent}/>
+        </Col>
       </Row>
     </Container>
   );

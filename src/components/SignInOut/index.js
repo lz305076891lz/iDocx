@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Row, Col, Modal, Form, Input, Tabs, Checkbox } from 'antd';
 
-const FormItem = Form.Item;
-
 import styles from './SignInOut.scss';
+
+const FormItem = Form.Item;
 
 class SignInOut extends React.Component {
   constructor(props) {
@@ -29,61 +29,64 @@ class SignInOut extends React.Component {
   }
 
   render() {
+    const { isLoginVisible } = this.state;
+
+
     return (
       <Row className={`${styles.sign} ${this.props.isTransparent ? styles['sign-transparent'] : ''}`}>
         <Col offset={8} span={8}>
           <Button onClick={this.showLoginModel} ghost>登陆</Button>
-          <LoginForm
-            visible={this.state.isLoginVisible}
-            onCancel={this.handleLoginCancel}
-          />
         </Col>
         <Col span={8}>
           <Button ghost>注册</Button>
         </Col>
+        <Modal
+          className={styles['login-panel']}
+          visible={isLoginVisible}
+          title="登陆"
+          okText="登陆"
+          onCancel={this.handleLoginCancel}
+          onOk={this.handleLoginCancel}
+        >
+          <Tabs defaultActiveKey="login">
+            <Tabs.TabPane tab="登录" key="login">
+              <LoginForm/>
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="注册" key="signup">
+              <LoginForm/>
+            </Tabs.TabPane>
+          </Tabs>
+        </Modal>
       </Row>
     );
   }
 }
 
 const LoginForm = Form.create()(({
-  visible, onCancel, onCreate, form,
+  form,
 }) => {
   const { getFieldDecorator } = form;
   const formItemLayout = {
     labelCol: { span: 4, offset: 3 },
     wrapperCol: { span: 14 },
   };
+
   return (
-      <Modal
-        className={styles['login-panel']}
-        visible={visible}
-        title="登陆"
-        okText="登陆"
-        onCancel={onCancel}
-        onOk={onCreate}
-        >
-        <Tabs defaultActiveKey="1">
-          <Tabs.TabPane tab="账号登录" key="1" style={{ padding: 16 }}>
-            <Form layout="vertical">
-              <FormItem {...formItemLayout} label="用户名">
-                {getFieldDecorator('username', {
-                  rules: [{ required: true, message: '请输入用户名' }],
-                })(<Input />)}
-              </FormItem>
-              <FormItem {...formItemLayout} label="密码">
-                {getFieldDecorator('password', {
-                  rules: [{ required: true, message: '请输入密码' }],
-                })(<Input type="password" />)}
-              </FormItem>
-              <FormItem {...formItemLayout} label=" ">
-                {getFieldDecorator('remember')(<Checkbox>记住密码</Checkbox>)}
-              </FormItem>
-            </Form>
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="第三方登录" key="2"></Tabs.TabPane>
-        </Tabs>
-      </Modal>
+    <Form layout="vertical" style={{ paddingTop: 16 }}>
+      <FormItem {...formItemLayout} label="用户名">
+        {getFieldDecorator('username', {
+           rules: [{ required: true, message: '请输入用户名' }],
+        })(<Input />)}
+      </FormItem>
+      <FormItem {...formItemLayout} label="密码">
+        {getFieldDecorator('password', {
+           rules: [{ required: true, message: '请输入密码' }],
+        })(<Input type="password" />)}
+      </FormItem>
+      <FormItem {...formItemLayout} label=" ">
+        {getFieldDecorator('remember')(<Checkbox>记住密码</Checkbox>)}
+      </FormItem>
+    </Form>
   );
 });
 
