@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import cn from 'classnames';
 import { Button, Row, Col, Modal, Form, Input, Tabs, Checkbox } from 'antd';
+
+import { signup } from '../../actions/users';
 
 import styles from './SignInOut.scss';
 
@@ -34,6 +37,8 @@ class SignInOut extends React.Component {
     });
 
     console.log(values);
+
+    this.props.signup(values);
   }
 
   showModel = (formStatus = FORM_STATUS.LOGIN) => () => {
@@ -131,4 +136,8 @@ const LoginForm = Form.create()(({
   );
 });
 
-export default SignInOut;
+const mapDispatchToProps = {
+  signup,
+};
+
+export default connect(null, mapDispatchToProps)(SignInOut);

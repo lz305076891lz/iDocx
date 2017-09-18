@@ -1,4 +1,4 @@
-import { put, call, all, takeLatest, takeEvery } from 'redux-saga/effects';
+import { put, call, all, takeLatest, takeEvery, spawn } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
 import { push } from 'react-router-redux';
 
@@ -8,28 +8,15 @@ import {
   composeStart,
   composeEnd,
 } from '../actions/entities';
+import { handleFetchCall } from './utils';
 import { templates, fishes } from '../sources/schemas';
 
-export function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
-
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
-}
-
-export function* handleFetchCall(...fetchArgs) {
-  const res = yield fetch(fetchArgs);
-  yield call(checkStatus, res);
-
-  return yield res.json();
-}
+import userSaga from './users';
 
 export function* templatesHandler() {
   try {
     const data = yield call(handleFetchCall, '/apiword/index.php/api/templates');
+
     const normalizedData = yield call(normalize, data.list, templates);
 
     const action = yield call(gotTemplates, {
@@ -68,5 +55,5 @@ export function* composeHandler({ payload: { fileIds, tempId } }) {
 export default function* rootSaga() {
   yield takeLatest(getTemplates, templatesHandler);
   yield takeEvery(composeStart, composeHandler);
+  yield spawn(userSaga);
 }
-
