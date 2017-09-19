@@ -5,8 +5,8 @@ export const {
   user: {
     login,
     signup,
-    loginSuccess,
-    signupSuccess,
+    loginFinished,
+    signupFinished,
   },
 } = createActions({
   USER: {
@@ -19,7 +19,7 @@ export const {
       password,
       username,
     }),
-    LOGIN_SUCCESS: R.identity,
-    SIGNUP_SUCCESS: R.identity,
+    LOGIN_FINISHED: R.identity,
+    SIGNUP_FINISHED: R.identity,
   },
 });

@@ -20,11 +20,11 @@ export function* loginHandler({ payload }) {
       },
     });
 
-    const action = call(loginFinished, sign);
+    const action = yield call(loginFinished, sign);
 
     yield put(action);
   } catch (e) {
-    yield put(loginFinished, e);
+    yield put(loginFinished(e));
   }
 }
 
@@ -39,11 +39,12 @@ function* signupHandler({ payload }) {
       },
     });
 
-    const action = call(signupFinished, sign);
+    const action = yield call(signupFinished, sign);
+    console.log(action);
 
     yield put(action);
   } catch (e) {
-    yield put(signupFinished, e);
+    yield put(signupFinished(e));
   }
 }
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import cn from 'classnames';
 import { Button, Row, Col, Modal, Form, Input, Tabs, Checkbox } from 'antd';
 
-import { signup } from '../../actions/users';
+import { signup, login } from '../../actions/users';
 
 import styles from './SignInOut.scss';
 
@@ -14,13 +14,19 @@ const FORM_STATUS = {
   LOGIN: 'LOGIN',
 };
 
+@connect(state => ({
+  currentUser: state.users.current,
+  isLoginIn: !!state.users.current.username,
+}), {
+  signup,
+  login,
+})
 class SignInOut extends React.Component {
-   state = {
-     isModalVisible: false,
-     isModalLoading: false,
-     formStatus: FORM_STATUS.LOGIN,
-   }
-
+  state = {
+    isModalVisible: false,
+    isModalLoading: false,
+    formStatus: FORM_STATUS.LOGIN,
+  }
 
   handleCancel = () => {
     this.setState({
@@ -29,19 +35,23 @@ class SignInOut extends React.Component {
   }
 
   handleSubmit = (values) => {
-    if (this.state.isModelLoading) {
+    const { isModelLoading, formStatus } = this.state;
+
+    if (isModelLoading) {
       return;
     }
     this.setState({
       isModalLoading: true,
     });
 
-    console.log(values);
-
-    this.props.signup(values);
+    this.props[formStatus.toLowerCase()](values);
   }
 
   showModel = (formStatus = FORM_STATUS.LOGIN) => () => {
+    if (this.props.isLoginIn) {
+      return;
+    }
+
     this.setState({
       isModalVisible: true,
     });
@@ -59,28 +69,67 @@ class SignInOut extends React.Component {
     });
   }
 
-  render() {
+  renderBtns = () => {
     const { isModalVisible, isModalLoading, formStatus } = this.state;
+    const { isLoginIn } = this.props;
 
+    if (isLoginIn) {
+      return null;
+    }
 
+    return [
+      <Col key="btnLogin" offset={8} span={8}>
+        <Button onClick={this.showModel()} ghost>登陆</Button>
+      </Col>,
+      <Col key="btnSignin" span={8}>
+        <Button onClick={this.showModel(FORM_STATUS.SIGNUP)} ghost>注册</Button>
+      </Col>,
+      <LoginForm key="loginForm" activeKey={formStatus} isVisible={isModalVisible} onCancel={this.handleCancel} onSubmit={this.handleSubmit} onTabChange={this.handleTabChange} isLoading={isModalLoading}/>,
+    ];
+  }
+
+  renderUserInfo = () => {
+    const { isLoginIn, currentUser } = this.props;
+
+    if (!isLoginIn) {
+      return null;
+    }
+
+    return (
+      <Col span={8}>
+        欢迎，{currentUser.username}
+      </Col>
+    );
+  }
+
+  render() {
     return (
       <Row className={cn(styles.sign, {
           [styles['sign-transparent']]: this.props.isTransparent,
-        })}>
-        <Col offset={8} span={8}>
-          <Button onClick={this.showModel()} ghost>登陆</Button>
-        </Col>
-        <Col span={8}>
-          <Button onClick={this.showModel(FORM_STATUS.SIGNUP)} ghost>注册</Button>
-        </Col>
-        <LoginForm activeKey={formStatus} isVisible={isModalVisible} onCancel={this.handleCancel} onSubmit={this.handleSubmit} onTabChange={this.handleTabChange} isLoading={isModalLoading}/>
+      })}>
+        {this.renderBtns()}
+        {this.renderUserInfo()}
       </Row>
     );
   }
 }
 
-const LoginForm = Form.create()(({
-  form, onCancel, isVisible, onSubmit, activeKey, onTabChange, isLoading
+const LoginForm = Form.create({
+  onFieldsChange(props, value) {
+    console.log(value);
+  },
+  mapPropsToFields(...args) {
+    console.log(args);
+
+    return {
+      tel: {
+        value: 'something',
+        dirty: true,
+      },
+    };
+  },
+})(({
+  form, onCancel, isVisible, onSubmit, activeKey, onTabChange, isLoading,
 }) => {
   const { getFieldDecorator } = form;
   const formItemLayout = {
@@ -136,8 +185,4 @@ const LoginForm = Form.create()(({
   );
 });
 
-const mapDispatchToProps = {
-  signup,
-};
-
-export default connect(null, mapDispatchToProps)(SignInOut);
+export default SignInOut;
