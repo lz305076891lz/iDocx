@@ -11,7 +11,14 @@ export function checkStatus(response) {
 }
 
 export function* handleFetchCall(...fetchArgs) {
-  const res = yield fetch(...fetchArgs);
+  const url = fetchArgs[0];
+  const options = {
+    ...(fetchArgs[1] || {}),
+    credentials: 'include',
+  };
+  console.log(url, options)
+
+  const res = yield call(fetch, url, options);
 
   yield call(checkStatus, res);
 

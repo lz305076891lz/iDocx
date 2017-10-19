@@ -51,6 +51,7 @@ class UploadPage extends React.Component {
     fetch(args.action, {
       method: 'POST',
       body: data,
+      credentials: 'include',
     })
       .then(data => data.json())
       .then((data) => {

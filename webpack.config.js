@@ -161,6 +161,9 @@ module.exports = (env = {}) => {
           changeOrigin: true,
         },
         '/apiword/index.php': {
+          pathRewrite: {
+            '/apiword/index.php': '/index.php',
+          },
           target: 'http://aidocx.com',
         },
       },

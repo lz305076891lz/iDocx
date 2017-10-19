@@ -13,7 +13,7 @@ export const fish = new schema.Entity('fishes', {}, {
       ...fish,
       id: fish.comp_id,
       fileName: '暂无',
-      previewHref: `http://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(`http://www.aidocx.com/apiword/index.php/api/files/${fish.comp_id}`)}`,
+      previewHref: `http://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(`http://www.aidocx.com/index.php/api/files/${fish.comp_id}`)}`,
       downloadLinks: {
         standard: {
           id: '1',
