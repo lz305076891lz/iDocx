@@ -1,29 +1,28 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
-import { Layout, Row, Col, Input, Button, Pagination } from 'antd'
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { Button } from 'antd';
 
-import styles from './ComposePage.scss'
+import styles from './ComposePage.scss';
 
-import Container from 'components/ResponsiveContainer'
-import TemplatesPageContainer from 'containers/TemplatesPageContainer'
-import UploadPage from 'components/ComposePage/UploadPage'
-import DownloadPage from 'components/ComposePage/DownloadPage'
+import Container from '../ResponsiveContainer';
+import TemplatesPage from './TemplatesPage';
+import UploadPage from './UploadPage';
+import DownloadPage from './DownloadPage';
 
-const ComposePage = ({}) => (
+import imgNoFitTip from '../../assets/compose-no-fit-tip.png';
+
+const ComposePage = () => (
   <div>
     <Container className={styles['compose-container']}>
       <Route path="/compose/upload" component={UploadPage}/>
       <Route path="/compose/download" component={DownloadPage}/>
-      <Route exact path="/compose" component={TemplatesPageContainer}/>
+      <Route exact path="/compose" component={TemplatesPage}/>
     </Container>
-    <Route exact path="/compose" component={NoFitTip}/>
+    {/* <Route exact path="/compose" component={NoFitTip}/> */}
   </div>
-)
+);
 
-import imgNoFitTip from 'assets/compose-no-fit-tip.png'
-
-const NoFitTip = () => {
-  return (
+export const NoFitTip = () => (
     <div className={styles['no-fit-tip']}>
       <Container className={styles.container}>
         <div className={styles['img-wrapper']}>
@@ -36,7 +35,6 @@ const NoFitTip = () => {
         </div>
       </Container>
     </div>
-  )
-}
+);
 
-export default ComposePage
+export default ComposePage;

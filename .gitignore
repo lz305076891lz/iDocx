@@ -1,3 +1,7 @@
+# Emacs
+.#*
+.DS_Store
+
 # IntelliJ project files
 .idea
 *.iml
@@ -65,3 +69,4 @@ typings/
 .env
 
 design
+dist

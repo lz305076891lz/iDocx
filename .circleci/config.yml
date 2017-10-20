@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /usr/src/app
     docker:
-      - image: node:7-onbuild
+      - image: node:8-onbuild
     steps:
       - checkout
       - restore_cache:

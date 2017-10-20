@@ -1,51 +1,72 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { createStore, applyMiddleware, compose } from 'redux'
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
-import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import { Provider } from 'react-redux';
+import { createBrowserHistory } from 'history';
+import { Route } from 'react-router-dom';
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
+/* eslint import/no-extraneous-dependencies: 0 */
 import { AppContainer } from 'react-hot-loader';
 
-import reducers from 'reducers/index'
+import App from './components/App';
+import createRootReducer from './reducers';
+import rootSaga from './sagas';
+import settings from '../settings';
 
-import App from 'components/App';
+const history = createBrowserHistory({
+  basename: settings.publicPath,
+});
+const historyMiddleware = routerMiddleware(history);
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+/* eslint no-underscore-dangle:0 */
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-let store = createStore(
-  reducers,
-  composeEnhancers(
-    applyMiddleware(
-      thunk,
-      logger
-    )
-  )
-)
+const sagaMiddleware = createSagaMiddleware();
 
-const render = (Component) => {
+const rootReducer = createRootReducer({
+  router: routerReducer,
+});
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(
+    thunk,
+    sagaMiddleware,
+    historyMiddleware,
+  )),
+);
+
+sagaMiddleware.run(rootSaga);
+
+const render = () => {
+  let WrappedApp = (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Route path="/" component={App}/>
+      </ConnectedRouter>
+    </Provider>
+  );
+
+  if (process.env.NODE_ENV === 'develop') {
+    WrappedApp = (
+      <AppContainer>
+        {WrappedApp}
+      </AppContainer>
+    );
+  }
+
   ReactDOM.render(
-    <AppContainer>
-      <Provider store={store}>
-        {Component}
-      </Provider>
-    </AppContainer>,
-    document.getElementById('app')
+    WrappedApp,
+    document.getElementById('app'),
   );
 };
 
-render(
-  <Router>
-    <Route path="/" component={App}/>
-  </Router>
-);
+render();
 
 if (module.hot) {
-  module.hot.accept('components/App', () => {
-    render(
-      <Router>
-        <Route path="/" component={App}/>
-      </Router>
-    )
+  module.hot.accept('./components/App', () => {
+    render();
   });
 }

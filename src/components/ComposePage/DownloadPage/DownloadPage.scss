@@ -35,6 +35,9 @@
   :global(.ant-tabs-ink-bar) {
     display: none !important;
   }
+  :global(.ant-tabs-bar) {
+    margin-bottom: 0;
+  }
   :global(.ant-tabs-tab) {
     margin-top: 14px;
     height: auto;
@@ -49,4 +52,8 @@
 
 .preview-wrapper {
   height: 600px;
+  iframe {
+    height: 100%;
+    width: 100%;
+  }
 }

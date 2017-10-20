@@ -1,11 +1,12 @@
-import React from 'react'
-import { Link } from  'react-router-dom'
-import { Menu, Row, Col, Form } from 'antd'
-import Container from 'components/ResponsiveContainer'
-import SignInOut from 'components/SignInOut'
-import styles from  './HeaderNav.scss'
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-const FormItem = Form.Item
+import { Link } from 'react-router-dom';
+import { Menu, Row, Col } from 'antd';
+import Container from '../ResponsiveContainer';
+import SignInOut from '../SignInOut';
+import styles from './HeaderNav.scss';
 
 const menuData = [
   {
@@ -14,33 +15,27 @@ const menuData = [
   },
   {
     name: 'compose',
-    title: '智能排版'
+    title: '智能排版',
   },
-  {
-    name: 'essay',
-    title: '范文库'
-  },
-  {
-    name: 'help',
-    title: '帮助'
-  }
-]
+];
 
 const HeaderNav = ({ isTransparent = true, location }) => {
-  let pathname = location.pathname.match(/^\/\w+\/?/) || ['\/home']
-  pathname = pathname[0].slice(1).replace('/', '')
-  
+  let pathname = location.pathname.match(/^\/\w+\/?/) || ['/home'];
+  pathname = pathname[0].slice(1).replace('/', '');
+
   return (
-    <Container style={{position: 'relative', zIndex: 10}}>
+    <Container style={{ position: 'relative', zIndex: 10 }}>
       <Row>
-        <Col span={18} style={{overflow: 'hidden'}}>
+        <Col span={18} style={{ overflow: 'hidden' }}>
           <Menu
             mode="horizontal"
             defaultSelectedKeys={['home']}
             selectedKeys={[pathname]}
-            className={styles.menu + ' ' + (isTransparent ? styles['menu-transparent'] : '')}
+            className={classnames(styles.menu, {
+                [styles['menu-transparent']]: isTransparent,
+            })}
           >
-            {menuData.map((item) => <Menu.Item key={item.name}><Link to={'/' + item.name}>{item.title}</Link></Menu.Item>)}
+            {menuData.map(item => <Menu.Item key={item.name}><Link to={`/${item.name}`}>{item.title}</Link></Menu.Item>)}
           </Menu>
         </Col>
         <Col span={6}>
@@ -48,9 +43,12 @@ const HeaderNav = ({ isTransparent = true, location }) => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
+HeaderNav.propTypes = {
+  isTransparent: PropTypes.bool,
+  location: PropTypes.object,
+};
 
 
-
-export default HeaderNav
+export default HeaderNav;

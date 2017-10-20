@@ -1,0 +1,60 @@
+import { put, call, all, takeLatest, takeEvery, spawn } from 'redux-saga/effects';
+import { normalize } from 'normalizr';
+import { push } from 'react-router-redux';
+import { apiPublicPath } from '../../settings';
+
+import {
+  gotTemplates,
+  getTemplates,
+  composeStart,
+  composeEnd,
+} from '../actions/entities';
+import { handleFetchCall } from './utils';
+import { templates, fishes } from '../sources/schemas';
+
+import userSaga from './users';
+
+export function* templatesHandler() {
+  try {
+    const data = yield call(handleFetchCall, `${apiPublicPath}templates`);
+
+    const normalizedData = yield call(normalize, data.list, templates);
+
+    const action = yield call(gotTemplates, {
+      ...data,
+      list: normalizedData,
+    });
+
+    yield put(action);
+  } catch (e) {
+    const errAction = yield call(gotTemplates, e);
+
+    yield put(errAction);
+  }
+}
+
+export function* composeHandler({ payload: { fileIds, tempId } }) {
+  try {
+    const fetchArr = fileIds.map(fileId => (
+      call(handleFetchCall, `${apiPublicPath}compose/${fileId}/${tempId}`)
+    ));
+
+    const data = yield all(fetchArr);
+    const normalizedData = yield call(normalize, data, fishes);
+
+    const action = yield call(composeEnd, normalizedData);
+
+    yield put(action);
+    yield put(push('/compose/download'));
+  } catch (e) {
+    const errAction = yield call(composeEnd, e);
+
+    yield put(errAction);
+  }
+}
+
+export default function* rootSaga() {
+  yield takeLatest(getTemplates, templatesHandler);
+  yield takeEvery(composeStart, composeHandler);
+  yield spawn(userSaga);
+}

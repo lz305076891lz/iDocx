@@ -2,7 +2,7 @@
   &.sign-transparent {
     & :global(.ant-btn) {
       color: #fff;
-      &:hover, &:focus {
+      &:hover {
         color: #fff;
         border-color: #fff;
       }
@@ -13,19 +13,17 @@
     padding: 0;
     width: 100%;
     text-align: center;
-    line-height: 64px;
+    line-height: 66px;
+    height: 66px;
     color: rgba(0, 0, 0, .65);
     border: 0 transparent;
     border-bottom: 2px solid transparent;
     border-radius: 0;
     font-size: 16px;
     -webkit-appearance: none;
-    &:hover, &:focus {
+    &:hover {
       color: #108ee9;
       border-color: #108ee9;
-    }
-    &:focus {
-      background-color: rgba(0, 0, 0, .05) !important;
     }
   }
   & :global(.ant-btn-clicked):after {
@@ -47,7 +45,7 @@
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     text-align: center;
-  
+
     & :global(.ant-tabs-nav) {
       float: none;
       & :global(.ant-tabs-tab:hover), & :global(.ant-tabs-tab) {
@@ -56,6 +54,7 @@
         font-size: 16px;
       }
       & :global(.ant-tabs-tab-active) {
+        color: #fff;
         transform: translateY(-5px);
       }
     }
@@ -73,4 +72,8 @@
       }
     }
   }
+}
+
+.formBody {
+  padding: 16px !important;
 }
