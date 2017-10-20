@@ -21,6 +21,7 @@ jobs:
       - run:
           name: commit
           command: |
+            rm -rf dist
             st=`git log -1 --pretty=oneline`
             if [[ $st == *Merge* ]]
               then
