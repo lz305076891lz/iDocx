@@ -67,7 +67,7 @@ module.exports = (env = {}) => {
     }),
     new Webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'vendor.[hash].js',
+      filename: 'scripts/vendor.[hash].js',
     }),
   ];
 
