@@ -1,3 +1,4 @@
 module.exports = {
-  publicPath: '/apiword/dist/',
+  publicPath: '/',
+  apiPublicPath: '/index.php/api/',
 };

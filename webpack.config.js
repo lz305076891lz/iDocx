@@ -152,18 +152,7 @@ module.exports = (env = {}) => {
         index: settings.publicPath,
       },
       proxy: {
-        '/api/templates': {
-          target: 'http://localhost:9081',
-          changeOrigin: true,
-        },
-        '/statics': {
-          target: 'http://localhost:9081',
-          changeOrigin: true,
-        },
-        '/apiword/index.php': {
-          pathRewrite: {
-            '/apiword/index.php': '/index.php',
-          },
+        '/index.php': {
           target: 'http://aidocx.com',
         },
       },

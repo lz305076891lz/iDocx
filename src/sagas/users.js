@@ -2,6 +2,8 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 
 import { handleFetchCall } from './utils';
 
+import { apiPublicPath } from '../../settings';
+
 import {
   login,
   signup,
@@ -11,7 +13,7 @@ import {
 
 export function* loginHandler({ payload }) {
   try {
-    const user = yield call(handleFetchCall, '/apiword/index.php/api/users/login', {
+    const user = yield call(handleFetchCall, `${apiPublicPath}users/login`, {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify(payload),
@@ -30,7 +32,7 @@ export function* loginHandler({ payload }) {
 
 function* signupHandler({ payload }) {
   try {
-    const { sign } = yield call(handleFetchCall, '/apiword/index.php/api/users/register', {
+    const { sign } = yield call(handleFetchCall, `${apiPublicPath}users/register`, {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify(payload),
@@ -40,7 +42,6 @@ function* signupHandler({ payload }) {
     });
 
     const action = yield call(signupFinished, sign);
-    console.log(action);
 
     yield put(action);
   } catch (e) {

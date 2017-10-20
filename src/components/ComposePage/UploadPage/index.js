@@ -3,6 +3,8 @@ import { Icon, Upload, Button, Tabs, Form, Input } from 'antd';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { apiPublicPath } from '../../../../settings';
+
 import InFlowTip from '../../InFlowTip';
 
 import styles from './UploadPage.scss';
@@ -42,8 +44,6 @@ class UploadPage extends React.Component {
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
 
   customRequest = (args) => {
-    console.log(args);
-
     const data = new FormData();
     data.append('file', args.file);
     // data.append(`template_name`, this.props.chosenTemplate.id)
@@ -122,7 +122,7 @@ class FileUpload extends React.Component {
   }
   render() {
     const props = {
-      action: '/apiword/index.php/api/files',
+      action: `${apiPublicPath}files`,
       onChange: this.handleChange,
       multiple: true,
       accept: '.doc, .docx',

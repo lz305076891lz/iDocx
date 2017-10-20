@@ -1,6 +1,7 @@
 import { put, call, all, takeLatest, takeEvery, spawn } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
 import { push } from 'react-router-redux';
+import { apiPublicPath } from '../../settings';
 
 import {
   gotTemplates,
@@ -15,7 +16,7 @@ import userSaga from './users';
 
 export function* templatesHandler() {
   try {
-    const data = yield call(handleFetchCall, '/apiword/index.php/api/templates');
+    const data = yield call(handleFetchCall, `${apiPublicPath}templates`);
 
     const normalizedData = yield call(normalize, data.list, templates);
 
@@ -35,7 +36,7 @@ export function* templatesHandler() {
 export function* composeHandler({ payload: { fileIds, tempId } }) {
   try {
     const fetchArr = fileIds.map(fileId => (
-      call(handleFetchCall, `/apiword/index.php/api/compose/${fileId}/${tempId}`)
+      call(handleFetchCall, `${apiPublicPath}compose/${fileId}/${tempId}`)
     ));
 
     const data = yield all(fetchArr);
