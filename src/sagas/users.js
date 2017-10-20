@@ -11,7 +11,7 @@ import {
 
 export function* loginHandler({ payload }) {
   try {
-    const { tel } = yield call(handleFetchCall, '/apiword/index.php/api/users/login', {
+    const user = yield call(handleFetchCall, '/apiword/index.php/api/users/login', {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify(payload),
@@ -20,7 +20,7 @@ export function* loginHandler({ payload }) {
       },
     });
 
-    const action = yield call(loginFinished, tel);
+    const action = yield call(loginFinished, user);
 
     yield put(action);
   } catch (e) {

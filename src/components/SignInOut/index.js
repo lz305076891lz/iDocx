@@ -96,7 +96,7 @@ class SignInOut extends React.Component {
     }
 
     return (
-      <Col span={8}>
+      <Col span={8} offset={16}>
         欢迎，{currentUser.username}
       </Col>
     );
@@ -117,16 +117,6 @@ class SignInOut extends React.Component {
 const LoginForm = Form.create({
   onFieldsChange(props, value) {
     console.log(value);
-  },
-  mapPropsToFields(...args) {
-    console.log(args);
-
-    return {
-      tel: {
-        value: 'something',
-        dirty: true,
-      },
-    };
   },
 })(({
   form, onCancel, isVisible, onSubmit, activeKey, onTabChange, isLoading,
