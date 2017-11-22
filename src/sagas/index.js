@@ -14,9 +14,9 @@ import { templates, fishes } from '../sources/schemas';
 
 import userSaga from './users';
 
-export function* templatesHandler() {
+export function* templatesHandler({ payload }) {
   try {
-    const data = yield call(handleFetchCall, `${apiPublicPath}templates`);
+    const data = yield call(handleFetchCall, `${apiPublicPath}templates?page=${payload}`);
 
     const normalizedData = yield call(normalize, data.list, templates);
 

@@ -13,7 +13,7 @@ import {
   changeTemplatesPage,
   changeTemplatesSearch,
 } from '../../../actions/compose';
-import { getTemplates } from '../../../actions/entities.js';
+import { getTemplates } from '../../../actions/entities';
 
 class TemplatesPage extends React.Component {
   handleChange = (e) => {
