@@ -7,7 +7,7 @@ const templates = handleActions({
   [gotTemplates](state, { payload }) {
     return {
       ...state,
-      ...payload.list.entities.templates,
+      ...(payload.list.entities.templates || {}),
     };
   },
 }, {});

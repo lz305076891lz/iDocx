@@ -14,11 +14,11 @@ import { templates, fishes } from '../sources/schemas';
 
 import userSaga from './users';
 
-export function* templatesHandler() {
+export function* templatesHandler({ payload: { page = 1, search = '' } }) {
   try {
-    const data = yield call(handleFetchCall, `${apiPublicPath}templates`);
+    const data = yield call(handleFetchCall, `${apiPublicPath}templates?page=${page}&search=${search}`);
 
-    const normalizedData = yield call(normalize, data.list, templates);
+    const normalizedData = yield call(normalize, data.list || {}, templates);
 
     const action = yield call(gotTemplates, {
       ...data,

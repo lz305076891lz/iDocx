@@ -17,7 +17,7 @@ const template = handleActions(
   {
     [gotTemplates](state, {
       payload: {
-        page, list, total, search,
+        page, list, total,
       },
     }) {
       return {
@@ -25,7 +25,6 @@ const template = handleActions(
         page,
         total,
         list: list.result,
-        searchValue: search,
       };
     },
     [changeTemplatesPage](state, { payload }) {

@@ -13,7 +13,7 @@ import {
 
 export function* loginHandler({ payload }) {
   try {
-    const user = yield call(handleFetchCall, `${apiPublicPath}users/login`, {
+    const result = yield call(handleFetchCall, `${apiPublicPath}users/login`, {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify(payload),
@@ -22,7 +22,11 @@ export function* loginHandler({ payload }) {
       },
     });
 
-    const action = yield call(loginFinished, user);
+    if (result.error) {
+      throw new Error('用户名或密码错误!');
+    }
+
+    const action = yield call(loginFinished, result);
 
     yield put(action);
   } catch (e) {
@@ -32,7 +36,7 @@ export function* loginHandler({ payload }) {
 
 function* signupHandler({ payload }) {
   try {
-    const { sign } = yield call(handleFetchCall, `${apiPublicPath}users/register`, {
+    const result = yield call(handleFetchCall, `${apiPublicPath}users/register`, {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify(payload),
@@ -41,7 +45,11 @@ function* signupHandler({ payload }) {
       },
     });
 
-    const action = yield call(signupFinished, sign);
+    if (result.error) {
+      throw new Error(result.error);
+    }
+
+    const action = yield call(signupFinished, result);
 
     yield put(action);
   } catch (e) {
