@@ -21,12 +21,17 @@ class TemplatesPage extends React.Component {
   }
 
   handleSearch = (e) => {
-    this.props.getTemplates(undefined, this.props.searchValue);
+    this.props.getTemplates({
+      search: this.props.searchValue,
+    });
   }
 
-  handlePageChange = (page, pageSize) => {
+  handlePageChange = (page) => {
     this.props.changeTemplatesPage(page);
-    this.props.getTemplates(page);
+    this.props.getTemplates({
+      page,
+      search: this.props.searchValue,
+    });
   }
 
   handleTmplClick = (tmplId) => {
@@ -34,7 +39,9 @@ class TemplatesPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getTemplates(this.props.page !== -1 ? this.props.page : 1);
+    this.props.getTemplates({
+      page: this.props.page !== -1 ? this.props.page : 1,
+    });
   }
 
   render() {
