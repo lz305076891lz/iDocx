@@ -154,13 +154,13 @@ const LoginForm = Form.create({
           {activeKey === FORM_STATUS.LOGIN ?
               <FormItem {...formItemLayout} label="手机号"  style={{ paddingLeft: 20}}>
                   {getFieldDecorator('tel', {
-                      rules: [{required: true, message: '请输入手机号或者Email'}],
+                      rules: [{required: true, message: '请输入手机号'}],
                   })(<Input style={{width: 280}}></Input> )}
               </FormItem> : null }
           {activeKey === FORM_STATUS.LOGIN ?
               <FormItem {...formItemLayout} label="Email"  style={{ paddingLeft: 20}}>
                   {getFieldDecorator('email', {
-                      rules: [{required: true, message: '请输入手机号或者Email'}],
+                      rules: [{required: true, message: '请输入Email'}],
                   })(<Input style={{width: 280}}></Input> )}
               </FormItem> : null }
           {activeKey === FORM_STATUS.SIGNUP ?
