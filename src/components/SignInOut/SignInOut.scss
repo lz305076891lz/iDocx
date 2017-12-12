@@ -33,14 +33,16 @@
 }
 
 .login-panel {
+
   & :global(.ant-modal-header) {
     display: none;
+
   }
   & :global(.ant-modal-body) {
     padding: 0;
-  }
+    }
   & :global(.ant-tabs-nav-wrap) {
-    padding-top: 120px;
+    padding-top: 20px;
     color: #fff;
     background: url("assets/signinout-bg.png") no-repeat center / cover ;
     border-top-left-radius: 4px;
