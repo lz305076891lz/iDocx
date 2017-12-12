@@ -79,7 +79,7 @@ class SignInOut extends React.Component {
 
     return [
       <Col key="btnLogin" offset={8} span={8}>
-        <Button onClick={this.showModel()} ghost>登陆</Button>
+        <Button onClick={this.showModel()} ghost>登录</Button>
       </Col>,
       <Col key="btnSignin" span={8}>
         <Button onClick={this.showModel(FORM_STATUS.SIGNUP)} ghost>注册</Button>
@@ -139,8 +139,9 @@ const LoginForm = Form.create({
     <Modal
       className={styles['login-panel']}
       visible={isVisible}
-      title="登陆"
-      okText="登陆"
+      width={400}
+      title="登录"
+      okText={activeKey === FORM_STATUS.SIGNUP ?"注册": "登录"}
       confirmLoading={isLoading}
       onCancel={onCancel}
       onOk={handleSubmit}
@@ -149,25 +150,45 @@ const LoginForm = Form.create({
         <Tabs.TabPane tab="登录" key={FORM_STATUS.LOGIN}/>
         <Tabs.TabPane tab="注册" key={FORM_STATUS.SIGNUP}/>
       </Tabs>
-      <Form layout="vertical" style={{ paddingTop: 16 }}>
-        <FormItem {...formItemLayout} label="手机号">
-          {getFieldDecorator('tel', {
-             rules: [{ required: true, message: '请输入手机号' }],
-          })(<Input/>)}
-        </FormItem>
-        {activeKey === FORM_STATUS.SIGNUP ?
-         <FormItem {...formItemLayout} label="用户名">
-           {getFieldDecorator('username', {
-              rules: [{ required: true, message: '请输入用户名' }],
-           })(<Input/>)}
-         </FormItem> : null}
-        <FormItem {...formItemLayout} label="密码">
+      <Form layout="vertical" style={{ paddingTop: 16}}>
+          {activeKey === FORM_STATUS.LOGIN ?
+              <FormItem {...formItemLayout} label="手机号"  style={{ paddingLeft: 20}}>
+                  {getFieldDecorator('tel', {
+                      rules: [{required: true, message: '请输入手机号或者Email'}],
+                  })(<Input style={{width: 280}}></Input> )}
+              </FormItem> : null }
+          {activeKey === FORM_STATUS.LOGIN ?
+              <FormItem {...formItemLayout} label="Email"  style={{ paddingLeft: 20}}>
+                  {getFieldDecorator('email', {
+                      rules: [{required: true, message: '请输入手机号或者Email'}],
+                  })(<Input style={{width: 280}}></Input> )}
+              </FormItem> : null }
+          {activeKey === FORM_STATUS.SIGNUP ?
+              <FormItem {...formItemLayout} label="用户名" style={{ paddingLeft: 20}}>
+                  {getFieldDecorator('username', {
+                      rules: [{ required: true, message: '请输入用户名' }],
+                  })(<Input style={{width: 280}}></Input> )}
+              </FormItem> : null}
+          {activeKey === FORM_STATUS.SIGNUP ?
+              <FormItem {...formItemLayout} label="手机号" style={{ paddingLeft: 20}}>
+                  {getFieldDecorator('tel', {
+                      rules: [{ required: true, message: '请输入手机号' }],
+                  })(<Input style={{width: 280}}></Input> )}
+              </FormItem> : null }
+          {activeKey === FORM_STATUS.SIGNUP ?
+              <FormItem {...formItemLayout} label="Email" style={{ paddingLeft: 20}}>
+                  {getFieldDecorator('email', {
+                      rules: [{ required: true, message: '请输入Email' }],
+                  })(<Input style={{width: 280}}></Input> )}
+              </FormItem> : null }
+
+        <FormItem {...formItemLayout} label="密码" style={{ paddingLeft: 20}}>
           {getFieldDecorator('password', {
              rules: [{ required: true, message: '请输入密码' }],
-          })(<Input type="password"/>)}
+          })(<Input type="password"  style={{width: 280}}/>)}
         </FormItem>
         {activeKey === FORM_STATUS.LOGIN ?
-         <FormItem {...formItemLayout} label=" ">
+         <FormItem {...formItemLayout} label=" " style={{ paddingLeft: 20, height:30}}>
            {getFieldDecorator('remember')(<Checkbox>记住密码</Checkbox>)}
          </FormItem> : null}
       </Form>

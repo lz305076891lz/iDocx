@@ -10,14 +10,16 @@ export const {
   },
 } = createActions({
   USER: {
-    LOGIN: ({ tel, password }) => ({
+    LOGIN: ({ tel, email, password }) => ({
       tel,
+      email,
       password,
     }),
-    SIGNUP: ({ tel, password, username }) => ({
+    SIGNUP: ({ tel, password, username, email }) => ({
       tel,
       password,
       username,
+      email,
     }),
     LOGIN_FINISHED: R.identity,
     SIGNUP_FINISHED: R.identity,
