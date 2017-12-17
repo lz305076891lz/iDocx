@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux';
 import { handleActions, combineActions } from 'redux-actions';
 
-import { loginFinished, signupFinished } from '../actions/users';
+import {
+  login,
+  signup,
+  loginFinished,
+  signupFinished,
+} from '../actions/users';
 
 export const current = handleActions({
   [combineActions(loginFinished, signupFinished)]: {
@@ -11,6 +16,16 @@ export const current = handleActions({
   },
 }, {});
 
+export const isLoading = handleActions({
+  [combineActions(login, signup)]() {
+    return true;
+  },
+  [combineActions(loginFinished, signupFinished)]() {
+    return false;
+  },
+}, false);
+
 export default combineReducers({
   current,
+  isLoading,
 });

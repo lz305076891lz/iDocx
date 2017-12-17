@@ -17,6 +17,7 @@ const FORM_STATUS = {
 @connect(state => ({
   currentUser: state.users.current,
   isLoginIn: !!state.users.current.username,
+  isModalLoading: state.users.isLoading,
 }), {
   signup,
   login,
@@ -24,7 +25,6 @@ const FORM_STATUS = {
 class SignInOut extends React.Component {
   state = {
     isModalVisible: false,
-    isModalLoading: false,
     formStatus: FORM_STATUS.LOGIN,
   }
 
@@ -40,9 +40,6 @@ class SignInOut extends React.Component {
     if (isModelLoading) {
       return;
     }
-    this.setState({
-      isModalLoading: true,
-    });
 
     this.props[formStatus.toLowerCase()](values);
   }
@@ -60,7 +57,7 @@ class SignInOut extends React.Component {
   }
 
   handleTabChange = (nextStatus) => {
-    if (this.state.isModalLoading) {
+    if (this.props.isModalLoading) {
       return;
     }
 
@@ -70,7 +67,8 @@ class SignInOut extends React.Component {
   }
 
   renderBtns = () => {
-    const { isModalVisible, isModalLoading, formStatus } = this.state;
+    const { isModalLoading } = this.props;
+    const { isModalVisible, formStatus } = this.state;
     const { isLoginIn } = this.props;
 
     if (isLoginIn) {

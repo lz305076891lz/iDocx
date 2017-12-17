@@ -15,6 +15,7 @@ import Header from 'components/Header';
 
 import HomeContent from 'components/HomeContent';
 import ComposePage from 'components/ComposePage';
+import ErrorHandler from './ErrorHandler'
 
 const App = props => (
   <Layout className={styles.app}>
@@ -28,6 +29,7 @@ const App = props => (
       </Header>
     )}
     <Content>
+      <ErrorHandler />
       <Route exact path="/" component={HomeContent}/>
       <Route path="/home" render={() => <Redirect to="/"/>}/>
       <Route path="/compose" component={ComposePage}/>

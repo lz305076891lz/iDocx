@@ -13,28 +13,25 @@ import {
 
 export function* loginHandler({ payload }) {
   try {
-      const result = yield call(handleFetchCall, `${apiPublicPath}users/login`, {
-          method: 'POST',
-          credentials: 'same-origin',
-          body: JSON.stringify(payload),
-          headers: {
-              'Content-Type': 'application/json',
-          },
-      });
+    const result = yield call(handleFetchCall, `${apiPublicPath}users/login`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-      if (result.error) {
-          //throw new Error('用户名或密码错误!');
-          console.log(result.error);
-          throw new Error(result.error);
+    if (result.error) {
+      throw new Error(result.error);
+    }
 
-      } else{
+    const action = yield call(loginFinished, result);
 
-          const action = yield call(loginFinished, result);
-
-      yield put(action);
-  }
+    yield put(action);
   } catch (e) {
-      console.log(e);
+    console.log(e);
+
     yield put(loginFinished(e));
   }
 }
@@ -51,16 +48,15 @@ function* signupHandler({ payload }) {
     });
 
     if (result.error) {
-        console.log(result.error);
-        return;
-      //throw new Error(result.error);
-    }else{
+      throw new Error(result.error);
+    }
 
     const action = yield call(signupFinished, result);
 
     yield put(action);
-    }
   } catch (e) {
+    console.log(e);
+
     yield put(signupFinished(e));
   }
 }
