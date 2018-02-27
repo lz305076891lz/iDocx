@@ -1,5 +1,5 @@
 import { createActions } from 'redux-actions';
-import R from 'ramda';
+import { identity } from 'ramda';
 
 export const {
   user: {
@@ -21,7 +21,7 @@ export const {
       username,
       email,
     }),
-    LOGIN_FINISHED: R.identity,
-    SIGNUP_FINISHED: R.identity,
+    LOGIN_FINISHED: identity,
+    SIGNUP_FINISHED: identity,
   },
 });

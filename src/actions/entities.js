@@ -1,5 +1,5 @@
 import { createActions } from 'redux-actions';
-import R from 'ramda';
+import { identity } from 'ramda';
 
 export const {
   entities: {
@@ -10,12 +10,12 @@ export const {
   },
 } = createActions({
   ENTITIES: {
-    GET_TEMPLATES: R.identity,
-    GOT_TEMPLATES: R.identity,
+    GET_TEMPLATES: identity,
+    GOT_TEMPLATES: identity,
     COMPOSE_START: (fileIds, tempId) => ({
       fileIds,
       tempId,
     }),
-    COMPOSE_END: R.identity,
+    COMPOSE_END: identity,
   },
 });
