@@ -16,7 +16,6 @@ export function* handleFetchCall(...fetchArgs) {
     ...(fetchArgs[1] || {}),
     credentials: 'include',
   };
-  console.log(url, options)
 
   const res = yield call(fetch, url, options);
 
