@@ -3,10 +3,12 @@ const Webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const settings = require('./settings');
 
 module.exports = (env = {}) => {
+  let mode = 'development';
   const entry = {
     index: [
       'babel-polyfill',
@@ -62,16 +64,19 @@ module.exports = (env = {}) => {
     ],
   };
   let plugins = [
+    new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
-    new Webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'scripts/vendor.[hash].js',
-    }),
   ];
+  let optimization = {
+    splitChunks: {
+      chunks: 'all',
+    },
+  };
 
   if (env.dev) {
+    mode = 'development';
     entry.index = [
       'react-hot-loader/patch',
       ...entry.index,
@@ -80,9 +85,6 @@ module.exports = (env = {}) => {
     plugins = [
       ...plugins,
       new Webpack.HotModuleReplacementPlugin(),
-      new Webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('develop'),
-      }),
     ];
   } else if (env.prod) {
     module.rules = module.rules.reduce((rules, rule) => {
@@ -117,14 +119,12 @@ module.exports = (env = {}) => {
         },
         comments: false,
       }),
-      new Webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-      }),
       new ImageminPlugin(),
     ];
   }
 
   const webpackConfig = {
+    mode,
     context: resolve(__dirname),
     entry,
     output,
@@ -141,6 +141,7 @@ module.exports = (env = {}) => {
       },
     },
     plugins,
+    optimization,
     devServer: {
       hotOnly: true,
       contentBase: './dist',
