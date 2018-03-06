@@ -110,19 +110,14 @@ module.exports = (env = {}) => {
       new ExtractTextPlugin({
         filename: 'styles/[name].[hash].css',
       }),
-      new Webpack.optimize.UglifyJsPlugin({
-        sourceMap: 'cheap-module-source-map',
-        beautify: false,
-        mangle: {
-          screw_ie8: true,
-        },
-        compress: {
-          screw_ie8: true,
-        },
-        comments: false,
-      }),
       new ImageminPlugin(),
     ];
+  }
+
+  if (settings.isMock) {
+    plugins.push(new Webpack.DefinePlugin({
+      __MOCK__: true,
+    }));
   }
 
   const webpackConfig = {
