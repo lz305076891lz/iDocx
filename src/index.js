@@ -29,8 +29,25 @@ const rootReducer = createRootReducer({
   router: routerReducer,
 });
 
+let initialState = {};
+
+if (__MOCK__) {
+  initialState = {
+    users: {
+      current: {
+        username: 'Mondo',
+        tel: '18672310260',
+        email: 'mondogao@gmail.com',
+        avatar_path: null,
+        success: 'true',
+      },
+    },
+  };
+}
+
 const store = createStore(
   rootReducer,
+  initialState,
   composeEnhancers(applyMiddleware(
     thunk,
     sagaMiddleware,

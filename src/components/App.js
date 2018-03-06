@@ -1,21 +1,23 @@
 import React from 'react';
 import { Layout } from 'antd';
 
-const { Content } = Layout;
-import styles from './App.css';
-
 import {
   Route,
   Redirect,
 } from 'react-router-dom';
 
-import HeaderNav from 'components/HeaderNav';
-import FooterNav from 'components/FooterNav';
-import Header from 'components/Header';
+import HeaderNav from './HeaderNav';
+import FooterNav from './FooterNav';
+import Header from './Header';
 
-import HomeContent from 'components/HomeContent';
-import ComposePage from 'components/ComposePage';
-import ErrorHandler from './ErrorHandler'
+import HomeContent from './HomeContent';
+import ComposePage from './ComposePage';
+import UserCenterPage from './UserCenterPage';
+import ErrorHandler from './ErrorHandler';
+
+import styles from './App.css';
+
+const { Content } = Layout;
 
 const App = props => (
   <Layout className={styles.app}>
@@ -33,6 +35,7 @@ const App = props => (
       <Route exact path="/" component={HomeContent}/>
       <Route path="/home" render={() => <Redirect to="/"/>}/>
       <Route path="/compose" component={ComposePage}/>
+      <Route path="/usercenter" component={UserCenterPage}/>
     </Content>
     <FooterNav/>
   </Layout>
