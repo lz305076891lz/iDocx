@@ -7,6 +7,15 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const settings = require('./settings');
 
+const vendorArr = [
+  'react',
+  'react-dom',
+  'react-redux',
+  'react-router-dom',
+  'redux',
+  'redux-thunk',
+];
+
 module.exports = (env = {}) => {
   let mode = 'development';
   const entry = {
@@ -15,14 +24,7 @@ module.exports = (env = {}) => {
       'whatwg-fetch',
       './src/index.js',
     ],
-    vendor: [
-      'react',
-      'react-dom',
-      'react-redux',
-      'react-router-dom',
-      'redux',
-      'redux-thunk',
-    ],
+    vendor: vendorArr,
   };
   const output = {
     filename: 'scripts/[name].[hash].js',

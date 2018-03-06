@@ -94,7 +94,7 @@ class SignInOut extends React.Component {
     }
 
     return (
-      <Col span={8} offset={16}>
+      <Col className={styles.username} span={8} offset={16}>
         欢迎，{currentUser.username}
       </Col>
     );

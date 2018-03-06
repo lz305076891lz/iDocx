@@ -32,6 +32,10 @@
   }
 }
 
+.username {
+  white-space: nowrap;
+}
+
 .login-panel {
 
   & :global(.ant-modal-header) {
