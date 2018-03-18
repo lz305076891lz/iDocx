@@ -6,6 +6,7 @@ import { Layout, Menu } from 'antd';
 import styles from './userCenterPage.scss';
 import {
   getCurrentUserName,
+  getCurrentUserAvatar,
 } from '../../selectors/users'
 
 const { Sider, Content } = Layout;
@@ -14,7 +15,8 @@ function UserCenterPage(props) {
   return (
     <Layout className={cx('container', styles.userCenterPage)}>
       <Sider>
-        <div>
+        <div className={styles.userInfo}>
+          <img url={props.avatar} />
           <span>{props.username}</span>
         </div>
         <Menu
@@ -31,6 +33,7 @@ function UserCenterPage(props) {
 
 const mapState = (state) => ({
   username: getCurrentUserName(state),
+  avatar: getCurrentUserAvatar(state),
 });
 
 export default connect(mapState)(UserCenterPage);
