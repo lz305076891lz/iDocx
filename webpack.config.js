@@ -51,7 +51,7 @@ module.exports = (env = {}) => {
         exclude: /node_modules/,
         use: [
           'style-loader',
-          'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
+          'css-loader?modules&camelCase&localIdentName=[name]__[local]-[hash:base64:5]',
           'postcss-loader',
           'sass-loader',
         ],
