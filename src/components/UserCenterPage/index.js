@@ -11,6 +11,10 @@ import {
   getCurrentUserAvatar,
 } from '../../selectors/users';
 
+import ComposeRecordList from '../ComposeRecordList';
+import EditProfile from '../EditProfile';
+import UploadTemplate from '../UploadTemplate';
+
 const { Sider } = Layout;
 
 function NullComponent() {
@@ -27,9 +31,9 @@ function createSubRoute(path, text, title = text, component = NullComponent) {
 }
 
 const subRoutes = [
-  createSubRoute('compose-result', '排版记录', '我的排版记录'),
-  createSubRoute('upload', '上传模版'),
-  createSubRoute('edit', '修改个人资料', '个人资料'),
+  createSubRoute('compose-result', '排版记录', '我的排版记录', ComposeRecordList),
+  createSubRoute('upload', '上传模版', undefined, UploadTemplate),
+  createSubRoute('edit', '修改个人资料', '个人资料', EditProfile),
 ];
 
 function findSubRouteByPath({ path, subRoutes }) {
