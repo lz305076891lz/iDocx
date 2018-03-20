@@ -1,9 +1,9 @@
 const { resolve } = require('path');
 const Webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const settings = require('./settings');
 
@@ -66,7 +66,6 @@ module.exports = (env = {}) => {
     ],
   };
   let plugins = [
-    new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
@@ -87,16 +86,17 @@ module.exports = (env = {}) => {
     plugins = [
       ...plugins,
       new Webpack.HotModuleReplacementPlugin(),
+      new BundleAnalyzerPlugin(),
     ];
   } else if (env.prod) {
     module.rules = module.rules.reduce((rules, rule) => {
       if (Array.isArray(rule.use) && rule.use[0].match(/style/)) {
         rules.push({
           ...rule,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: rule.use.slice(1),
-          }),
+          use: [
+            MiniCssExtractPlugin.loader,
+            ...rule.use.splice(1),
+          ]
         });
       } else {
         rules.push(rule);
@@ -107,7 +107,7 @@ module.exports = (env = {}) => {
 
     plugins = [
       ...plugins,
-      new ExtractTextPlugin({
+      new MiniCssExtractPlugin({
         filename: 'styles/[name].[hash].css',
       }),
       new ImageminPlugin(),
