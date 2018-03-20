@@ -13,10 +13,54 @@ import {
 
 const { Sider } = Layout;
 
-function UserCenterPage({ avatar, username, match }) {
+function NullComponent() {
+  return null;
+}
+
+function createSubRoute(path, text, component = NullComponent) {
+  return {
+    path,
+    text,
+    component,
+  };
+}
+
+function generateMenuItemFromRoute({ match, routeConfig }) {
+  return (
+    <Menu.Item key={routeConfig.path}>
+      <Link to={`${match.path}/${routeConfig.path}`}>{routeConfig.text}</Link>
+    </Menu.Item>
+  );
+}
+
+function generateRouteFromConfig({ match, routeConfig }) {
+  return (
+    <Route
+      key={routeConfig.path}
+      path={`${match.path}/${routeConfig.path}`}
+      component={routeConfig.component}/>
+  );
+}
+
+function getCurrentSubRoutePath({ location, match }) {
+  const fullPath = location.pathname;
+  const parentPath = match.path;
+  const subPath = fullPath.replace(new RegExp(`^${parentPath}/?`), '');
+
+  return subPath.split('/')[0];
+}
+
+const subRoutes = [
+  createSubRoute('compose-result', '排版记录'),
+  createSubRoute('upload', '上传模版'),
+  createSubRoute('edit', '修改个人资料'),
+];
+
+function UserCenterPage({ avatar, username, match, location }) {
   if (match.isExact) {
     return <Redirect to={`${match.path}/compose-result`} />;
   }
+
 
   return (
     <Layout className={cx('container', styles.userCenterPage)}>
@@ -26,17 +70,14 @@ function UserCenterPage({ avatar, username, match }) {
           <span>{username}</span>
         </div>
         <Menu
-          theme="dark" >
-          <Menu.Item><Link to={`${match.path}/compose-result`}>排版记录</Link></Menu.Item>
-          <Menu.Item><Link to={`${match.path}/upload`}>上传模版</Link></Menu.Item>
-          <Menu.Item><Link to={`${match.path}/edit`}>修改个人资料</Link></Menu.Item>
+          selectedKeys={[getCurrentSubRoutePath({ location, match })]}
+          theme="dark">
+          {subRoutes.map(routeConfig => generateMenuItemFromRoute({ routeConfig, match }))}
         </Menu>
       </Sider>
       <Layout className={cx(styles.mainContent)}>
         <Switch>
-          <Route path={`${match.path}/compose-result`} render={() => 'compose'} />
-          <Route path={`${match.path}/upload`} render={() => 'upload'} />
-          <Route path={`${match.path}/edit`} render={() => 'edit'} />
+          {subRoutes.map(routeConfig => generateRouteFromConfig({ routeConfig, match }))}
         </Switch>
       </Layout>
     </Layout>
