@@ -1,9 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
-import { compose } from 'ramda';
 import { connect } from 'react-redux';
 import { Layout, Menu } from 'antd';
 import { Link, Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { indexBy, prop, compose } from 'ramda';
 
 import styles from './userCenterPage.scss';
 import {
@@ -17,12 +17,23 @@ function NullComponent() {
   return null;
 }
 
-function createSubRoute(path, text, component = NullComponent) {
+function createSubRoute(path, text, title = text, component = NullComponent) {
   return {
     path,
     text,
     component,
+    title,
   };
+}
+
+const subRoutes = [
+  createSubRoute('compose-result', '排版记录', '我的排版记录'),
+  createSubRoute('upload', '上传模版'),
+  createSubRoute('edit', '修改个人资料', '个人资料'),
+];
+
+function findSubRouteByPath({ path, subRoutes }) {
+  return compose(prop(path), indexBy(prop('path')))(subRoutes);
 }
 
 function generateMenuItemFromRoute({ match, routeConfig }) {
@@ -50,17 +61,18 @@ function getCurrentSubRoutePath({ location, match }) {
   return subPath.split('/')[0];
 }
 
-const subRoutes = [
-  createSubRoute('compose-result', '排版记录'),
-  createSubRoute('upload', '上传模版'),
-  createSubRoute('edit', '修改个人资料'),
-];
-
 function UserCenterPage({ avatar, username, match, location }) {
   if (match.isExact) {
     return <Redirect to={`${match.path}/compose-result`} />;
   }
 
+  if (!username) {
+    return <Redirect to="/" />;
+  }
+
+  const subRoutePath = getCurrentSubRoutePath({ location, match });
+
+  const subRoute = findSubRouteByPath({ subRoutes, path: subRoutePath });
 
   return (
     <Layout className={cx('container', styles.userCenterPage)}>
@@ -70,12 +82,13 @@ function UserCenterPage({ avatar, username, match, location }) {
           <span>{username}</span>
         </div>
         <Menu
-          selectedKeys={[getCurrentSubRoutePath({ location, match })]}
+          selectedKeys={[subRoutePath]}
           theme="dark">
           {subRoutes.map(routeConfig => generateMenuItemFromRoute({ routeConfig, match }))}
         </Menu>
       </Sider>
       <Layout className={cx(styles.mainContent)}>
+        <h2>{subRoute.title}</h2>
         <Switch>
           {subRoutes.map(routeConfig => generateRouteFromConfig({ routeConfig, match }))}
         </Switch>

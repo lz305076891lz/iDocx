@@ -5,7 +5,14 @@
 }
 
 .main-content {
+  padding: 40px;
+  height: 500px;
+  overflow-x: hidden;
   background-color: #fff;
+
+  h2 {
+    color: #565656;
+  }
 }
 
 .user-info {
