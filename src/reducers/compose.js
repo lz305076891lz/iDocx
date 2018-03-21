@@ -6,6 +6,7 @@ import {
   changeTemplatesPage,
   changeTemplatesSearch,
   changeUploadFileList,
+  changeDownloadFileList,
 } from '../actions/compose';
 import {
   gotTemplates,
@@ -99,6 +100,13 @@ const download = handleActions(
         fishIds: payload.result,
       };
     },
+    [changeDownloadFileList](state, { payload: fileIds }) {
+      return {
+        ...state,
+        isLoading: false,
+        fishIds: fileIds,
+      }
+    }
   },
   {
     isLoading: false,

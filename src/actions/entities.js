@@ -7,6 +7,7 @@ export const {
     gotTemplates,
     composeStart,
     composeEnd,
+    composeRecordDelete,
   },
 } = createActions({
   ENTITIES: {
@@ -17,5 +18,6 @@ export const {
       tempId,
     }),
     COMPOSE_END: identity,
+    COMPOSE_RECORD_DELETE: compId => compId,
   },
 });
