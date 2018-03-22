@@ -69,6 +69,9 @@ module.exports = (env = {}) => {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
+    new Webpack.DefinePlugin({
+      __MOCK__: settings.isMock,
+    }),
   ];
   let optimization = {
     splitChunks: {
@@ -112,12 +115,6 @@ module.exports = (env = {}) => {
       }),
       new ImageminPlugin(),
     ];
-  }
-
-  if (settings.isMock) {
-    plugins.push(new Webpack.DefinePlugin({
-      __MOCK__: true,
-    }));
   }
 
   const webpackConfig = {

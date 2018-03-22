@@ -9,12 +9,8 @@ import {
   composeStart,
   composeEnd,
 } from '../actions/entities';
-import {
-  examineComposeResult,
-} from '../actions/usercenter'
-import {
-  changeDownloadFileList,
-} from '../actions/compose'
+import { examineComposeResult } from '../actions/usercenter';
+import { changeDownloadFileList } from '../actions/compose';
 import { handleFetchCall } from './utils';
 import { templates, fishes } from '../sources/schemas';
 
