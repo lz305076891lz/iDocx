@@ -10,7 +10,7 @@ export function checkStatus(response) {
   throw error;
 }
 
-export async function handleFetch(url, options) {
+export async function handleFetch(url, options = {}) {
   const defaultOptions = {
     method: 'GET',
     credentials: 'same-origin',

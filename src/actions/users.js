@@ -7,6 +7,8 @@ export const {
     signup,
     loginFinished,
     signupFinished,
+    getComposeRecordList,
+    gotComposeRecordList,
   },
 } = createActions({
   USER: {
@@ -23,5 +25,7 @@ export const {
     }),
     LOGIN_FINISHED: identity,
     SIGNUP_FINISHED: identity,
+    GET_COMPOSE_RECORD_LIST: identity,
+    GOT_COMPOSE_RECORD_LIST: normalizedData => normalizedData,
   },
 });

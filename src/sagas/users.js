@@ -7,6 +7,8 @@ import {
   signup,
   loginFinished,
   signupFinished,
+  getComposeRecordList,
+  gotComposeRecordList,
 } from '../actions/users';
 
 export function* loginHandler({ payload }) {
@@ -37,7 +39,20 @@ function* signupHandler({ payload }) {
   }
 }
 
+function* composeRecordHandler() {
+  try {
+    const result = yield call(usersSource.getComposeRecordList);
+
+    console.log(result);
+  } catch (e) {
+    console.log(e);
+
+    yield put(gotComposeRecordList(e))
+  }
+}
+
 export default function* userSaga() {
   yield takeLatest(login, loginHandler);
   yield takeLatest(signup, signupHandler);
+  yield takeLatest(getComposeRecordList, composeRecordHandler);
 }

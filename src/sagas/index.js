@@ -1,7 +1,6 @@
 import { put, call, all, takeLatest, takeEvery, spawn } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
 import { push } from 'react-router-redux';
-import { apiPublicPath } from '../../settings';
 
 import {
   gotTemplates,
@@ -11,14 +10,16 @@ import {
 } from '../actions/entities';
 import { examineComposeResult } from '../actions/usercenter';
 import { changeDownloadFileList } from '../actions/compose';
-import { handleFetchCall } from './utils';
+
 import { templates, fishes } from '../sources/schemas';
+import * as templatesSource from '../sources/templates';
+import * as composeSource from '../sources/compose';
 
 import userSaga from './users';
 
-export function* templatesHandler({ payload: { page = 1, search = '' } }) {
+export function* templatesHandler({ payload }) {
   try {
-    const data = yield call(handleFetchCall, `${apiPublicPath}templates?page=${page}&search=${search}`);
+    const data = yield call(templatesSource.getTemplates, payload);
 
     const normalizedData = yield call(normalize, data.list || {}, templates);
 
@@ -30,6 +31,7 @@ export function* templatesHandler({ payload: { page = 1, search = '' } }) {
     yield put(action);
   } catch (e) {
     const errAction = yield call(gotTemplates, e);
+    console.log(e);
 
     yield put(errAction);
   }
@@ -38,7 +40,7 @@ export function* templatesHandler({ payload: { page = 1, search = '' } }) {
 export function* composeHandler({ payload: { fileIds, tempId } }) {
   try {
     const fetchArr = fileIds.map(fileId => (
-      call(handleFetchCall, `${apiPublicPath}compose/${fileId}/${tempId}`)
+      call(composeSource.compose, { fileId, tempId })
     ));
 
     const data = yield all(fetchArr);

@@ -5,6 +5,8 @@ import { Table } from 'antd';
 import {
   examineComposeResult,
 } from '../../actions/usercenter';
+import { getComposeRecordList } from '../../actions/users'
+
 import { getFullComposeRecordList } from '../../selectors/usercenter';
 
 const { Column } = Table;
@@ -21,13 +23,19 @@ const { Column } = Table;
   composeRecordList: getFullComposeRecordList(state),
 }), {
   examineComposeResult,
+  getComposeRecordList,
 })
 export default class ComposeRecordList extends React.Component {
   state = {
     isLoading: false,
   }
 
-  examineComposeResult(compId) {
+  componentDidMount() {
+    this.setState(() => ({
+      isLoading: true,
+    }))
+
+    this.props.getComposeRecordList();
   }
 
   renderUploadDate(text) {
@@ -46,9 +54,10 @@ export default class ComposeRecordList extends React.Component {
 
   render() {
     const { composeRecordList } = this.props;
+    const { isLoading }  = this.state;
 
     return (
-      <Table dataSource={composeRecordList} rowKey="comp_id">
+      <Table dataSource={composeRecordList} rowKey="comp_id" loading={isLoading}>
         <Column 
           title="文裆名称"
           dataIndex="fileName"
