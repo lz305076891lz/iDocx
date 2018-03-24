@@ -38,6 +38,15 @@ export default class ComposeRecordList extends React.Component {
     this.props.getComposeRecordList();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.state.isLoading
+      && prevProps.composeRecordList !== this.props.composeRecordList) {
+      this.setState(() => ({
+        isLoading: false,
+      }));
+    }
+  }
+
   renderUploadDate(text) {
     return (new Date(text)).toDateString();
   }

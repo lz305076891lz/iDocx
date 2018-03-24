@@ -1,6 +1,8 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
+import { normalize } from 'normalizr';
 
 import * as usersSource from '../sources/users';
+import { plainFishes } from '../sources/schemas';
 
 import {
   login,
@@ -43,7 +45,11 @@ function* composeRecordHandler() {
   try {
     const result = yield call(usersSource.getComposeRecordList);
 
-    console.log(result);
+    const normalizedData = yield call(normalize, result, plainFishes);
+
+    const action = yield call(gotComposeRecordList, normalizedData);
+
+    yield put(action);
   } catch (e) {
     console.log(e);
 

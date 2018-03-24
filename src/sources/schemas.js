@@ -25,5 +25,11 @@ export const fish = new schema.Entity('fishes', {}, {
   },
 });
 export const fishes = [fish];
+export const plainFish = new schema.Entity('fishes', {
+  template,
+}, {
+  idAttribute: 'comp_id',
+});
+export const plainFishes = [plainFish];
 
 export const user = new schema.Entity('users');
