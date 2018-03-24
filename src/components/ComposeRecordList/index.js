@@ -13,7 +13,7 @@ const { Column } = Table;
 
 /**
  * interface DataItem {
- *  string comp_id;
+ *  string id;
  *  string fileName;
  *  Template template;
  *  int uploadDate;
@@ -66,7 +66,7 @@ export default class ComposeRecordList extends React.Component {
     const { isLoading }  = this.state;
 
     return (
-      <Table dataSource={composeRecordList} rowKey="comp_id" loading={isLoading}>
+      <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
         <Column 
           title="文裆名称"
           dataIndex="fileName"
