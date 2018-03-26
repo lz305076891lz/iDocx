@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { map, compose, objOf } from 'ramda';
 
-import { Row, Col, Button, Form, Input } from 'antd';
+import { Row, Col, Button, Form, Input, message } from 'antd';
 
 import { getCurrentUserObj } from '../../selectors/users';
+
+import { editProfile } from '../../actions/users';
 
 import styles from './EditProfile.scss';
 
@@ -47,20 +48,39 @@ export function ShowProfile({ user, onSubmit }) {
   )
 }
 
+
+@connect(undefined, {
+  editProfile,
+})
 @Form.create()
 export class EditProfileForm extends React.Component {
   state = {
     isTelChanged: false,
     defaultValue: this.props.user,
+    isLoading: false,
+  }
+
+  componentDidUpdate({ user }) {
+    if (this.state.isLoading
+      && user !== this.props.user) {
+      this.setState({
+        isLoading: false,
+      });
+
+      message.success('修改资料成功');
+      this.props.onSubmit();
+    }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.setState(() => ({
+      isLoading: true,
+    }));
 
     this.props.form.validateFieldsAndScroll((err, values) => {
       if(!err) {
-        console.log(values);
-        this.props.onSubmit(values);
+        this.props.editProfile(values);
       }
     })
   }
@@ -93,6 +113,7 @@ export class EditProfileForm extends React.Component {
   }
 
   render() {
+    const { isLoading } = this.state;
     const { user, form } = this.props;
     const { getFieldDecorator } = form;
 
@@ -115,7 +136,7 @@ export class EditProfileForm extends React.Component {
           })(<Input />)}
         </Form.Item>
         <Form.Item {...formTailLayout}>
-          <Button htmlType="submit">提交</Button>
+          <Button htmlType="submit" loading={isLoading}>提交</Button>
         </Form.Item>
       </Form>
     );

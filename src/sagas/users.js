@@ -11,6 +11,8 @@ import {
   signupFinished,
   getComposeRecordList,
   gotComposeRecordList,
+  editProfile,
+  editProfileSuccess,
 } from '../actions/users';
 
 export function* loginHandler({ payload }) {
@@ -57,8 +59,27 @@ function* composeRecordHandler() {
   }
 }
 
+function* editProfileHandler() {
+  try {
+    const result = yield call(usersSource.editProfile);
+
+    if (result.success) {
+      const action = yield call(editProfileSuccess, result.data);
+      yield put(action);
+      return;
+    }
+
+    throw result.error;
+  } catch (e) {
+    console.log(e);
+
+    yield put(gotComposeRecordList(e))
+  }
+}
+
 export default function* userSaga() {
   yield takeLatest(login, loginHandler);
   yield takeLatest(signup, signupHandler);
   yield takeLatest(getComposeRecordList, composeRecordHandler);
+  yield takeLatest(editProfile, editProfileHandler);
 }

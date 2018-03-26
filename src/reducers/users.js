@@ -6,10 +6,11 @@ import {
   signup,
   loginFinished,
   signupFinished,
+  editProfileSuccess,
 } from '../actions/users';
 
 export const current = handleActions({
-  [combineActions(loginFinished, signupFinished)]: {
+  [combineActions(loginFinished, signupFinished, editProfileSuccess)]: {
     next(state, action) {
       return action.payload;
     },

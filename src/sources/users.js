@@ -32,7 +32,7 @@ export function login(loginObj) {
 
 export async function getComposeRecordList() {
   if (__MOCK__) {
-    return Promise.resolve([
+    return [
       {
         comp_id: '7346610',
         comp_path: 'data/results/96650577/7346610.docx',
@@ -59,8 +59,24 @@ export async function getComposeRecordList() {
           },
         },
       },
-    ]);
+    ];
   }
 
   return handleFetch(`${apiPublicPath}users/composeRecords`);
+}
+
+export async function editProfile() {
+  if (__MOCK__) {
+    return {
+      success: true,
+      error: null,
+      data: {
+        username: 'Mondo2',
+        email: 'mondogao2@gmail.com',
+        tel: '18888888888',
+      }
+    };
+  }
+
+  return handleFetch(`${apiPublicPath}users/editProfile`);
 }
