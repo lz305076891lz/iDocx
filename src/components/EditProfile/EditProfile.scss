@@ -1,12 +1,13 @@
 .main {
-  padding-left: 10px;
+  padding: 20px 0 0 10px;
+  white-space: nowrap;
 }
 
 .row {
-  margin: 5px 0 10px;
+  margin-bottom: 24px;
+  height: 40px;
 }
 
-.button {
-  margin-top: 10px;
- }
-
+.btn-sms {
+  width: 100%;
+}
