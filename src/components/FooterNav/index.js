@@ -1,11 +1,12 @@
 import React from 'react';
-import { Row, Col, Layout } from 'antd';
+import { Route, Redirect } from 'react-router-dom';
 
+import { Row, Col, Layout } from 'antd';
 const { Footer } = Layout;
 
 import Container from 'components/ResponsiveContainer';
-
 import styles from './FooterNav.scss';
+
 
 const footerData = [
   {
@@ -30,17 +31,23 @@ const footerData = [
   },
 ];
 
-const FooterNav = props => (
-  <Footer className={styles['footer-nav']}>
-    <Container>
-      <Row>
-        {footerData.map(link =>
-        <Col key={link.id} xs={12} sm={6}>
-          <a href={link.href}>{link.text}</a>
-        </Col>)}
-      </Row>
-    </Container>
-  </Footer>
-);
+class FooterNav extends React.Component {
+
+  render(){
+
+    return(
+      <Footer className={styles['footer-nav']}>
+        <Container>
+          <Row>
+            {footerData.map(link =>
+              <Col key={link.id} xs={12} sm={6}>
+                <a href={link.href}>{link.text}</a>
+              </Col>)}
+          </Row>
+        </Container>
+      </Footer>
+    )
+  }
+}
 
 export default FooterNav;

@@ -35,11 +35,11 @@ if (__MOCK__) {
   initialState = {
     users: {
       current: {
-        username: 'Mondo',
-        tel: '18672310260',
-        email: 'mondogao@gmail.com',
+        username: '',
+        tel: '',
+        email: '',
         avatar_path: null,
-        success: 'true',
+        success: '',
       },
     },
   };

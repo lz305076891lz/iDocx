@@ -5,6 +5,7 @@ export const {
   user: {
     login,
     signup,
+    logout,
     loginFinished,
     signupFinished,
     getComposeRecordList,
@@ -24,6 +25,13 @@ export const {
       password,
       username,
       email,
+    }),
+    LOGOUT:({username,tel,email,avatar_path,success})=>({
+      username,
+      tel,
+      email,
+      avatar_path,
+      success,
     }),
     LOGIN_FINISHED: identity,
     SIGNUP_FINISHED: identity,

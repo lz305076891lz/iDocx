@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import browserCookie from 'browser-cookies';
 import cn from 'classnames';
 import { Button, Row, Col, Modal, Form, Input, Tabs, Checkbox } from 'antd';
 
-import { signup, login } from '../../actions/users';
+import { signup, login, logout } from '../../actions/users';
 
 import styles from './SignInOut.scss';
 
@@ -21,11 +22,23 @@ const FORM_STATUS = {
 }), {
   signup,
   login,
+  logout,
 })
 class SignInOut extends React.Component {
   state = {
     isModalVisible: false,
     formStatus: FORM_STATUS.LOGIN,
+    initUser:{
+      username: "",
+      tel: "",
+      email: "",
+      avatar_path: null,
+      success: "false",
+    },
+  }
+
+  handleLogout = () =>{
+    this.props.logout(this.state.initUser);
   }
 
   handleCancel = () => {
@@ -96,6 +109,7 @@ class SignInOut extends React.Component {
     return (
       <Col className={styles.username} span={8} offset={16}>
         欢迎，{currentUser.username}
+        <Button onClick={this.handleLogout} ghost>注销</Button>
       </Col>
     );
   }
@@ -116,9 +130,10 @@ const LoginForm = Form.create({
   onFieldsChange(props, value) {
     console.log(value);
   },
-})(({
-  form, onCancel, isVisible, onSubmit, activeKey, onTabChange, isLoading,
-}) => {
+})
+
+(
+  ({form, onCancel, isVisible, onSubmit, activeKey, onTabChange, isLoading,}) => {
   const { getFieldDecorator } = form;
   const formItemLayout = {
     labelCol: { span: 4, offset: 3 },
