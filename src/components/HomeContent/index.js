@@ -19,23 +19,63 @@ const pageData = [
   {
     id: 1,
     title: '轻松高效',
-    desc: '最便捷的排版工具，助你高效工作',
+    desc: '秒杀长文档排版，飞一般的体验',
     backgroundColor: '#518de3',
     img: {
       src: pageImg1,
-      alt: '省时省力',
+      alt: '轻松高效',
     },
   },
-  {
-    id: 2,
-    title: '私人订制',
-    desc: '模版定制，完美契合你的个性化需求',
+    {
+        id: 2,
+        title: '零学习成本',
+        desc: '会搜索，会上传下载，就解决长文档排版问题',
+        backgroundColor: '#518de3',
+        img: {
+            src: pageImg1,
+            alt: '零学习成本',
+        },
+    },
+    {
+    id: 3,
+    title: '应用广泛',
+    desc: '适用多种应用场景，长文档排版我们承包了',
     backgroundColor: '#4b53ec',
     img: {
-      src: pageImg2,
-      alt: '私人订制',
+      src: introImg1,
+      alt: '应用广泛',
     },
   },
+    {
+        id: 4,
+        title: '深度智能',
+        desc: '集十几年研究于一个功能，全智能型长文档排版体验',
+        backgroundColor: '#518de3',
+        img: {
+            src: introImg2,
+            alt: '深度智能',
+        },
+    },
+    {
+        id: 5,
+        title: '独立内核',
+        desc: '独创长文档排版内核，不依赖于任何文档编辑环境',
+        backgroundColor: '#518de3',
+        img: {
+            src: introImg3,
+            alt: '省时省力',
+        },
+    },
+    {
+        id: 6,
+        title: '长线功能',
+        desc: '收集整理资料→辅助写作→智能排版→发布文档，助你高效工作',
+        backgroundColor: '#518de3',
+        img: {
+            src: introImg4,
+            alt: '省时省力',
+        },
+    },
 ];
 
 const introData = [
@@ -57,7 +97,7 @@ const introData = [
       alt: '高效',
     },
   },
-  {
+    {
     id: 3,
     title: '多格式',
     desc: 'word、wps均适用，支持doc、docx格式',
@@ -75,6 +115,7 @@ const introData = [
       alt: '定制',
     },
   },
+
 ];
 
 const HomeContent = () => (
