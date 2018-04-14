@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Upload, Button, Tabs, Form, Input } from 'antd';
+import { Icon, Upload, Button, Tabs, Form, Input, Radio, Checkbox} from 'antd';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -12,13 +12,40 @@ import { changeUploadFileList } from '../../../actions/compose';
 import { composeStart } from '../../../actions/entities';
 
 const FormItem = Form.Item;
-
+const RadioGroup = Radio.Group;
 class UploadPage extends React.Component {
   state = {
     fileList: this.props.fileList,
     coverList: [],
+      convertNotes: 1,
+      clearFmt: 3,
+      clearNullStyle: 1,
+      adustComma:1
   }
+    handleConvertEndnotes=(e)=>{
+        this.setState({
+            convertNotes: Number(e.target.checked) ,
+        });
 
+    }
+     handleClearStyle=(e)=>{
+         this.setState({
+              clearNullStyle: Number(e.target.checked) ,
+         });
+
+    }
+    handleCommaChange=(e)=>{
+        this.setState({
+            adustComma: Number(e.target.checked)  ,
+        });
+        console.log(this.state.adustComma);
+    }
+    handleClearOptChange = (e) => {
+       /* console.log('radio checked', e.target.value);*/
+        this.setState({
+            clearFmt: e.target.value,
+        });
+    }
   handleFileListChange = (fileList) => {
     this.setState(prevState => ({
       fileList,
@@ -38,7 +65,11 @@ class UploadPage extends React.Component {
   }
 
   handleComposeClick = (e) => {
-    this.props.composeStart(this.getSuccessList().map(file => file.response.id), this.props.chosenTemplateId);
+      var coverinf='zz';
+      var optioninf='';
+      optioninf=optioninf+this.state.adustComma +this.state.clearNullStyle+this.state.convertNotes+this.state.clearFmt;
+
+    this.props.composeStart(this.getSuccessList().map(file => file.response.id), this.props.chosenTemplateId,optioninf,coverinf);
   }
 
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
@@ -98,6 +129,23 @@ class UploadPage extends React.Component {
           {/* </Select> */}
           {/* </div> */}
         </div>
+      <div className={styles['check-info-check']}>
+          <h4>
+          <Checkbox className={styles['chk-comma']} onChange={this.handleCommaChange}>规范标点　　　</Checkbox>
+          <Checkbox className={styles['chk-clearstyle']} onChange={this.handleClearStyle}>清理无实例样式　　　</Checkbox>
+          <Checkbox className={styles['chk-convertendnote']} onChange={this.handleConvertEndnotes}>尾注转文本</Checkbox>
+          </h4>
+      </div>
+      <div className={styles['option-info-fmtclear']}>
+           <h4>格式清理：　
+              <RadioGroup onChange={this.handleClearOptChange} name="fmtcleargroup" defaultValue={3}>
+              <Radio className={styles['options-fmtclear']} value={1}>不清理</Radio>
+              <Radio className={styles['options-fmtclear']} value={2}>轻度清理</Radio>
+              <Radio className={styles['options-fmtclear']} value={3}>默认清理</Radio>
+              <Radio className={styles['options-fmtclear']} value={4}>深度清理</Radio>
+          </RadioGroup>
+          </h4>
+      </div>
         {/* <CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/> */}
         <div className={styles['btn-wrapper']}>
           <Button
@@ -117,7 +165,6 @@ class UploadPage extends React.Component {
 class FileUpload extends React.Component {
   handleChange = (info) => {
     const fileList = info.fileList;
-
     this.props.handleFileListChange(fileList);
   }
   render() {
