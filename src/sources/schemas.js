@@ -27,7 +27,7 @@ export const fish = new schema.Entity('fishes', {}, {
           downloadLink: `http://www.aidocx.com/${fish.comp_path.split(".")[0]}_NoStyle.docx`,
         },
         nostyle: {
-          id: fish.comp_id,
+          id: '3',
           name: '无样式版',
           price: 0,
           downloadLink: `http://www.aidocx.com/${fish.comp_path.split(".")[0]}_Revise.docx`,
