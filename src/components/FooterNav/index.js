@@ -1,53 +1,46 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-
 import { Row, Col, Layout } from 'antd';
+
 const { Footer } = Layout;
 
 import Container from 'components/ResponsiveContainer';
-import styles from './FooterNav.scss';
 
+import styles from './FooterNav.scss';
 
 const footerData = [
   {
     id: 1,
-    text: '联系我们',
-    href: '#',
+    text: '关于我们',
+    href: '/AboutUs',
   },
   {
     id: 2,
-    text: '关于我们',
-    href: '#',
+    text: '联系我们',
+    href: '/ContactUs',
   },
   {
     id: 3,
     text: '意见反馈',
-    href: '#',
+    href: '/Feedback',
   },
   {
     id: 4,
     text: '帮助中心',
-    href: '#',
+    href: '/Helper',
   },
 ];
 
-class FooterNav extends React.Component {
-
-  render(){
-
-    return(
-      <Footer className={styles['footer-nav']}>
-        <Container>
-          <Row>
-            {footerData.map(link =>
-              <Col key={link.id} xs={12} sm={6}>
-                <a href={link.href}>{link.text}</a>
-              </Col>)}
-          </Row>
-        </Container>
-      </Footer>
-    )
-  }
-}
+const FooterNav = props => (
+  <Footer className={styles['footer-nav']}>
+    <Container>
+      <Row>
+        {footerData.map(link =>
+        <Col key={link.id} xs={12} sm={6}>
+          <a href={link.href}>{link.text}</a>
+        </Col>)}
+      </Row>
+    </Container>
+  </Footer>
+);
 
 export default FooterNav;

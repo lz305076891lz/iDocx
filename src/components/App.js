@@ -14,6 +14,10 @@ import HomeContent from './HomeContent';
 import ComposePage from './ComposePage';
 import UserCenterPage from './UserCenterPage';
 import ErrorHandler from './ErrorHandler';
+import Helper from './Helper';
+import ContactUs from './ContactUs';
+import AboutUs from './AboutUs';
+import Feedback from './Feedback';
 
 import styles from './App.css';
 
@@ -36,6 +40,10 @@ const App = props => (
       <Route path="/home" render={() => <Redirect to="/"/>}/>
       <Route path="/compose" component={ComposePage}/>
       <Route path="/usercenter" component={UserCenterPage}/>
+      <Route path="/Helper" component={Helper}/>
+      <Route path="/ContactUs" component={ContactUs}/>
+      <Route path="/AboutUs" component={AboutUs}/>
+      <Route path="/Feedback" component={Feedback}/>
     </Content>
     <FooterNav/>
   </Layout>

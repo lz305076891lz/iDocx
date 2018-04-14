@@ -37,10 +37,10 @@ export function* templatesHandler({ payload }) {
   }
 }
 
-export function* composeHandler({ payload: { fileIds, tempId } }) {
+export function* composeHandler({ payload: { fileIds, tempId, composeOpt, coverInf } }) {
   try {
     const fetchArr = fileIds.map(fileId => (
-      call(composeSource.compose, { fileId, tempId })
+      call(composeSource.compose, { fileId, tempId, composeOpt, coverInf })
     ));
 
     const data = yield all(fetchArr);

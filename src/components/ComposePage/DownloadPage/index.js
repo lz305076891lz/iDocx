@@ -49,6 +49,7 @@ class DownloadPage extends React.Component {
           <Col span={6}>
             <div className={styles.wrapper}>
               <Card title="下载">
+<<<<<<< HEAD
                 {this.props.fishes.map(fish=>{
                   return(
                     <Select key={fish.id} placeholder="请选择下载版本" value={this.state.downloadType} onChange={this.handleSelectChange}>
@@ -60,6 +61,14 @@ class DownloadPage extends React.Component {
                   )
                 })
               }
+=======
+                <Select placeholder="请选择下载版本" value={this.state.downloadType} onChange={this.handleSelectChange}>
+                  {Object.keys(this.props.fishes[0].downloadLinks).map((typeName) => {
+                    const type = this.props.fishes[0].downloadLinks[typeName];
+                    return <Option value={typeName} key={type.id}>{type.name}</Option>;
+                  })}
+                </Select>
+>>>>>>> devGxg
                 <Button
                   type="primary"
                   className={styles['btn-download']}
@@ -78,6 +87,7 @@ class DownloadPage extends React.Component {
                   <TabPane tab={fish.fileName} key={fish.id}>
                     <div className={styles['preview-wrapper']}>
                       <iframe src={fish.previewHref} frameBorder="0"/>
+
                     </div>
                   </TabPane>
                 ))}
