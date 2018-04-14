@@ -131,7 +131,6 @@ const LoginForm = Form.create({
     console.log(value);
   },
 })
-
 (
   ({form, onCancel, isVisible, onSubmit, activeKey, onTabChange, isLoading,}) => {
   const { getFieldDecorator } = form;

@@ -55,8 +55,6 @@ export default class ComposeRecordList extends React.Component {
     return (
       <span>
         <a onClick={() => this.props.examineComposeResult(record.comp_id)}>查看</a>
-        |
-        <a>删除</a>
       </span>
     );
   }
@@ -67,7 +65,7 @@ export default class ComposeRecordList extends React.Component {
 
     return (
       <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
-        <Column 
+        <Column
           title="文裆名称"
           dataIndex="fileName"
           key="fileName"/>

@@ -13,6 +13,7 @@
   "dependencies": {
     "antd": "^3.2.2",
     "babel-polyfill": "^6.26.0",
+    "browser-cookies": "^1.2.0",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
     "normalizr": "^3.2.4",
