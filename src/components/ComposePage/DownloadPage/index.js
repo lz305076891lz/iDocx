@@ -1,7 +1,7 @@
 import React from 'react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
-import { Row, Col, Card, Select, Button, Tabs } from 'antd';
+import { Row, Col, Card, Select, Button, Tabs, WhiteSpace } from 'antd';
 import { Redirect } from 'react-router-dom';
 
 import styles from './DownloadPage.scss';
@@ -53,8 +53,8 @@ class DownloadPage extends React.Component {
                   return(
                     <Select key={fish.id} placeholder="请选择下载版本" value={this.state.downloadType} onChange={this.handleSelectChange}>
                       {Object.keys(fish.downloadLinks).map((typeName) => {
-                          const type = fish.downloadLinks[typeName];
-                        return <Option value={typeName} key={type.id}>{fish.id}:{type.name}</Option>;
+                        const type = fish.downloadLinks[typeName];
+                        return (<Option value={typeName} key={type.id}>{fish.id}:{type.name}</Option>);
                       })}
                     </Select>
                   )
