@@ -82,7 +82,15 @@ export async function getComposeRecordList(user_id) {
   });
 }
 
-export async function editProfile() {
+/**
+ * interface newUserObj {
+     string user_id
+ *   string newName;
+ *   string newTel;
+ *   string newEmail;
+ * }
+ */
+export async function editProfile(newUserObj) {
   if (__MOCK__) {
     return {
       success: true,
@@ -91,9 +99,13 @@ export async function editProfile() {
         username: 'Mondo2',
         email: 'mondogao2@gmail.com',
         tel: '18888888888',
+        user_id:'100',
       }
     };
   }
 
-  return handleFetch(`${apiPublicPath}users/editProfile`);
+  return handleFetch(`${apiPublicPath}users/editProfile`, {
+    method: 'POST',
+    body: JSON.stringify(newUserObj),
+  });
 }

@@ -49,9 +49,10 @@ export function ShowProfile({ user, onSubmit }) {
 }
 
 
-@connect(undefined, {
-  editProfile,
-})
+@connect(
+  state=>({user_id:state.users.current.user_id}),
+  {editProfile,}
+)
 @Form.create()
 export class EditProfileForm extends React.Component {
   state = {
@@ -80,7 +81,13 @@ export class EditProfileForm extends React.Component {
 
     this.props.form.validateFieldsAndScroll((err, values) => {
       if(!err) {
-        this.props.editProfile(values);
+        let newValues = {
+          username:values.username,
+          tel:values.tel,
+          email:values.email,
+          user_id:this.props.user_id
+        }
+        this.props.editProfile(newValues);
       }
     })
   }
@@ -183,4 +190,3 @@ export default class EditProfile extends React.Component {
     )
   }
 }
-

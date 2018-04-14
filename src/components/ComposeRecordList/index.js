@@ -63,6 +63,7 @@ export default class ComposeRecordList extends React.Component {
   render() {
     const { composeRecordList } = this.props;
     const { isLoading }  = this.state;
+    console.log(composeRecordList)
 
     return (
       <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
