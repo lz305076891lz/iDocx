@@ -21,6 +21,7 @@ const { Column } = Table;
  */
 @connect(state => ({
   composeRecordList: getFullComposeRecordList(state),
+  
 }), {
   examineComposeResult,
   getComposeRecordList,

@@ -29,6 +29,7 @@ class UploadPage extends React.Component {
     }));
 
     this.props.changeUploadFileList(this.getSuccessList());
+    // console.log(this.getSuccessList())
   }
 
   handleCoverSelectChange = (value) => {
