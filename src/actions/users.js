@@ -27,13 +27,10 @@ export const {
       username,
       email,
     }),
-    LOGOUT:({username,user_id,tel,email,avatar_path,success})=>({
-      username,
-      user_id,
+    LOGOUT: ({ tel, email, user_id }) => ({
       tel,
       email,
-      avatar_path,
-      success,
+      user_id,
     }),
     LOGIN_FINISHED: identity,
     SIGNUP_FINISHED: identity,

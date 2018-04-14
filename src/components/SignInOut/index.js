@@ -28,18 +28,15 @@ class SignInOut extends React.Component {
   state = {
     isModalVisible: false,
     formStatus: FORM_STATUS.LOGIN,
-    initUser:{
-      username: "",
-      user_id:"",
-      tel: "",
-      email: "",
-      avatar_path: null,
-      success: "false",
-    },
+    user_to_logout:{
+      tel:this.props.currentUser.tel,
+      email:this.props.currentUser.email,
+      user_id:this.props.currentUser.user_id,
+    }
   }
 
   handleLogout = () =>{
-    this.props.logout(this.state.initUser);
+    this.props.logout(this.state.user_to_logout);
   }
 
   handleCancel = () => {

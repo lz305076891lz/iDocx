@@ -7,8 +7,10 @@ import { plainFishes } from '../sources/schemas';
 import {
   login,
   signup,
+  logout,
   loginFinished,
   signupFinished,
+  logoutFinished,
   getComposeRecordList,
   gotComposeRecordList,
   editProfile,
@@ -26,6 +28,20 @@ export function* loginHandler({ payload }) {
     console.log(e);
 
     yield put(loginFinished(e));
+  }
+}
+
+function* logoutHandler({ payload }) {
+  try {
+    const result = yield call(usersSource.logout, payload);
+
+    const action = yield call(logoutFinished, result);
+
+    yield put(action);
+  } catch (e) {
+    console.log(e);
+
+    yield put(logoutFinished(e));
   }
 }
 
@@ -80,6 +96,7 @@ function* editProfileHandler() {
 export default function* userSaga() {
   yield takeLatest(login, loginHandler);
   yield takeLatest(signup, signupHandler);
+  yield takeLatest(logout, logoutHandler);
   yield takeLatest(getComposeRecordList, composeRecordHandler);
   yield takeLatest(editProfile, editProfileHandler);
 }

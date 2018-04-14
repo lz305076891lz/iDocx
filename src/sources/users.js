@@ -30,6 +30,20 @@ export function login(loginObj) {
   });
 }
 
+/**
+ * interface LogoutObj {
+ *   string email;
+ *   string user_id;
+ *   string tel;
+ * }
+ */
+export function logout(logoutObj) {
+  return handleFetch(`${apiPublicPath}users/logout`, {
+    method: 'POST',
+    body: JSON.stringify(logoutObj),
+  });
+}
+
 export async function getComposeRecordList(user_id) {
   if (__MOCK__) {
     return [
