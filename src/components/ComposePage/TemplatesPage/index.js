@@ -24,6 +24,7 @@ class TemplatesPage extends React.Component {
     this.props.getTemplates({
       search: this.props.searchValue,
     });
+    // console.log(this.props)
   }
 
   handlePageChange = (page) => {
@@ -82,6 +83,7 @@ class SearchInput extends React.Component {
           value={this.props.value}
           onChange={this.props.onChange}
           onSearch={this.props.onSearch}
+          enterButton={'Search'}
         />
       </div>
     );
