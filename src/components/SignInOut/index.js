@@ -125,9 +125,9 @@ class SignInOut extends React.Component {
 }
 
 const LoginForm = Form.create({
-  onFieldsChange(props, value) {
-    console.log(value);
-  },
+  // onFieldsChange(props, value) {
+  //   console.log(value);
+  // },
 })
 (
   ({form, onCancel, isVisible, onSubmit, activeKey, onTabChange, isLoading,}) => {
