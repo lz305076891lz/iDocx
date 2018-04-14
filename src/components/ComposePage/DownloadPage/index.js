@@ -1,4 +1,5 @@
 import React from 'react';
+import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { Row, Col, Card, Select, Button, Tabs } from 'antd';
 import { Redirect } from 'react-router-dom';
@@ -22,9 +23,13 @@ class DownloadPage extends React.Component {
   }
 
   handleDownloadButtonCllick = (e) => {
-    this.props.fishes.forEach((fish) => {
-      window.open(fish.downloadLinks[this.state.downloadType].downloadLink);
-    });
+      if(this.props.loginflag){
+        this.props.fishes.forEach((fish) => {
+          window.open(fish.downloadLinks[this.state.downloadType].downloadLink);
+        });
+      }else{
+        alert("请先登陆")
+      }
   }
 
   render() {
@@ -44,13 +49,17 @@ class DownloadPage extends React.Component {
           <Col span={6}>
             <div className={styles.wrapper}>
               <Card title="下载">
-                <Select placeholder="请选择下载版本" value={this.state.downloadType} onChange={this.handleSelectChange}>
-                  {Object.keys(this.props.fishes[0].downloadLinks).map((typeName) => {
-                    const type = this.props.fishes[0].downloadLinks[typeName];
-
-                    return <Option value={typeName} key={type.id}>{type.name}</Option>;
-                  })}
-                </Select>
+                {this.props.fishes.map(fish=>{
+                  return(
+                    <Select key={fish.id} placeholder="请选择下载版本" value={this.state.downloadType} onChange={this.handleSelectChange}>
+                      {Object.keys(fish.downloadLinks).map((typeName) => {
+                          const type = fish.downloadLinks[typeName];
+                        return <Option value={typeName} key={type.id}>{fish.id}:{type.name}</Option>;
+                      })}
+                    </Select>
+                  )
+                })
+              }
                 <Button
                   type="primary"
                   className={styles['btn-download']}
@@ -85,9 +94,11 @@ class DownloadPage extends React.Component {
 
 const mapState = (state) => {
   const page = state.compose.download;
+  const user_id = state.users.current.user_id;
   return ({
     ...page,
     fishes: page.fishIds ? page.fishIds.map(fishId => state.entities.fishes[fishId]) : [],
+    loginflag:user_id
   });
 };
 
