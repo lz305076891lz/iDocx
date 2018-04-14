@@ -30,6 +30,7 @@ class SignInOut extends React.Component {
     formStatus: FORM_STATUS.LOGIN,
     initUser:{
       username: "",
+      user_id:"",
       tel: "",
       email: "",
       avatar_path: null,

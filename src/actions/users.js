@@ -26,8 +26,9 @@ export const {
       username,
       email,
     }),
-    LOGOUT:({username,tel,email,avatar_path,success})=>({
+    LOGOUT:({username,user_id,tel,email,avatar_path,success})=>({
       username,
+      user_id,
       tel,
       email,
       avatar_path,

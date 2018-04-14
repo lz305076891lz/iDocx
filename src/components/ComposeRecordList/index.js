@@ -7,7 +7,7 @@ import {
 } from '../../actions/usercenter';
 import { getComposeRecordList } from '../../actions/users'
 
-import { getFullComposeRecordList } from '../../selectors/usercenter';
+import { getFullComposeRecordList, getCurrentUserObj } from '../../selectors/usercenter';
 
 const { Column } = Table;
 
@@ -21,7 +21,7 @@ const { Column } = Table;
  */
 @connect(state => ({
   composeRecordList: getFullComposeRecordList(state),
-  
+  user_id:getCurrentUserObj(state).user_id,
 }), {
   examineComposeResult,
   getComposeRecordList,
