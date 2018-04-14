@@ -43,9 +43,9 @@ function* signupHandler({ payload }) {
   }
 }
 
-function* composeRecordHandler() {
+function* composeRecordHandler({ payload }) {
   try {
-    const result = yield call(usersSource.getComposeRecordList);
+    const result = yield call(usersSource.getComposeRecordList, payload);
 
     const normalizedData = yield call(normalize, result, plainFishes);
 

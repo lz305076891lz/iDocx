@@ -30,7 +30,7 @@ export function login(loginObj) {
   });
 }
 
-export async function getComposeRecordList() {
+export async function getComposeRecordList(user_id) {
   if (__MOCK__) {
     return [
       {
@@ -62,7 +62,10 @@ export async function getComposeRecordList() {
     ];
   }
 
-  return handleFetch(`${apiPublicPath}users/composeRecords`);
+  return handleFetch(`${apiPublicPath}users/composeRecords`, {
+    method: 'POST',
+    body: JSON.stringify(user_id),
+  });
 }
 
 export async function editProfile() {

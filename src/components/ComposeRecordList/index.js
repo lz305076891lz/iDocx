@@ -7,7 +7,7 @@ import {
 } from '../../actions/usercenter';
 import { getComposeRecordList } from '../../actions/users'
 
-import { getFullComposeRecordList, getCurrentUserObj } from '../../selectors/usercenter';
+import { getFullComposeRecordList } from '../../selectors/usercenter';
 
 const { Column } = Table;
 
@@ -21,7 +21,7 @@ const { Column } = Table;
  */
 @connect(state => ({
   composeRecordList: getFullComposeRecordList(state),
-  user_id:getCurrentUserObj(state).user_id,
+  user_id: state.users.current.user_id,
 }), {
   examineComposeResult,
   getComposeRecordList,
@@ -36,7 +36,7 @@ export default class ComposeRecordList extends React.Component {
       isLoading: true,
     }))
 
-    this.props.getComposeRecordList();
+    this.props.getComposeRecordList(this.props.user_id);
   }
 
   componentDidUpdate(prevProps) {
