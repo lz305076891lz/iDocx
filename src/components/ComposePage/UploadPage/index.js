@@ -146,7 +146,6 @@ class UploadPage extends React.Component {
           </RadioGroup>
           </h4>
       </div>
-
         {/* <CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/> */}
         <div className={styles['btn-wrapper']}>
           <Button
