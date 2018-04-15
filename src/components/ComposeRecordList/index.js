@@ -21,7 +21,8 @@ const { Column } = Table;
  */
 @connect(state => ({
   composeRecordList: getFullComposeRecordList(state),
-  user_id: state.users.current.user_id,
+  // user_id: state.users.current.user_id,
+  user_id: { user_id:state.users.current.user_id },
 }), {
   examineComposeResult,
   getComposeRecordList,
@@ -48,10 +49,6 @@ export default class ComposeRecordList extends React.Component {
     }
   }
 
-  renderUploadDate(text) {
-    return (new Date(text)).toDateString();
-  }
-
   renderOperations = (text, record) => {
     return (
       <span>
@@ -68,17 +65,16 @@ export default class ComposeRecordList extends React.Component {
       <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
         <Column
           title="文裆名称"
-          dataIndex="fileName"
-          key="fileName"/>
+          dataIndex="doc_title"
+          key="doc_title"/>
         <Column
           title="模版"
           dataIndex="template.title"
           key="template.title"/>
         <Column
           title="上传时间"
-          dataIndex="uploadDate"
-          key="uploadDate"
-          render={this.renderUploadDate}/>
+          dataIndex="compose_time"
+          key="compose_time"/>
         <Column
           title="操作"
           key="operations"

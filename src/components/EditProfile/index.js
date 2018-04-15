@@ -82,9 +82,9 @@ export class EditProfileForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if(!err) {
         let newValues = {
-          username:values.username,
-          tel:values.tel,
-          email:values.email,
+          newName:values.username,
+          newTel:values.tel,
+          newEmail:values.email,
           user_id:this.props.user_id
         }
         this.props.editProfile(newValues);
