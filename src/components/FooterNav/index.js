@@ -21,7 +21,7 @@ const footerData = [
   {
     id: 3,
     text: '意见反馈',
-    href: '/Feedback',
+    href: 'https://weibo.com/u/1344686915',
   },
   {
     id: 4,
