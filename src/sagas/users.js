@@ -65,8 +65,6 @@ function* composeRecordHandler({ payload }) {
 
     const normalizedData = yield call(normalize, result, plainFishes);
 
-    console.log(normalizedData)
-
     const action = yield call(gotComposeRecordList, normalizedData);
 
     yield put(action);
@@ -80,7 +78,6 @@ function* composeRecordHandler({ payload }) {
 function* editProfileHandler({payload}) {
   try {
     const result = yield call(usersSource.editProfile, payload);
-    console.log(payload)
     if (result.success) {
       const action = yield call(editProfileSuccess, result.data);
       yield put(action);
