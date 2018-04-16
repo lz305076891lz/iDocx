@@ -32,7 +32,7 @@ function createSubRoute(path, text, title = text, component = NullComponent) {
 
 const subRoutes = [
   createSubRoute('compose-result', '排版记录', '我的排版记录', ComposeRecordList),
-  createSubRoute('upload', '我的模版', undefined, MyTemplate),
+  createSubRoute('mytemplate', '我的模版', undefined, MyTemplate),
   createSubRoute('edit', '个人资料', undefined, EditProfile),
 ];
 
