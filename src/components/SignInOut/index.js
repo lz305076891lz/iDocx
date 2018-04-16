@@ -46,6 +46,13 @@ class SignInOut extends React.Component {
   }
 
   handleSubmit = (values) => {
+    // console.log(values)
+    // let encryptedValues = {
+    //   username:values.username?values.username:"",
+    //   tel:values.tel,
+    //   email:values.email,
+    //   password:values.password=>values.password,
+    // }
     const { isModelLoading, formStatus } = this.state;
 
     if (isModelLoading) {
