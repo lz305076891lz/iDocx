@@ -1,4 +1,5 @@
 import { createActions } from 'redux-actions';
+import { identity } from 'ramda';
 
 export const {
   usercenter: {

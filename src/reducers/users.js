@@ -8,10 +8,12 @@ import {
   loginFinished,
   signupFinished,
   editProfileSuccess,
+  uploadTemplateStart,
+  uploadTemplateEnd,
 } from '../actions/users';
 
 export const current = handleActions({
-  [combineActions(loginFinished, signupFinished, editProfileSuccess,logout)]: {
+  [combineActions(loginFinished, signupFinished, editProfileSuccess, logout, uploadTemplateEnd)]: {
     next(state, action) {
       return action.payload;
     },
@@ -19,10 +21,10 @@ export const current = handleActions({
 }, {});
 
 export const isLoading = handleActions({
-  [combineActions(login, signup)]() {
+  [combineActions(login, signup, uploadTemplateStart)]() {
     return true;
   },
-  [combineActions(loginFinished, signupFinished,logout)]() {
+  [combineActions(loginFinished, signupFinished, logout, uploadTemplateEnd)]() {
     return false;
   },
 }, false);

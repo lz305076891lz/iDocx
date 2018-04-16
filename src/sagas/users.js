@@ -15,6 +15,8 @@ import {
   gotComposeRecordList,
   editProfile,
   editProfileSuccess,
+  uploadTemplateStart,
+  uploadTemplateEnd,
 } from '../actions/users';
 
 export function* loginHandler({ payload }) {

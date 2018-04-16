@@ -17,10 +17,10 @@ class UploadPage extends React.Component {
   state = {
     fileList: this.props.fileList,
     coverList: [],
-      convertNotes: 1,
-      clearFmt: 3,
-      clearNullStyle: 1,
-      adustComma:1
+    convertNotes: 1,
+    clearFmt: 3,
+    clearNullStyle: 1,
+    adustComma:1
   }
     handleConvertEndnotes=(e)=>{
         this.setState({
@@ -38,7 +38,6 @@ class UploadPage extends React.Component {
         this.setState({
             adustComma: Number(e.target.checked)  ,
         });
-        console.log(this.state.adustComma);
     }
     handleClearOptChange = (e) => {
        /* console.log('radio checked', e.target.value);*/
@@ -46,17 +45,16 @@ class UploadPage extends React.Component {
             clearFmt: e.target.value,
         });
     }
-  handleFileListChange = (fileList) => {
-    this.setState(prevState => ({
-      fileList,
-      coverList: prevState.coverList
-        .filter(cover => fileList
-          .map(file => file.uid)
-          .includes(cover)),
-    }));
+    handleFileListChange = (fileList) => {
+      this.setState(prevState => ({
+        fileList,
+        coverList: prevState.coverList
+          .filter(cover => fileList
+            .map(file => file.uid)
+            .includes(cover)),
+      }));
 
-    this.props.changeUploadFileList(this.getSuccessList());
-    console.log(this.getSuccessList())
+      this.props.changeUploadFileList(this.getSuccessList());
   }
 
   handleCoverSelectChange = (value) => {
@@ -76,6 +74,7 @@ class UploadPage extends React.Component {
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
 
   customRequest = (args) => {
+    console.log(args)
     const data = new FormData();
     data.append('file', args.file);
     // data.append(`template_name`, this.props.chosenTemplate.id)
@@ -86,7 +85,7 @@ class UploadPage extends React.Component {
       credentials: 'include',
     })
       .then(data => data.json())
-      .then((data) => {
+      .then(data => {
         args.onSuccess(data);
       });
   }
@@ -113,22 +112,6 @@ class UploadPage extends React.Component {
             loading={this.props.isComposing}
             customRequest={this.customRequest}
           />
-          {/* <div className={styles['cover-select-list-container']}> */}
-          {/* <span className={styles['tip']}> */}
-          {/* 选择需要生成封面的论文: */}
-          {/* <span>不需生成封面，可跳过此步</span> */}
-          {/* </span> */}
-          {/* <Select */}
-          {/* mode="multiple" */}
-          {/* className={styles['cover-select-list']} */}
-          {/* value={this.state.coverList} */}
-          {/* onChange={this.handleCoverSelectChange} */}
-          {/* > */}
-          {/* { */}
-          {/* successList.map(file => <Option key={file.uid}>{file.name}</Option>) */}
-          {/* } */}
-          {/* </Select> */}
-          {/* </div> */}
         </div>
       <div className={styles['check-info-check']}>
           <h4>
@@ -165,6 +148,7 @@ class UploadPage extends React.Component {
 
 class FileUpload extends React.Component {
   handleChange = (info) => {
+    console.log(info)
     const fileList = info.fileList;
     this.props.handleFileListChange(fileList);
   }
@@ -212,7 +196,7 @@ class CoverInfo extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.fileList.filter(file => file.uid === this.state.activeKey));
+    // console.log(nextProps.fileList.filter(file => file.uid === this.state.activeKey));
     if (nextProps.fileList.length > 0 && (!this.state.activeKey || nextProps.fileList.filter(file => file.uid === this.state.activeKey).length < 1)) {
       this.setState({
         activeKey: nextProps.fileList[0].uid,
