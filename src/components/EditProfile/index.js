@@ -61,15 +61,17 @@ export class EditProfileForm extends React.Component {
     isLoading: false,
   }
 
-  componentDidUpdate({ user }) {
-    if (this.state.isLoading
-      && user !== this.props.user) {
+  componentDidUpdate({user}) {
+    if (this.state.isLoading) {
+        // console.log(user)
+        // console.log(this.props.user)
       this.setState({
         isLoading: false,
       });
       message.success('修改资料成功');
       this.props.onSubmit();
     }
+    
   }
 
   handleSubmit = (e) => {
