@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Row, Col, Button, Form, Input, message, Divider } from 'antd';
+import { Row, Col, Button, Form, Input, message } from 'antd';
 
 import { getCurrentUserObj } from '../../selectors/users';
 
@@ -27,14 +27,7 @@ export function ProfileItem({ title, value }) {
     </Row>
   )
 }
-/**
- * interface UserObj {
- *  string username;
- *  string tel;
- *  string email;
- *  string avatar_path;
- * }
- */
+
 export function ShowProfile({ user, onSubmit }) {
   const button = <Button type="primary" className={styles.button} onClick={onSubmit}>编辑</Button>;
 

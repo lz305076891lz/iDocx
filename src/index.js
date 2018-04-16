@@ -31,21 +31,6 @@ const rootReducer = createRootReducer({
 
 let initialState = {};
 
-if (__MOCK__) {
-  initialState = {
-    users: {
-      current: {
-        username: 'zxzxssss',
-        tel: '13476599959',
-        email: '3050768911@gmail.com',
-        avatar_path: null,
-        success: 'true',
-        user_id:'156',
-      },
-    },
-  };
-}
-
 const store = createStore(
   rootReducer,
   initialState,
