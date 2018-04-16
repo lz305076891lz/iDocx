@@ -5,10 +5,9 @@ import { push } from 'react-router-redux';
 import { Table, Button, Divider } from 'antd';
 
 
-import {
-  examineComposeResult,
-} from '../../actions/usercenter';
-import { getComposeRecordList } from '../../actions/users'
+import { examineComposeResult } from '../../actions/usercenter';
+import { getComposeRecordList } from '../../actions/users';
+import { changeChosenTemplate } from '../../actions/compose'
 
 import { getFullComposeRecordList } from '../../selectors/usercenter';
 
@@ -16,11 +15,11 @@ const { Column } = Table;
 
 @connect(state => ({
   composeRecordList: getFullComposeRecordList(state),
-  // user_id: state.users.current.user_id,
   user_id: { user_id:state.users.current.user_id },
 }), {
   examineComposeResult,
   getComposeRecordList,
+  changeChosenTemplate,
 })
 export default class MyTemplate extends React.Component {
   state = {
@@ -47,9 +46,9 @@ export default class MyTemplate extends React.Component {
   renderOperations = (text, record) => {
     return (
       <span>
-        <a onClick={() => {console.log('删除这个模版')} }>删除</a>
-        |
-        <a onClick={() => {console.log('使用这个模版')} }>使用</a>
+        <a onClick={() => {
+          this.props.changeChosenTemplate(record.comp_id);
+         }}>立即使用</a>
       </span>
     );
   }
@@ -57,16 +56,18 @@ export default class MyTemplate extends React.Component {
   render() {
     const { composeRecordList } = this.props;
     const { isLoading }  = this.state;
+    console.log(composeRecordList)
     return (
       <div>
+        <a href="www.aidocx.com/word">使用自定义模版</a>
           <Divider/>
         <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
           <Column
             title="模版名称"
-            dataIndex="doc_title"
-            key="doc_title"/>
+            dataIndex="template.title"
+            key="template.title"/>
           <Column
-            title="上传时间"
+            title="更新时间"
             dataIndex="compose_time"
             key="compose_time"/>
           <Column
