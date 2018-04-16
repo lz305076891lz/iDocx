@@ -46,9 +46,11 @@ export default class MyTemplate extends React.Component {
   renderOperations = (text, record) => {
     return (
       <span>
-        <a onClick={() => {
-          this.props.changeChosenTemplate(record.comp_id);
-         }}>立即使用</a>
+        <Link to='/compose/upload' onClick={() => {
+          this.props.changeChosenTemplate(record.template.id);
+        }}>应用</Link>
+        <Divider type='vertical'/>
+         <a href="http://www.aidocx.com/word/index.php/user/AutoTepmlate">自定义</a>
       </span>
     );
   }
@@ -56,11 +58,8 @@ export default class MyTemplate extends React.Component {
   render() {
     const { composeRecordList } = this.props;
     const { isLoading }  = this.state;
-    console.log(composeRecordList)
     return (
       <div>
-        <a href="www.aidocx.com/word">使用自定义模版</a>
-          <Divider/>
         <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
           <Column
             title="模版名称"

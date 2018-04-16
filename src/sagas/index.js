@@ -9,7 +9,7 @@ import {
   composeEnd,
 } from '../actions/entities';
 import { examineComposeResult } from '../actions/usercenter';
-import { changeDownloadFileList } from '../actions/compose';
+import { changeDownloadFileList, changeChosenTemplate } from '../actions/compose';
 
 import { templates, fishes } from '../sources/schemas';
 import * as templatesSource from '../sources/templates';
