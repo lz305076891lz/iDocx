@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Link } from 'react-router-dom';
-import { push } from 'react-router-redux';
 import { Table, Button, Divider } from 'antd';
 
 
