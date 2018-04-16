@@ -20,11 +20,6 @@ const footerData = [
   },
   {
     id: 3,
-    text: '意见反馈',
-    href: 'https://weibo.com/u/1344686915',
-  },
-  {
-    id: 4,
     text: '帮助中心',
     href: '/Helper',
   },
@@ -35,7 +30,7 @@ const FooterNav = props => (
     <Container>
       <Row>
         {footerData.map(link =>
-        <Col key={link.id} xs={12} sm={6}>
+        <Col key={link.id} xs={12} sm={8}>
           <a href={link.href}>{link.text}</a>
         </Col>)}
       </Row>

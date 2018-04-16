@@ -9,6 +9,8 @@ import { changeChosenTemplate } from '../../actions/compose'
 
 import { getFullComposeRecordList } from '../../selectors/usercenter';
 
+import UploadMyTemp from './UploadMyTemp'
+
 const { Column } = Table;
 
 @connect(state => ({
@@ -57,6 +59,8 @@ export default class MyTemplate extends React.Component {
     const { isLoading }  = this.state;
     return (
       <div>
+      // <Route path='/usercenter/mytemplate/uploadmytemp' component={UploadMyTemp}></Route>
+      // <Link to='/usercenter/mytemplate/uploadmytemp'>生成自定义模版</Link>
       <Divider/>
         <Table dataSource={mytemplates} rowKey="id" loading={isLoading}>
           <Column
