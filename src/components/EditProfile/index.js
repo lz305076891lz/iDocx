@@ -53,7 +53,7 @@ export function ShowProfile({ user, onSubmit }) {
   state=>({user_id:state.users.current.user_id}),
   {editProfile,}
 )
-@Form.create()
+@Form.create({})
 export class EditProfileForm extends React.Component {
   state = {
     isTelChanged: false,
@@ -67,7 +67,6 @@ export class EditProfileForm extends React.Component {
       this.setState({
         isLoading: false,
       });
-
       message.success('修改资料成功');
       this.props.onSubmit();
     }

@@ -17,7 +17,6 @@ import ErrorHandler from './ErrorHandler';
 import Helper from './Helper';
 import ContactUs from './ContactUs';
 import AboutUs from './AboutUs';
-import Feedback from './Feedback';
 
 import styles from './App.css';
 
@@ -43,7 +42,6 @@ const App = props => (
       <Route path="/Helper" component={Helper}/>
       <Route path="/ContactUs" component={ContactUs}/>
       <Route path="/AboutUs" component={AboutUs}/>
-      <Route path="/Feedback" component={Feedback}/>
     </Content>
     <FooterNav/>
   </Layout>
