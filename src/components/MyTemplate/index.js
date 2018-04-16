@@ -4,7 +4,6 @@ import { Redirect, Route, Link } from 'react-router-dom';
 import { push } from 'react-router-redux';
 import { Table, Button, Divider } from 'antd';
 
-import UploadTempPage from './UploadTempPage'
 
 import {
   examineComposeResult,
@@ -23,7 +22,7 @@ const { Column } = Table;
   examineComposeResult,
   getComposeRecordList,
 })
-export default class UploadTemplate extends React.Component {
+export default class MyTemplate extends React.Component {
   state = {
     isLoading: false,
   }
@@ -58,8 +57,6 @@ export default class UploadTemplate extends React.Component {
   render() {
     const { composeRecordList } = this.props;
     const { isLoading }  = this.state;
-    const path = this.props.match.path;
-    console.log(path)
     return (
       <div>
           <Divider/>
