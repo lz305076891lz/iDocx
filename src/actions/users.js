@@ -15,6 +15,8 @@ export const {
     editProfileSuccess,
     uploadTemplateStart,
     uploadTemplateEnd,
+    getMyTemplates,
+    gotMyTemplates,
   },
 } = createActions({
   USER: {
@@ -43,5 +45,7 @@ export const {
     EDIT_PROFILE_SUCCESS: newUserInfo => newUserInfo,
     UPLOAD_TEMPLATE_START: identity,
     UPLOAD_TEMPLATE_END: identity,
+    GET_MY_TEMP_LATES:identity,
+    GOT_MY_TEMP_LATES:identity,
   },
 });

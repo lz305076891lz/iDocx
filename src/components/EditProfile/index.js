@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Row, Col, Button, Form, Input, message } from 'antd';
+import { Row, Col, Button, Form, Input, message, Divider } from 'antd';
 
 import { getCurrentUserObj } from '../../selectors/users';
 
@@ -56,8 +56,6 @@ export class EditProfileForm extends React.Component {
 
   componentDidUpdate({user}) {
     if (this.state.isLoading) {
-        // console.log(user)
-        // console.log(this.props.user)
       this.setState({
         isLoading: false,
       });
@@ -120,7 +118,6 @@ export class EditProfileForm extends React.Component {
 
     return (
       <div>
-      <Divider/>
       <Form layout="vertical" onSubmit={this.handleSubmit}>
         <Form.Item {...formItemLayout} label="用户名">
           {getFieldDecorator('username', {
@@ -182,6 +179,7 @@ export default class EditProfile extends React.Component {
 
     return (
       <div className={styles.main}>
+        <Divider/>
         {main}
       </div>
     )

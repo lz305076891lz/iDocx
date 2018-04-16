@@ -4,7 +4,6 @@ import { Redirect, Route, Link } from 'react-router-dom';
 import { Table, Button, Divider } from 'antd';
 
 
-import { examineComposeResult } from '../../actions/usercenter';
 import { getComposeRecordList } from '../../actions/users';
 import { changeChosenTemplate } from '../../actions/compose'
 
@@ -13,10 +12,9 @@ import { getFullComposeRecordList } from '../../selectors/usercenter';
 const { Column } = Table;
 
 @connect(state => ({
-  composeRecordList: getFullComposeRecordList(state),
+  mytemplates: getFullComposeRecordList(state),
   user_id: { user_id:state.users.current.user_id },
 }), {
-  examineComposeResult,
   getComposeRecordList,
   changeChosenTemplate,
 })
@@ -35,7 +33,7 @@ export default class MyTemplate extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.state.isLoading
-      && prevProps.composeRecordList !== this.props.composeRecordList) {
+      && prevProps.mytemplates !== this.props.mytemplates) {
       this.setState(() => ({
         isLoading: false,
       }));
@@ -55,11 +53,12 @@ export default class MyTemplate extends React.Component {
   }
 
   render() {
-    const { composeRecordList } = this.props;
+    const { mytemplates } = this.props;
     const { isLoading }  = this.state;
     return (
       <div>
-        <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
+      <Divider/>
+        <Table dataSource={mytemplates} rowKey="id" loading={isLoading}>
           <Column
             title="模版名称"
             dataIndex="template.title"

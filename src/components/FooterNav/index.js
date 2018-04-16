@@ -11,12 +11,12 @@ const footerData = [
   {
     id: 1,
     text: '关于我们',
-    href: '/AboutUs',
+    href: 'https://weibo.com/u/1344686915',
   },
   {
     id: 2,
     text: '联系我们',
-    href: '/ContactUs',
+    href: 'https://weibo.com/u/1344686915',
   },
   {
     id: 3,

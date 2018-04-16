@@ -11,17 +11,8 @@ import { getFullComposeRecordList } from '../../selectors/usercenter';
 
 const { Column } = Table;
 
-/**
- * interface DataItem {
- *  string id;
- *  string fileName;
- *  Template template;
- *  int uploadDate;
- * }
- */
 @connect(state => ({
   composeRecordList: getFullComposeRecordList(state),
-  // user_id: state.users.current.user_id,
   user_id: { user_id:state.users.current.user_id },
 }), {
   examineComposeResult,
@@ -52,7 +43,7 @@ export default class ComposeRecordList extends React.Component {
   renderOperations = (text, record) => {
     return (
       <span>
-        <a onClick={() => this.props.examineComposeResult(record.comp_id)}>查看</a>
+        <a onClick={() => { this.props.examineComposeResult(record.comp_id);console.log(record)}}>查看</a>
       </span>
     );
   }

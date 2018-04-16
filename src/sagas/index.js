@@ -58,6 +58,7 @@ export function* composeHandler({ payload: { fileIds, tempId, composeOpt, coverI
 }
 
 export function* updateDownloadListHandler({ payload: fileId }) {
+  console.log(payload)
   yield put(changeDownloadFileList([fileId]));
   yield put(push('/compose/download'));
 }
