@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Row, Col, Button, Form, Input, message } from 'antd';
+import { Row, Col, Button, Form, Input, message, Divider } from 'antd';
 
 import { getCurrentUserObj } from '../../selectors/users';
 
@@ -71,7 +71,7 @@ export class EditProfileForm extends React.Component {
       message.success('修改资料成功');
       this.props.onSubmit();
     }
-    
+
   }
 
   handleSubmit = (e) => {
@@ -126,6 +126,8 @@ export class EditProfileForm extends React.Component {
     const { getFieldDecorator } = form;
 
     return (
+      <div>
+      <Divider/>
       <Form layout="vertical" onSubmit={this.handleSubmit}>
         <Form.Item {...formItemLayout} label="用户名">
           {getFieldDecorator('username', {
@@ -147,6 +149,7 @@ export class EditProfileForm extends React.Component {
           <Button htmlType="submit" loading={isLoading}>提交</Button>
         </Form.Item>
       </Form>
+      </div>
     );
   }
 }

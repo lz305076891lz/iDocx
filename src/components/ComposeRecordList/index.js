@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'antd';
+import { Table, Divider } from 'antd';
 
 import {
   examineComposeResult,
@@ -62,6 +62,8 @@ export default class ComposeRecordList extends React.Component {
     const { isLoading }  = this.state;
 
     return (
+      <div>
+      <Divider/>
       <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
         <Column
           title="文裆名称"
@@ -80,6 +82,7 @@ export default class ComposeRecordList extends React.Component {
           key="operations"
           render={this.renderOperations}/>
       </Table>
+      </div>
     );
   }
 }

@@ -1,22 +1,83 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Upload, Icon } from 'antd';
+import { Redirect, Route, Link } from 'react-router-dom';
+import { push } from 'react-router-redux';
+import { Table, Button, Divider } from 'antd';
 
-import styles from './UploadTemplate.scss';
-import { paths } from '../../sources/usercenter';
+import UploadTempPage from './UploadTempPage'
 
-const { Dragger } = Upload;
+import {
+  examineComposeResult,
+} from '../../actions/usercenter';
+import { getComposeRecordList } from '../../actions/users'
 
-function UploadTemplate() {
-  return (
-    <Dragger className={styles.uploadArea} action={paths.uploadTemplatePath}>
-      <p>
-        <Icon type="inbox" className={styles.icon}/>
-      </p>
-      <h4>拖拽或单击上传</h4>
-    </Dragger>
-  );
+import { getFullComposeRecordList } from '../../selectors/usercenter';
+
+const { Column } = Table;
+
+@connect(state => ({
+  composeRecordList: getFullComposeRecordList(state),
+  // user_id: state.users.current.user_id,
+  user_id: { user_id:state.users.current.user_id },
+}), {
+  examineComposeResult,
+  getComposeRecordList,
+})
+export default class UploadTemplate extends React.Component {
+  state = {
+    isLoading: false,
+  }
+
+  componentDidMount() {
+    this.setState(() => ({
+      isLoading: true,
+    }))
+
+    this.props.getComposeRecordList(this.props.user_id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.state.isLoading
+      && prevProps.composeRecordList !== this.props.composeRecordList) {
+      this.setState(() => ({
+        isLoading: false,
+      }));
+    }
+  }
+
+  renderOperations = (text, record) => {
+    return (
+      <span>
+        <a onClick={() => {console.log('删除这个模版')} }>删除</a>
+        |
+        <a onClick={() => {console.log('使用这个模版')} }>使用</a>
+      </span>
+    );
+  }
+
+  render() {
+    const { composeRecordList } = this.props;
+    const { isLoading }  = this.state;
+    const path = this.props.match.path;
+    console.log(path)
+    return (
+      <div>
+          <Divider/>
+        <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
+          <Column
+            title="模版名称"
+            dataIndex="doc_title"
+            key="doc_title"/>
+          <Column
+            title="上传时间"
+            dataIndex="compose_time"
+            key="compose_time"/>
+          <Column
+            title="操作"
+            key="operations"
+            render={this.renderOperations}/>
+        </Table>
+      </div>
+    );
+  }
 }
-
-export default connect()(UploadTemplate);
-
