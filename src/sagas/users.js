@@ -22,7 +22,7 @@ import {
 export function* loginHandler({ payload }) {
   try {
     const result = yield call(usersSource.login, payload);
-
+    console.log(result)
     const action = yield call(loginFinished, result);
 
     yield put(action);

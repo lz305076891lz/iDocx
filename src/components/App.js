@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 
 import {
+  Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
@@ -15,7 +16,6 @@ import ComposePage from './ComposePage';
 import UserCenterPage from './UserCenterPage';
 import ErrorHandler from './ErrorHandler';
 import Helper from './Helper';
-import ContactUs from './ContactUs';
 import AboutUs from './AboutUs';
 
 import styles from './App.css';
@@ -35,13 +35,15 @@ const App = props => (
     )}
     <Content>
       <ErrorHandler />
-      <Route exact path="/" component={HomeContent}/>
-      <Route path="/home" render={() => <Redirect to="/"/>}/>
-      <Route path="/compose" component={ComposePage}/>
-      <Route path="/usercenter" component={UserCenterPage}/>
-      <Route path="/Helper" component={Helper}/>
-      <Route path="/ContactUs" component={ContactUs}/>
-      <Route path="/AboutUs" component={AboutUs}/>
+      <Switch>
+        <Route exact path="/" component={HomeContent}/>
+        <Route path="/home" render={() => <Redirect to="/"/>}/>
+        <Route path="/compose" component={ComposePage}/>
+        <Route path="/usercenter" component={UserCenterPage}/>
+        <Route path="/Helper" component={Helper}/>
+        <Route path="/AboutUs" component={AboutUs}/>
+        <Route render={()=> <Redirect to="/"/>} />
+      </Switch>
     </Content>
     <FooterNav/>
   </Layout>

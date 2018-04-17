@@ -57,6 +57,7 @@ export default class MyTemplate extends React.Component {
   render() {
     const { mytemplates } = this.props;
     const { isLoading }  = this.state;
+
     return (
       <div>
         {/*<Route path='/usercenter/mytemplate/uploadmytemp' component={UploadMyTemp}></Route>

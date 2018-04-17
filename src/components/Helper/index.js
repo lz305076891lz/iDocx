@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb,List, Divider } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 const data = {
@@ -9,9 +9,23 @@ const data = {
 
 const Helper = props => (
   <Layout className="layout">
+    <Divider/>
      <Content style={{ padding: '0 50px' }}>
-       <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>{data.info}</div>
+      <List>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+        <List.Item > 帮助文档测试 </List.Item>
+      </List>
      </Content>
+     <Divider/>
    </Layout>
 );
 

@@ -11,7 +11,7 @@ const footerData = [
   {
     id: 1,
     text: '关于我们',
-    href: 'https://weibo.com/u/1344686915',
+    href: '/aboutus',
   },
   {
     id: 2,
