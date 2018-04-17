@@ -59,8 +59,8 @@ export default class MyTemplate extends React.Component {
     const { isLoading }  = this.state;
     return (
       <div>
-      // <Route path='/usercenter/mytemplate/uploadmytemp' component={UploadMyTemp}></Route>
-      // <Link to='/usercenter/mytemplate/uploadmytemp'>生成自定义模版</Link>
+        {/*<Route path='/usercenter/mytemplate/uploadmytemp' component={UploadMyTemp}></Route>
+        <Link to='/usercenter/mytemplate/uploadmytemp'>测试模版页面</Link>*/}
       <Divider/>
         <Table dataSource={mytemplates} rowKey="id" loading={isLoading}>
           <Column
