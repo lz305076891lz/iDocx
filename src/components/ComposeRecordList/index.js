@@ -43,7 +43,7 @@ export default class ComposeRecordList extends React.Component {
   renderOperations = (text, record) => {
     return (
       <span>
-        <a onClick={() => { this.props.examineComposeResult(record.comp_id);console.log(record)}}>查看</a>
+        <a onClick={() => { this.props.examineComposeResult(record.comp_id) }}>查看</a>
       </span>
     );
   }
@@ -55,7 +55,7 @@ export default class ComposeRecordList extends React.Component {
     return (
       <div>
       <Divider/>
-      <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
+      <Table dataSource={composeRecordList} rowKey="id" loading={isLoading} pagination={{defaultPageSize:4}}>
         <Column
           title="文裆名称"
           dataIndex="doc_title"

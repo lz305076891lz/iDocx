@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, Link } from 'react-router-dom';
-import { Table, Button, Divider } from 'antd';
+import { Redirect, Route, Link, Switch } from 'react-router-dom';
+import { Table, Button, Divider, Pagination } from 'antd';
 
 
 import { getComposeRecordList } from '../../actions/users';
@@ -62,9 +62,9 @@ export default class MyTemplate extends React.Component {
 
     return (
       <div>
-      <Route path='/usercenter/mytemplate/uploadmytemplate' component={UploadMyTemp}></Route>
+        <Route path='/usercenter/mytemplate/uploadmytemplate' component={UploadMyTemp}></Route>
       <Divider/>
-        <Table dataSource={mytemplates} rowKey="id" loading={isLoading}>
+        <Table dataSource={mytemplates} rowKey="id" loading={isLoading} pagination={{defaultPageSize:4}}>
           <Column
             title="模版名称"
             dataIndex="template.title"
