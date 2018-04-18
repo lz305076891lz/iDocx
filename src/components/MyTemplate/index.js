@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect, Route, Link, Switch } from 'react-router-dom';
 import { Table, Button, Divider, Pagination } from 'antd';
 
-
+import {getMyTemplates} from '../../actions/usercenter';
 import { getComposeRecordList } from '../../actions/users';
 import { changeChosenTemplate } from '../../actions/compose'
 
@@ -20,6 +20,7 @@ const { Column } = Table;
 }), {
   getComposeRecordList,
   changeChosenTemplate,
+  getMyTemplates,
 })
 export default class MyTemplate extends React.Component {
   state = {
