@@ -45,48 +45,6 @@ export function logout(logoutObj) {
 }
 
 export async function getComposeRecordList(user_id) {
-  // if (__MOCK__) {
-  //   return [
-  //     {
-  //       comp_id: '7346610',
-  //       comp_path: 'data/results/96650577/7346610.docx',
-  //       id: '7346610',
-  //       doc_title: '暂无',
-  //       uploadDate: Date.now(),
-  //       template: {
-  //         id: '138',
-  //         title: '本科 湖南大学',
-  //         coverSrc: 'http://aidocx.com/封面\\长沙市\\湖南大学\\长沙市_湖南大学_本科_封面.PNG',
-  //         tags: {
-  //           organization: '',
-  //           degree: '学士',
-  //           type: '论文',
-  //         },
-  //       },
-  //       previewHref: 'http://view.officeapps.live.com/op/view.aspx?src=http%3A%2F%2Fwww.aidocx.com%2Fdata%2Fresults%2F96650577%2F7346610.docx',
-  //       downloadLinks: {
-  //         standard:{
-  //           id: '1',
-  //           name: '标准版',
-  //           price: 0,
-  //           downloadLink: 'http://www.aidocx.com/data/results/96650577/7346610.docx',
-  //         },
-  //         withreview: {
-  //           id: '2',
-  //           name: '带审阅版',
-  //           price: 0,
-  //           downloadLink: 'http://www.aidocx.com/data/results/96650577/7346610_NoStyle.docx',
-  //         },
-  //         nostyle: {
-  //           id: '3',
-  //           name: '无样式版',
-  //           price: 0,
-  //           downloadLink: 'http://www.aidocx.com/data/results/96650577/7346610_Revise.docx',
-  //         }
-  //       },
-  //     },
-  //   ];
-  // }
 
   return handleFetch(`${apiPublicPath}test/index`, {
     method: 'POST',
@@ -103,18 +61,6 @@ export async function getComposeRecordList(user_id) {
  * }
  */
 export async function editProfile(newUserObj) {
-  // if (__MOCK__) {
-  //   return {
-  //     success: true,
-  //     error: null,
-  //     data: {
-  //       username: 'Mondo2',
-  //       email: 'mondogao2@gmail.com',
-  //       tel: '18888888888',
-  //       user_id:'139',
-  //     }
-  //   };
-  // }
 
   return handleFetch(`${apiPublicPath}update/index`, {
     method: 'POST',

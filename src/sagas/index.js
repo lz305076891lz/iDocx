@@ -8,12 +8,13 @@ import {
   composeStart,
   composeEnd,
 } from '../actions/entities';
-import { examineComposeResult } from '../actions/usercenter';
+import { examineComposeResult, uploadMyTempStart, uploadMyTempEnd, getMyTemplates, gotMyTemplates } from '../actions/usercenter';
 import { changeDownloadFileList, changeChosenTemplate } from '../actions/compose';
 
 import { templates, fishes } from '../sources/schemas';
 import * as templatesSource from '../sources/templates';
 import * as composeSource from '../sources/compose';
+import * as usercenterSource from '../sources/usercenter';
 
 import userSaga from './users';
 
@@ -62,9 +63,27 @@ export function* updateDownloadListHandler({ payload: fileId }) {
   yield put(push('/compose/download'));
 }
 
+export function* uploadTemplatesHandler({ payload }) {
+  try {
+
+  } catch (e) {
+
+  }
+}
+
+export function* getMyTemplatesHandler({ payload }) {
+  try {
+
+  } catch (e) {
+
+  }
+}
+
 export default function* rootSaga() {
   yield takeLatest(getTemplates, templatesHandler);
   yield takeEvery(composeStart, composeHandler);
   yield takeEvery(examineComposeResult, updateDownloadListHandler);
+  yield takeEvery(uploadMyTempStart, uploadTemplatesHandler);
+  yield takeLatest(getMyTemplates, getMyTemplatesHandler);
   yield spawn(userSaga);
 }

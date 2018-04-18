@@ -74,7 +74,7 @@ class UploadPage extends React.Component {
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
 
   customRequest = (args) => {
-    console.log(args)
+    // console.log(args)
     const data = new FormData();
     data.append('file', args.file);
     // data.append(`template_name`, this.props.chosenTemplate.id)
@@ -148,7 +148,7 @@ class UploadPage extends React.Component {
 
 class FileUpload extends React.Component {
   handleChange = (info) => {
-    console.log(info)
+    // console.log(info)
     const fileList = info.fileList;
     this.props.handleFileListChange(fileList);
   }
@@ -196,7 +196,6 @@ class CoverInfo extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps.fileList.filter(file => file.uid === this.state.activeKey));
     if (nextProps.fileList.length > 0 && (!this.state.activeKey || nextProps.fileList.filter(file => file.uid === this.state.activeKey).length < 1)) {
       this.setState({
         activeKey: nextProps.fileList[0].uid,
