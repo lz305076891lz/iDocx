@@ -22,12 +22,11 @@ import {
 export function* loginHandler({ payload }) {
   try {
     const result = yield call(usersSource.login, payload);
-    console.log(result)
     const action = yield call(loginFinished, result);
 
     yield put(action);
   } catch (e) {
-    console.log(e);
+    alert(e);
 
     yield put(loginFinished(e));
   }
@@ -41,7 +40,7 @@ function* logoutHandler({ payload }) {
 
     yield put(action);
   } catch (e) {
-    console.log(e);
+    alert(e);
 
     yield put(logoutFinished(e));
   }
@@ -55,7 +54,7 @@ function* signupHandler({ payload }) {
 
     yield put(action);
   } catch (e) {
-    console.log(e);
+    alert(e);
 
     yield put(signupFinished(e));
   }
@@ -72,7 +71,7 @@ function* composeRecordHandler({ payload }) {
 
     yield put(action);
   } catch (e) {
-    console.log(e);
+    alert(e);
 
     yield put(gotComposeRecordList(e))
   }
@@ -89,7 +88,7 @@ function* editProfileHandler({payload}) {
 
     throw result.error;
   } catch (e) {
-    console.log(e);
+    alert(e);
 
     yield put(gotComposeRecordList(e))
   }
