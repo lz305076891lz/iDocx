@@ -2,11 +2,6 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb, Carousel } from 'antd';
 const { Header, Content, Footer } = Layout;
 
-import styles from './abc.css'
-
-function onChange(a, b, c) {
-  console.log(a, b, c);
-}
 
 
 const data = {
