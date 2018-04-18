@@ -60,8 +60,6 @@ export default class MyTemplate extends React.Component {
 
     return (
       <div>
-        {/*<Route path='/usercenter/mytemplate/uploadmytemp' component={UploadMyTemp}></Route>*/}
-        {/*<a href='http://www.aidocx.com/word/index.php/user/AutoTepmlate'>使用自定义模版</a>*/}
       <Divider/>
         <Table dataSource={mytemplates} rowKey="id" loading={isLoading}>
           <Column
