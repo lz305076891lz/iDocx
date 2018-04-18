@@ -39,7 +39,6 @@ class UploadMyTemp extends React.Component {
         });
     }
     handleClearOptChange = (e) => {
-       /* console.log('radio checked', e.target.value);*/
         this.setState({
             clearFmt: e.target.value,
         });
@@ -67,16 +66,14 @@ class UploadMyTemp extends React.Component {
       var optioninf='';
       optioninf=optioninf+this.state.adustComma +this.state.clearNullStyle+this.state.convertNotes+this.state.clearFmt;
 
-    this.props.composeStart(this.getSuccessList().map(file => file.response.id), this.props.chosenTemplateId,optioninf,coverinf);
+    this.props.composeStart(this.getSuccessList().map(file => file.response.id),optioninf,coverinf);
   }
 
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
 
   customRequest = (args) => {
-    console.log(args)
     const data = new FormData();
     data.append('file', args.file);
-    // data.append(`template_name`, this.props.chosenTemplate.id)
 
     fetch(args.action, {
       method: 'POST',
@@ -138,7 +135,6 @@ class UploadMyTemp extends React.Component {
 
 class FileUpload extends React.Component {
   handleChange = (info) => {
-    console.log(info)
     const fileList = info.fileList;
     this.props.handleFileListChange(fileList);
   }
@@ -158,6 +154,7 @@ class FileUpload extends React.Component {
         <Upload.Dragger {...props}>
             <div className={styles['upload-tip']}>
               <Icon type="arrow-up" className={styles.icon}/>
+              <h3>请上传作为模版使用的文档</h3>
               <h3>点击或拖拽文件到这里上传</h3>
             </div>
         </Upload.Dragger>
@@ -300,7 +297,6 @@ const mapState = (state) => {
 
   return {
     ...page,
-    chosenTemplate: state.entities.templates[page.chosenTemplateId],
   };
 };
 

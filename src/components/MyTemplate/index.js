@@ -10,6 +10,7 @@ import { changeChosenTemplate } from '../../actions/compose'
 import { getFullComposeRecordList } from '../../selectors/usercenter';
 
 import UploadMyTemp from './UploadMyTemp'
+import ComposePage from '../ComposePage'
 
 const { Column } = Table;
 
@@ -49,7 +50,8 @@ export default class MyTemplate extends React.Component {
           this.props.changeChosenTemplate(record.template.id);
         }}>应用</Link>
         <Divider type='vertical'/>
-         <a href="http://www.aidocx.com/word/index.php/user/AutoTepmlate">自定义</a>
+         {/*<a href="http://www.aidocx.com/word/index.php/user/AutoTepmlate">自定义</a>*/}
+         <Link to='/usercenter/mytemplate/uploadmytemplate'>自定义</Link>
       </span>
     );
   }
@@ -60,6 +62,7 @@ export default class MyTemplate extends React.Component {
 
     return (
       <div>
+      <Route path='/usercenter/mytemplate/uploadmytemplate' component={UploadMyTemp}></Route>
       <Divider/>
         <Table dataSource={mytemplates} rowKey="id" loading={isLoading}>
           <Column
