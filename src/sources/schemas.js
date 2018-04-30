@@ -1,5 +1,7 @@
 import { schema } from 'normalizr';
 
+const root = 'http://www.aidocx.cn/';
+
 export const template = new schema.Entity('templates');
 export const templates = [template];
 export const fish = new schema.Entity('fishes', {}, {
@@ -8,29 +10,29 @@ export const fish = new schema.Entity('fishes', {}, {
   processStrategy(fish) {
     return {
       ...fish,
-      id: fish.comp_id,
+      id: '文档'+ fish.comp_id.substr(fish.comp_id.length - 5),
       filepath: fish.comp_path,
-      fileName: `文档${fish.comp_id}`,
-      // previewHref: `http://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(`http://www.aidocx.com/index.php/api/files/${fish.comp_id}`)}`,
-      previewHref: `http://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(`http://www.aidocx.com/${fish.comp_path}`)}`,
+      // fileName: fish.doc_title,
+      // previewHref: `http://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(`${root}index.php/api/files/${fish.comp_id}`)}`,
+      previewHref: `http://39.106.25.99/op/view.aspx?src=${encodeURIComponent(`${root}${fish.comp_path}`)}`,
       downloadLinks: {
         standard: {
           id: '1',
           name: '标准版',
           price: 0,
-          downloadLink: `http://www.aidocx.com/${fish.comp_path}`,
+          downloadLink: `${root}${fish.comp_path}`,
         },
         withreview: {
           id: '2',
           name: '带审阅版',
           price: 0,
-          downloadLink: `http://www.aidocx.com/${fish.comp_path.split(".")[0]}_NoStyle.docx`,
+          downloadLink: `${root}${fish.comp_path.split(".")[0]}_Revise.docx`,
         },
         nostyle: {
           id: '3',
           name: '无样式版',
           price: 0,
-          downloadLink: `http://www.aidocx.com/${fish.comp_path.split(".")[0]}_Revise.docx`,
+          downloadLink: `${root}${fish.comp_path.split(".")[0]}_NoStyle.docx`,
         },
       },
     };

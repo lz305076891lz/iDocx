@@ -26,13 +26,11 @@ class UploadPage extends React.Component {
         this.setState({
             convertNotes: Number(e.target.checked) ,
         });
-
     }
      handleClearStyle=(e)=>{
          this.setState({
               clearNullStyle: Number(e.target.checked) ,
          });
-
     }
     handleCommaChange=(e)=>{
         this.setState({
@@ -64,20 +62,22 @@ class UploadPage extends React.Component {
   }
 
   handleComposeClick = (e) => {
+      var temp_id = this.props.chosenTemplateId;
       var coverinf='zz';
       var optioninf='';
       optioninf=optioninf+this.state.adustComma +this.state.clearNullStyle+this.state.convertNotes+this.state.clearFmt;
-
-    this.props.composeStart(this.getSuccessList().map(file => file.response.id), this.props.chosenTemplateId,optioninf,coverinf);
+      if(!this.props.chosenTemplate.title){
+        temp_id = this.props.user_id + "_" + this.props.chosenTemplateId;
+      }
+    this.props.composeStart(this.getSuccessList().map(file => file.response.id), temp_id, optioninf, coverinf);
   }
 
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
 
   customRequest = (args) => {
-    // console.log(args)
+
     const data = new FormData();
     data.append('file', args.file);
-    // data.append(`template_name`, this.props.chosenTemplate.id)
 
     fetch(args.action, {
       method: 'POST',
@@ -91,18 +91,18 @@ class UploadPage extends React.Component {
   }
 
   render() {
-    if (!this.props.chosenTemplate) {
+    if (!this.props.chosenTemplateId) {
       return (
         <Redirect to={'/compose'}/>
       );
     }
 
     const successList = this.getSuccessList();
-
+    const title = this.props.chosenTemplate.title?this.props.chosenTemplate.title:"自定义模版"
     return (
       <div>
         <InFlowTip
-          tip={`已选模板：${this.props.chosenTemplate.title}`}
+          tip={`已选模板：${title}`}
           linkTo="/compose"
           linkText="修改模板"/>
         <div className={styles['upload-file-container']}>
@@ -148,7 +148,6 @@ class UploadPage extends React.Component {
 
 class FileUpload extends React.Component {
   handleChange = (info) => {
-    // console.log(info)
     const fileList = info.fileList;
     this.props.handleFileListChange(fileList);
   }
@@ -314,11 +313,13 @@ class CoverInfoForm extends React.Component {
 const WrappedCoverInfoForm = Form.create()(CoverInfoForm);
 
 const mapState = (state) => {
+  const user_id = state.users.current.user_id;
   const page = state.compose.upload;
-
+  const mytemplate = state.usercenter.myTempList?state.usercenter.myTempList.find(v=>v.id==page.chosenTemplateId):[];
   return {
+    user_id,
     ...page,
-    chosenTemplate: state.entities.templates[page.chosenTemplateId],
+    chosenTemplate: state.entities.templates[page.chosenTemplateId]?state.entities.templates[page.chosenTemplateId]:mytemplate,
   };
 };
 

@@ -3,6 +3,9 @@ import { handleActions, combineActions } from 'redux-actions';
 
 import { gotTemplates, composeEnd } from '../actions/entities';
 import { gotComposeRecordList } from '../actions/users';
+import { autonumEnd } from '../actions/autonumber';
+import { docEnd } from '../actions/docompose';
+import { formuleEnd } from '../actions/formule';
 
 const templates = handleActions({
   [gotTemplates](state, { payload }) {
@@ -20,7 +23,7 @@ const templates = handleActions({
 }, {});
 
 const fishes = handleActions({
-  [combineActions(composeEnd, gotComposeRecordList)](state, { payload }) {
+  [combineActions(composeEnd, autonumEnd, docEnd,formuleEnd, gotComposeRecordList)](state, { payload }) {
     return {
       ...state,
       ...payload.entities.fishes,

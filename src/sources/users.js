@@ -46,7 +46,7 @@ export function logout(logoutObj) {
 
 export async function getComposeRecordList(user_id) {
 
-  return handleFetch(`${apiPublicPath}test/index`, {
+  return handleFetch(`${apiPublicPath}getcomposelist/index`, {
     method: 'POST',
     body: JSON.stringify(user_id),
   });

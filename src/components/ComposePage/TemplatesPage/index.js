@@ -79,11 +79,11 @@ class SearchInput extends React.Component {
       <div className={styles['search-input']}>
         <Input.Search
           size="large"
-          placeholder={'输入学校名称查找相应模板'}
+          placeholder={'输入关键词，查找模板'}
           value={this.props.value}
           onChange={this.props.onChange}
           onSearch={this.props.onSearch}
-          enterButton={'Search'}
+          enterButton={'搜索'}
         />
       </div>
     );

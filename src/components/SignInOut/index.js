@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import browserCookie from 'browser-cookies';
+
 import cn from 'classnames';
-import { Button, Row, Col, Modal, Form, Input, Tabs, Checkbox } from 'antd';
+import { Button, Row, Col, Modal, Form, Input, Tabs, Checkbox, message } from 'antd';
 
 import { signup, login, logout } from '../../actions/users';
-
 import styles from './SignInOut.scss';
 
+var forge = require('node-forge');
 const FormItem = Form.Item;
 
 const FORM_STATUS = {
@@ -46,20 +47,36 @@ class SignInOut extends React.Component {
   }
 
   handleSubmit = (values) => {
-    // console.log(values)
-    // let encryptedValues = {
-    //   username:values.username?values.username:"",
-    //   tel:values.tel,
-    //   email:values.email,
-    //   password:values.password=>values.password,
-    // }
+
     const { isModelLoading, formStatus } = this.state;
+
+    let encryptedValues ={}
+
+    let md = forge.md.md5.create();
+    md.update(values.password)
+    md.update(md.digest().toHex())
+
+    if(formStatus==FORM_STATUS.LOGIN){
+      encryptedValues = {
+        tel:values.tel,
+        email:values.email,
+        password:md.digest().toHex(),
+      }
+    }else{
+      encryptedValues = {
+        username:values.username,
+        tel:values.tel,
+        email:values.email,
+        password:md.digest().toHex(),
+      }
+    }
 
     if (isModelLoading) {
       return;
     }
 
-    this.props[formStatus.toLowerCase()](values);
+    this.props[formStatus.toLowerCase()](encryptedValues);
+
   }
 
   showModel = (formStatus = FORM_STATUS.LOGIN) => () => {

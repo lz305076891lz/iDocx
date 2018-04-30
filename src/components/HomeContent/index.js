@@ -19,7 +19,7 @@ const pageData = [
   {
     id: 1,
     title: '轻松高效',
-    desc: '秒杀长文档排版，飞一般的体验',
+    desc: '秒杀长文档排版，轻松办公写作',
     backgroundColor: '#518de3',
     img: {
       src: pageImg1,
@@ -29,7 +29,7 @@ const pageData = [
     {
         id: 2,
         title: '零学习成本',
-        desc: '会搜索，会上传下载，就解决长文档排版问题',
+        desc: '长文档排版=搜索+上传+下载',
         backgroundColor: '#518de3',
         img: {
             src: pageImg1,
@@ -39,40 +39,30 @@ const pageData = [
     {
     id: 3,
     title: '应用广泛',
-    desc: '适用多种应用场景，长文档排版我们承包了',
+    desc: '长文档排版，我们承包了',
     backgroundColor: '#4b53ec',
     img: {
-      src: introImg1,
+      src: pageImg1,
       alt: '应用广泛',
     },
   },
     {
         id: 4,
         title: '深度智能',
-        desc: '集十几年研究于一个功能，全智能型长文档排版体验',
+        desc: '专家系统+上下文分析+大数据分析，更懂文档',
         backgroundColor: '#518de3',
         img: {
-            src: introImg2,
+            src: pageImg1,
             alt: '深度智能',
         },
     },
     {
         id: 5,
         title: '独立内核',
-        desc: '独创长文档排版内核，不依赖于任何文档编辑环境',
+        desc: '独创排版内核，不依赖于第三方编辑环境',
         backgroundColor: '#518de3',
         img: {
-            src: introImg3,
-            alt: '省时省力',
-        },
-    },
-    {
-        id: 6,
-        title: '长线功能',
-        desc: '收集整理资料→辅助写作→智能排版→发布文档，助你高效工作',
-        backgroundColor: '#518de3',
-        img: {
-            src: introImg4,
+            src: pageImg1,
             alt: '省时省力',
         },
     },
@@ -82,7 +72,7 @@ const introData = [
   {
     id: 1,
     title: '智能',
-    desc: '选择模板、上传文档，两步搞定，即刻上手',
+    desc: '排版精准，格式统一，提示问题，比你更懂文档',
     img: {
       src: introImg1,
       alt: '智能',
@@ -91,7 +81,7 @@ const introData = [
   {
     id: 2,
     title: '高效',
-    desc: '秒速级处理，一篇50页文档仅需三秒',
+    desc: '选择模板、上传文档，下载完成；即刻上手，秒速级处理',
     img: {
       src: introImg2,
       alt: '高效',
@@ -99,8 +89,8 @@ const introData = [
   },
     {
     id: 3,
-    title: '多格式',
-    desc: 'word、wps均适用，支持doc、docx格式',
+    title: '丰富',
+    desc: '整理资料→写作→排版→发布文档，全线提升效率效果',
     img: {
       src: introImg3,
       alt: '多格式',
@@ -109,7 +99,7 @@ const introData = [
   {
     id: 4,
     title: '定制',
-    desc: '支持个性化定制文档模板，处处帮你减轻工作量',
+    desc: '支持在线个性化定制排版方案，应用范围广泛',
     img: {
       src: introImg4,
       alt: '定制',

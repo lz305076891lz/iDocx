@@ -1,6 +1,8 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
 
+import { message } from 'antd'
+
 import * as usersSource from '../sources/users';
 import { plainFishes, fishes } from '../sources/schemas';
 
@@ -22,9 +24,13 @@ export function* loginHandler({ payload }) {
     const result = yield call(usersSource.login, payload);
     const action = yield call(loginFinished, result);
 
+    if(result.error){
+      message.error(result.error)
+    }
+
     yield put(action);
   } catch (e) {
-    alert(e);
+    console.log(e);
 
     yield put(loginFinished(e));
   }
@@ -38,7 +44,7 @@ function* logoutHandler({ payload }) {
 
     yield put(action);
   } catch (e) {
-    alert(e);
+    console.log(e);
 
     yield put(logoutFinished(e));
   }
@@ -47,12 +53,15 @@ function* logoutHandler({ payload }) {
 function* signupHandler({ payload }) {
   try {
     const result = yield call(usersSource.register, payload);
-
     const action = yield call(signupFinished, result);
+
+    if(result.error){
+      message.error(result.error)
+    }
 
     yield put(action);
   } catch (e) {
-    alert(e);
+    console.log(e);
 
     yield put(signupFinished(e));
   }
@@ -69,7 +78,7 @@ function* composeRecordHandler({ payload }) {
 
     yield put(action);
   } catch (e) {
-    alert(e);
+    console.log(e);
 
     yield put(gotComposeRecordList(e))
   }
@@ -86,7 +95,7 @@ function* editProfileHandler({payload}) {
 
     throw result.error;
   } catch (e) {
-    alert(e);
+    console.log(e);
 
     yield put(gotComposeRecordList(e))
   }

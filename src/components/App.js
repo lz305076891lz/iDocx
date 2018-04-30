@@ -1,18 +1,15 @@
 import React from 'react';
 import { Layout } from 'antd';
-
-import {
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import {Switch, Route, Redirect,} from 'react-router-dom';
 
 import HeaderNav from './HeaderNav';
 import FooterNav from './FooterNav';
 import Header from './Header';
-
 import HomeContent from './HomeContent';
+import AutoNumPage from './AutoNumber';
 import ComposePage from './ComposePage';
+import DocomposePage from './DocumentPage';
+import FormulePage from './Formule';
 import UserCenterPage from './UserCenterPage';
 import ErrorHandler from './ErrorHandler';
 import Helper from './Helper';
@@ -39,6 +36,9 @@ const App = props => (
         <Route exact path="/" component={HomeContent}/>
         <Route path="/home" render={() => <Redirect to="/"/>}/>
         <Route path="/compose" component={ComposePage}/>
+        <Route path="/AutoNumber" component={AutoNumPage}/>
+        <Route path="/Docompose" component={DocomposePage}/>
+        <Route path="/Formule" component={FormulePage}/>
         <Route path="/usercenter" component={UserCenterPage}/>
         <Route path="/Helper" component={Helper}/>
         <Route path="/AboutUs" component={AboutUs}/>

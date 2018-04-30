@@ -57,6 +57,7 @@ export default class ComposeRecordList extends React.Component {
       <Divider/>
       <Table dataSource={composeRecordList} rowKey="id" loading={isLoading} pagination={{defaultPageSize:4}}>
         <Column
+          width="300px"
           title="文裆名称"
           dataIndex="doc_title"
           key="doc_title"/>

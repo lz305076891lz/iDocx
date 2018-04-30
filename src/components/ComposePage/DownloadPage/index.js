@@ -22,13 +22,11 @@ class DownloadPage extends React.Component {
     });
   }
 
-  handleDownloadButtonCllick = (e) => {
+  handleDownloadButtonCllick = (e,index) => {
       if(this.props.loginflag){
-        this.props.fishes.forEach((fish) => {
-          window.open(fish.downloadLinks[this.state.downloadType].downloadLink);
-        });
+          window.open(this.props.fishes[index].downloadLinks[this.state.downloadType].downloadLink);
       }else{
-        alert("请先登陆")
+       alert("请先登陆")
       }
   }
 
@@ -45,29 +43,28 @@ class DownloadPage extends React.Component {
           tip="排版成功！"
           linkTo="/compose/upload"
           linkText="重新上传"/>
-        <Row gutter={36}>
+        <Row gutter={24}>
           <Col span={6}>
             <div className={styles.wrapper}>
               <Card title="下载">
-                {this.props.fishes.map(fish=>{
+                {this.props.fishes.map((fish,index)=>{
                   return(
-                    <Select key={fish.id} placeholder="请选择下载版本" value={this.state.downloadType} onChange={this.handleSelectChange}>
+                   <div className='downpart'>
+                    <Select  style={{ width: 165 }} key={fish.id} placeholder="请选择下载版本" value={this.state.downloadType} onChange={this.handleSelectChange}>
                       {Object.keys(fish.downloadLinks).map((typeName) => {
                         const type = fish.downloadLinks[typeName];
-                        return (<Option value={typeName} key={type.id}>{fish.id}:{type.name}</Option>);
+                        return (<Option value={typeName} key={type.id}>{type.name}：{fish.doc_title?fish.doc_title:fish.id}</Option>);
                       })}
                     </Select>
-                  )
+                    <Button type="primary" className={styles['btn-download']} onClick={(e) => this.handleDownloadButtonCllick(e, index)}  disabled={!this.state.downloadType}>
+                          下载
+                        </Button>
+                     <br/>
+                 </div>
+                    )
                 })
               }
-                <Button
-                  type="primary"
-                  className={styles['btn-download']}
-                  onClick={this.handleDownloadButtonCllick}
-                  disabled={!this.state.downloadType}>
-                  下载
-                </Button>
-              </Card>
+             </Card>
             </div>
           </Col>
 
@@ -75,7 +72,7 @@ class DownloadPage extends React.Component {
             <div className={styles.wrapper}>
               <Tabs>
                 {this.props.fishes.map(fish => (
-                  <TabPane tab={fish.fileName} key={fish.id}>
+                  <TabPane tab={fish.doc_title?fish.doc_title:fish.id} key={fish.id}>
                     <div className={styles['preview-wrapper']}>
                       <iframe src={fish.previewHref} frameBorder="0"/>
 

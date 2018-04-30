@@ -29,7 +29,19 @@ const rootReducer = createRootReducer({
   router: routerReducer,
 });
 
-let initialState = {};
+let initialState = {}
+//   users:{
+//     current:{
+//         username: "Lizhenhust",
+//         user_id: "160",
+//         tel: "15927634879",
+//         email: "305076891@qq.com",
+//         avatar_path: null,
+//         success: "true",
+//       },
+//     isLoading:false,
+//     }
+// };
 
 
 const store = createStore(

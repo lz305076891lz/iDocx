@@ -1,21 +1,22 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 
-import { gotComposeRecordList, gotMyTemplates } from '../actions/users';
-import { uploadMyTempEnd } from '../actions/usercenter';
+import { gotComposeRecordList } from '../actions/users';
+import { uploadMyTempEnd , gotMyTemplates} from '../actions/usercenter';
 
 export const composeRecordList = handleActions({
   [gotComposeRecordList](state, { payload }) {
     return payload.result;
   },
+}, []);
+
+export const myTempList = handleActions({
   [gotMyTemplates](state, { payload }) {
-    return payload.result;
+    return payload;
   },
-  [uploadMyTempEnd](state, { payload }){
-    return payload.result;
-  }
 }, []);
 
 export default combineReducers({
   composeRecordList,
+  myTempList,
 });
