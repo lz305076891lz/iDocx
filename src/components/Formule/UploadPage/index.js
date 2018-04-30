@@ -8,8 +8,8 @@ import { apiPublicPath } from '../../../../settings';
 import InFlowTip from '../../InFlowTip';
 
 import styles from './UploadPage.scss';
-import { changeUploadFileList } from '../../../actions/autonumber';
-import { docStart } from '../../../actions/docompose';
+import { changeUploadFileList } from '../../../actions/formule';
+import { formuleStart } from '../../../actions/formule';
 
 
 const RadioGroup = Radio.Group;
@@ -27,11 +27,11 @@ class UploadPage extends React.Component {
         convertNotes: Number(e.target.checked),
       });
     }
-    handleClearStyle=(e) => {
-      this.setState({
-        clearNullStyle: Number(e.target.checked),
-      });
-    }
+     handleClearStyle=(e) => {
+       this.setState({
+         clearNullStyle: Number(e.target.checked),
+       });
+     }
     handleCommaChange=(e) => {
       this.setState({
         adustComma: Number(e.target.checked),
@@ -55,11 +55,11 @@ class UploadPage extends React.Component {
       this.props.changeUploadFileList(this.getSuccessList());
     }
 
-  handleDocumentClick = (e) => {
+  handleFormuleClick = (e) => {
     const coverinf = 'zz';
     let optioninf = '';
     optioninf = optioninf + this.state.adustComma + this.state.clearNullStyle + this.state.convertNotes + this.state.clearFmt;
-    this.props.docStart(this.getSuccessList().map(file => file.response.id), optioninf, coverinf);
+    this.props.formuleStart(this.getSuccessList().map(file => file.response.id), optioninf, coverinf);
   }
 
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
@@ -80,6 +80,7 @@ class UploadPage extends React.Component {
   }
 
   render() {
+    console.log("pass")
     const successList = this.getSuccessList();
 
     return (
@@ -88,7 +89,7 @@ class UploadPage extends React.Component {
           <FileUpload
             handleFileListChange={this.handleFileListChange}
             fileList={this.state.fileList}
-            loading={this.props.isDocomposing}
+            loading={this.props.isFormuling}
             customRequest={this.customRequest}
           />
         </div>
@@ -115,9 +116,9 @@ class UploadPage extends React.Component {
             type="primary"
             className={styles['start-btn']}
             disabled={successList.length < 1}
-            onClick={this.handleDocumentClick}
-            loading={this.props.isDocomposing}>
-            开始公文排版
+            onClick={this.handleFormuleClick}
+            loading={this.props.isFormuling}>
+            开始公式修复
           </Button>
         </div>
       </div>
@@ -165,7 +166,7 @@ class FileUpload extends React.Component {
 
 const mapState = (state) => {
   const user_id = state.users.current.user_id;
-  const page = state.docompose.upload;
+  const page = state.formule.upload;
   return {
     user_id,
     ...page,
@@ -174,7 +175,7 @@ const mapState = (state) => {
 
 const mapDispatch = {
   changeUploadFileList,
-  docStart,
+  formuleStart,
 };
 
 export default connect(mapState, mapDispatch)(UploadPage);

@@ -2,7 +2,7 @@ import { createActions } from "redux-actions";
 import { identity } from "ramda";
 
 export const {
-  entities: {
+  docompose: {
     docStart,
     docEnd,
     docRecordDelete,
@@ -10,7 +10,7 @@ export const {
     changeDownloadFileList
   }
 } = createActions({
-  ENTITIES: {
+  DOCOMPOSE: {
     DOC_START: (fileIds, composeOpt, coverInf) => ({
       fileIds,
       composeOpt,
