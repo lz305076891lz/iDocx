@@ -8,8 +8,8 @@ import { apiPublicPath } from '../../../../settings';
 import InFlowTip from '../../InFlowTip';
 
 import styles from './UploadPage.scss';
-import { changeUploadFileList } from '../../../actions/formule';
-import { formuleStart } from '../../../actions/formule';
+import { changeUploadFileList, formuleStart } from '../../../actions/formule';
+import { autonumStart } from '../../../actions/autonumber';
 
 
 const RadioGroup = Radio.Group;
@@ -80,7 +80,6 @@ class UploadPage extends React.Component {
   }
 
   render() {
-    console.log("pass")
     const successList = this.getSuccessList();
 
     return (
@@ -176,6 +175,7 @@ const mapState = (state) => {
 const mapDispatch = {
   changeUploadFileList,
   formuleStart,
+  autonumStart,
 };
 
 export default connect(mapState, mapDispatch)(UploadPage);

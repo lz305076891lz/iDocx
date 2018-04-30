@@ -14,14 +14,10 @@ const menuData = [
         name: 'home',
         title: '首页',
     },
-    // {
-    //     name: 'compose',
-    //     title: '智能排版',
-    // },
-    // {
-    //     name: 'docompose',
-    //     title: '公文排版',
-    // },
+    {
+        name: 'compose',
+        title: '智能排版',
+    },
     {
         name: 'usercenter',
         title: '个人中心',
@@ -40,19 +36,12 @@ const more_menu = (
         <Menu.Item>
             <Link to="/formule">公式修复</Link>
         </Menu.Item>
-    </Menu>
-)
-
-const anycompose = (
-    <Menu>
-        <Menu.Item>
-            <Link to="/compose">论文排版</Link>
-        </Menu.Item>
         <Menu.Item>
             <Link to="/docompose">公文排版</Link>
         </Menu.Item>
     </Menu>
 )
+
 
 const HeaderNav = (props) => {
     const { isTransparent = true, location } = props;
@@ -91,11 +80,6 @@ const HeaderNav = (props) => {
                             );
                         })}
 
-                        <Menu.Item key="more">
-                            <Dropdown overlay={anycompose}>
-                                <Link to="/compose">智能排版<Icon type="down" /></Link>
-                            </Dropdown>
-                        </Menu.Item>
                         <Menu.Item key="less">
                             <Dropdown overlay={more_menu}>
                                 <Link to="/autonumber">更多功能<Icon type="down" /></Link>

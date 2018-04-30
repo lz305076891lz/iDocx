@@ -66,11 +66,10 @@ export function* composeHandler({
 
 export function* formuleHandler({ payload: { fileIds, composeOpt, coverInf,},}) {
   try {
-    const fetchArr = fileIds.map(fileId => (
-      call(formuleSource.formule, {
-        fileId, composeOpt, coverInf,})
+      const fetchArr = fileIds.map(fileId => (
+       call(formuleSource.formule, {
+          fileId, composeOpt, coverInf,})
     ));
-
     const data = yield all(fetchArr);
     const normalizedData = yield call(normalize, data, fishes);
 
