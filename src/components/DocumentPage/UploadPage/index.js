@@ -117,7 +117,7 @@ class UploadPage extends React.Component {
             disabled={successList.length < 1}
             onClick={this.handleDocumentClick}
             loading={this.props.isDocomposing}>
-            开始公文排版
+            开始文字转编号
           </Button>
         </div>
       </div>

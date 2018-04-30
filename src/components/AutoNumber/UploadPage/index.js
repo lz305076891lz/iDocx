@@ -8,8 +8,8 @@ import { apiPublicPath } from '../../../../settings';
 import InFlowTip from '../../InFlowTip';
 
 import styles from './UploadPage.scss';
-import { changeUploadFileList } from '../../../actions/formule';
-import { formuleStart } from '../../../actions/formule';
+import { changeUploadFileList } from '../../../actions/autonumber';
+import { autonumStart } from '../../../actions/autonumber';
 
 
 const RadioGroup = Radio.Group;
@@ -55,11 +55,11 @@ class UploadPage extends React.Component {
       this.props.changeUploadFileList(this.getSuccessList());
     }
 
-  handleFormuleClick = (e) => {
+  handleAutonumClick = (e) => {
     const coverinf = 'zz';
     let optioninf = '';
     optioninf = optioninf + this.state.adustComma + this.state.clearNullStyle + this.state.convertNotes + this.state.clearFmt;
-    this.props.formuleStart(this.getSuccessList().map(file => file.response.id), optioninf, coverinf);
+    this.props.autonumStart(this.getSuccessList().map(file => file.response.id), optioninf, coverinf);
   }
 
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
@@ -115,7 +115,7 @@ class UploadPage extends React.Component {
             type="primary"
             className={styles['start-btn']}
             disabled={successList.length < 1}
-            onClick={this.handleFormuleClick}
+            onClick={this.handleAutonumClick}
             loading={this.props.isNumbering}>
             开始文字转编号
           </Button>
@@ -165,7 +165,7 @@ class FileUpload extends React.Component {
 
 const mapState = (state) => {
   const user_id = state.users.current.user_id;
-  const page = state.formule.upload;
+  const page = state.autonumber.upload;
   return {
     user_id,
     ...page,
@@ -174,7 +174,7 @@ const mapState = (state) => {
 
 const mapDispatch = {
   changeUploadFileList,
-  formuleStart,
+  autonumStart,
 };
 
 export default connect(mapState, mapDispatch)(UploadPage);

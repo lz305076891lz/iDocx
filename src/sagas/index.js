@@ -7,13 +7,11 @@ import { examineComposeResult, uploadMyTempStart, uploadMyTempEnd, getMyTemplate
 import { changeDownloadFileList, changeChosenTemplate } from '../actions/compose';
 import { autonumStart, autonumEnd, autonumRecordDelete } from '../actions/autonumber';
 import { docStart, docEnd, docRecordDelete } from '../actions/docompose';
-import {formuleStart, formuleEnd, formuleRecordDelete} from "actions/formule";
 import { templates, fishes } from '../sources/schemas';
 import * as templatesSource from '../sources/templates';
 import * as composeSource from '../sources/compose';
 import * as autonumSource from '../sources/autonumber';
 import * as documentSource from '../sources/docompose';
-import * as formuleSource from '../sources/formule';
 import * as usercenterSource from '../sources/usercenter';
 
 import userSaga from './users';
@@ -64,46 +62,25 @@ export function* composeHandler({
   }
 }
 
-export function* formuleHandler({ payload: { fileIds, composeOpt, coverInf,},}) {
+export function* autonumHandler({ payload: { fileIds, composeOpt, coverInf,},}) {
   try {
     const fetchArr = fileIds.map(fileId => (
-      call(formuleSource.formule, {
+      call(autonumSource.autonumber, {
         fileId, composeOpt, coverInf,})
     ));
 
     const data = yield all(fetchArr);
     const normalizedData = yield call(normalize, data, fishes);
 
-    const action = yield call(formuleEnd, normalizedData);
+    const action = yield call(autonumEnd, normalizedData);
 
     yield put(action);
-    yield put(push('/formule/download'));
+    yield put(push('/autonumber/download'));
   } catch (e) {
-    const errAction = yield call(formuleEnd, e);
+    const errAction = yield call(autonumEnd, e);
 
     yield put(errAction);
   }
-}
-
-export function* autonumHandler({ payload: { fileIds, composeOpt, coverInf,},}) {
-    try {
-        const fetchArr = fileIds.map(fileId => (
-            call(autonumSource.autonumber, {
-                fileId, composeOpt, coverInf,})
-        ));
-
-        const data = yield all(fetchArr);
-        const normalizedData = yield call(normalize, data, fishes);
-
-        const action = yield call(autonumEnd, normalizedData);
-
-        yield put(action);
-        yield put(push('/autonumber/download'));
-    } catch (e) {
-        const errAction = yield call(autonumEnd, e);
-
-        yield put(errAction);
-    }
 }
 
 export function* documentHandler({ payload: { fileIds, composeOpt, coverInf } }) {
@@ -148,7 +125,6 @@ export default function* rootSaga() {
   yield takeEvery(composeStart, composeHandler);
   yield takeEvery(autonumStart, autonumHandler);
   yield takeEvery(docStart, documentHandler);
-  yield takeEvery(formuleStart, formuleHandler);
   yield takeEvery(examineComposeResult, updateDownloadListHandler);
   yield takeEvery(getMyTemplates, getMyTemplatesHandler);
   yield spawn(userSaga);

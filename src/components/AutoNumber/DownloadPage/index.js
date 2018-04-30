@@ -33,7 +33,7 @@ class DownloadPage extends React.Component {
   render() {
     if (this.props.fishes.length < 1) {
       return (
-        <Redirect to={'/formule'}/>
+        <Redirect to={'/autonumber'}/>
       );
     }
 
@@ -41,7 +41,7 @@ class DownloadPage extends React.Component {
       <div className={styles['download-page']}>
         <InFlowTip
           tip="排版成功！"
-          linkTo="/formule/upload"
+          linkTo="/autonumber/upload"
           linkText="重新上传"/>
         <Row gutter={24}>
           <Col span={6}>
@@ -91,7 +91,7 @@ class DownloadPage extends React.Component {
 
 
 const mapState = (state) => {
-  const page = state.formule.download;
+  const page = state.autonumber.download;
   const user_id = state.users.current.user_id;
   return ({
     ...page,
