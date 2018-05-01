@@ -11,19 +11,19 @@ import styles from './FooterNav.scss';
 const footerData = [
   {
     id: 1,
-    text: '关于',
+    text: '关于我们',
     href: '/aboutus',
   },
   {
     id: 2,
-    text: '帮助',
+    text: '帮助中心',
     href: '/Helper',
   },
 ];
 const footerctcData = [
     {
         id: 1,
-        text: '关注',
+        text: '新浪微博',
         href: 'https://weibo.com/aidocx',
     },
 
@@ -31,7 +31,7 @@ const footerctcData = [
 const footeremailData = [
     {
         id: 1,
-        text: '邮箱',
+        text: '联系邮箱',
         href: 'mailto:gxgjames@hust.edu.cn',
     },
 
@@ -49,21 +49,21 @@ const FooterNav = props => (
     <Container>
       <Row>
         {footerData.map(link =>
-        <Col key={link.id} xs={12} sm={4}>
+        <Col key={link.id} xs={12} sm={5}>
           <Link to={link.href}>{link.text}</Link>
         </Col>)}
-          {footerctcData.map(link =>
-              <Col key={link.id} xs={12} sm={4}>
+        {footerctcData.map(link =>
+            <Col key={link.id} xs={12} sm={5}>
+              <a href={link.href} target="_blank">{link.text}</a>
+        </Col>)}
+        {footeremailData.map(link =>
+            <Col key={link.id} xs={12} sm={5}>
                 <a href={link.href} target="_blank">{link.text}</a>
-          </Col>)}
-          {footeremailData.map(link =>
-              <Col key={link.id} xs={12} sm={4}>
-                  <a href={link.href} target="_blank">{link.text}</a>
-              </Col>)}
-          {footerAuthlData.map(link =>
-              <Col key={link.id} xs={12} sm={4}>
-                  <a href={link.href} target="_blank">{link.text}</a>
-              </Col>)}
+            </Col>)}
+        {footerAuthlData.map(link =>
+            <Col key={link.id} xs={12} sm={4}>
+                <a href={link.href} target="_blank">{link.text}</a>
+            </Col>)}
       </Row>
     </Container>
   </Footer>

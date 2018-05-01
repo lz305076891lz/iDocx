@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Upload, Button, Tabs, Form, Input, Radio, Checkbox} from 'antd';
+import { Icon, Upload, Button, Tabs, Form, Input, Radio, Checkbox, Modal, Row, Col} from 'antd';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -105,6 +105,7 @@ class UploadPage extends React.Component {
           tip={`已选模板：${title}`}
           linkTo="/compose"
           linkText="修改模板"/>
+          <Share></Share>
         <div className={styles['upload-file-container']}>
           <FileUpload
             handleFileListChange={this.handleFileListChange}
@@ -306,6 +307,55 @@ class CoverInfoForm extends React.Component {
           </FormItem>
         </section>
       </Form>
+    );
+  }
+}
+
+class Share extends React.Component{
+    state = {
+    loading: false,
+    visible: false,
+  }
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+  handleOk = () => {
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false, visible: false });
+    }, 3000);
+  }
+  handleCancel = () => {
+    this.setState({ visible: false });
+  }
+  render() {
+    const { visible, loading } = this.state;
+    return (
+      <div>
+        <Button type="primary" className = "sharebtn" onClick={this.showModal}>
+          分享模版链接
+        </Button>
+        <Modal
+          visible={visible}
+          title="Title"
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button key="back" onClick={this.handleCancel}>Return</Button>,
+            <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
+              Submit
+            </Button>,
+          ]}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
+      </div>
     );
   }
 }

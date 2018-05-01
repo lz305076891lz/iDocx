@@ -3,11 +3,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-/*.container-absolute {*/
-  /*position: absolute;*/
-  /*margin-left: 50%;*/
-  /*transform: translateX(-50%);*/
-/*}*/
 .clear-fix:before, .clear-fix:after {
   content: '';
   display: table;

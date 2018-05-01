@@ -24,7 +24,6 @@ class TemplatesPage extends React.Component {
     this.props.getTemplates({
       search: this.props.searchValue,
     });
-    // console.log(this.props)
   }
 
   handlePageChange = (page) => {
@@ -40,9 +39,16 @@ class TemplatesPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getTemplates({
-      page: this.props.page !== -1 ? this.props.page : 1,
-    });
+    let sharetemp = this.props.match.params.tempid
+    if(!sharetemp){
+      this.props.getTemplates({
+        page: this.props.page !== -1 ? this.props.page : 1,
+      });
+    }else {
+      this.props.getTemplates({
+        search:sharetemp,
+      })
+    }
   }
 
   render() {
