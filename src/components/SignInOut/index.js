@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import browserCookie from 'browser-cookies';
 
 import cn from 'classnames';
@@ -149,9 +150,6 @@ class SignInOut extends React.Component {
 }
 
 const LoginForm = Form.create({
-  // onFieldsChange(props, value) {
-  //   console.log(value);
-  // },
 })
 (
   ({form, onCancel, isVisible, onSubmit, activeKey, onTabChange, isLoading,}) => {
@@ -224,6 +222,7 @@ const LoginForm = Form.create({
         {activeKey === FORM_STATUS.LOGIN ?
          <FormItem {...formItemLayout} label=" " style={{ paddingLeft: 20, height:30}}>
            {getFieldDecorator('remember')(<Checkbox>记住密码</Checkbox>)}
+           <Link to="/Findcode" onClick={onCancel} >修改密码</Link>
          </FormItem> : null}
       </Form>
     </Modal>

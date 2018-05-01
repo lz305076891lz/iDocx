@@ -11,7 +11,7 @@ export const {
   },
 } = createActions({
   USERCENTER: {
-    EXAMINE_COMPOSE_RESULT: composeId => composeId,
+    EXAMINE_COMPOSE_RESULT: (composeId) => {return composeId},
     UPLOAD_MY_TEMP_START:identity,
     UPLOAD_MY_TEMP_END:identity,
     GET_MY_TEMPLATES:identity,

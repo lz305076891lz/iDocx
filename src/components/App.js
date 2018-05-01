@@ -14,6 +14,7 @@ import UserCenterPage from './UserCenterPage';
 import ErrorHandler from './ErrorHandler';
 import Helper from './Helper';
 import AboutUs from './AboutUs';
+import Findcode from './Findcode';
 
 import styles from './App.css';
 
@@ -42,6 +43,7 @@ const App = props => (
         <Route path="/usercenter" component={UserCenterPage}/>
         <Route path="/Helper" component={Helper}/>
         <Route path="/AboutUs" component={AboutUs}/>
+        <Route path="/findcode" component={Findcode}/>
         <Route render={()=> <Redirect to="/"/>} />
       </Switch>
     </Content>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Upload, Button, Tabs, Form, Input, Radio, Checkbox, Modal, Row, Col} from 'antd';
+import { Icon, Upload, Button, Tabs, Form, Input, Radio, Checkbox, Modal, Row, Col,Divider} from 'antd';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -105,7 +105,6 @@ class UploadPage extends React.Component {
           tip={`已选模板：${title}`}
           linkTo="/compose"
           linkText="修改模板"/>
-          <Share></Share>
         <div className={styles['upload-file-container']}>
           <FileUpload
             handleFileListChange={this.handleFileListChange}
@@ -133,6 +132,8 @@ class UploadPage extends React.Component {
       </div>
         {/* <CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/> */}
         <div className={styles['btn-wrapper']}>
+          <Divider/>
+          <Share></Share>
           <Button
             type="primary"
             className={styles['start-btn']}
@@ -316,17 +317,18 @@ class Share extends React.Component{
     loading: false,
     visible: false,
   }
+
+  showUrl=()=>{
+    console.log(this.props)
+    return "url"
+  }
+
   showModal = () => {
     this.setState({
       visible: true,
     });
   }
-  handleOk = () => {
-    this.setState({ loading: true });
-    setTimeout(() => {
-      this.setState({ loading: false, visible: false });
-    }, 3000);
-  }
+
   handleCancel = () => {
     this.setState({ visible: false });
   }
@@ -334,7 +336,7 @@ class Share extends React.Component{
     const { visible, loading } = this.state;
     return (
       <div>
-        <Button type="primary" className = "sharebtn" onClick={this.showModal}>
+        <Button type="primary" onClick={this.showModal} >
           分享模版链接
         </Button>
         <Modal
@@ -343,17 +345,10 @@ class Share extends React.Component{
           onOk={this.handleOk}
           onCancel={this.handleCancel}
           footer={[
-            <Button key="back" onClick={this.handleCancel}>Return</Button>,
-            <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
-              Submit
-            </Button>,
+            <Button key="back" onClick={this.handleCancel}>Return</Button>
           ]}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <p>{this.showUrl()}</p>
         </Modal>
       </div>
     );

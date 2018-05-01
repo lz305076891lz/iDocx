@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon, Collapse, Button } from 'antd';
-import styles from './index.css'
+import { Layout, Menu, Icon, Collapse } from 'antd';
 
 const {
   Header, Content, Footer, Sider,
@@ -33,7 +32,6 @@ class App extends React.Component {
     render() {
       return (
             <div>
-             <Button type ='primary' id = 'button'>test</Button>
                 <Layout>
                     <Sider
                         breakpoint="1g"

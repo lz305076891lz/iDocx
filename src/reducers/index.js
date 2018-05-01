@@ -8,9 +8,11 @@ import formule from './formule';
 import users from './users';
 import error from './error';
 import usercenter from './usercenter';
+import findcode from './findcode'
 
 export default function createRootReducer(reducers) {
   return combineReducers({
+    findcode,
     entities,
     compose,
     autonumber,
