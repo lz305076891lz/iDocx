@@ -35,19 +35,20 @@ class TemplatesPage extends React.Component {
   }
 
   handleTmplClick = (tmplId) => {
+
     this.props.changeChosenTemplate(tmplId);
   }
 
   componentDidMount() {
-    let sharetemp = this.props.match.params.tempid
-    if(!sharetemp){
+    const sharesearch = this.props.match.params.search;
+     if (!sharesearch) {
       this.props.getTemplates({
         page: this.props.page !== -1 ? this.props.page : 1,
       });
-    }else {
+    } else {
       this.props.getTemplates({
-        search:sharetemp,
-      })
+        search: sharesearch,
+      });
     }
   }
 

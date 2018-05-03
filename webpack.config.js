@@ -148,7 +148,7 @@ module.exports = (env = {}) => {
       },
       proxy: {
         '/index.php': {
-          target: 'http://aidocx.com',
+          target: 'http://aidocx.cn',
         },
       },
     },

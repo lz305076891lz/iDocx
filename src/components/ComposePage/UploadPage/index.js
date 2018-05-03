@@ -8,7 +8,7 @@ import { apiPublicPath } from '../../../../settings';
 import InFlowTip from '../../InFlowTip';
 
 import styles from './UploadPage.scss';
-import { changeUploadFileList } from '../../../actions/compose';
+import { changeUploadFileList,changeChosenTemplate } from '../../../actions/compose';
 import { composeStart } from '../../../actions/entities';
 
 const FormItem = Form.Item;
@@ -66,8 +66,12 @@ class UploadPage extends React.Component {
       var coverinf='zz';
       var optioninf='';
       optioninf=optioninf+this.state.adustComma +this.state.clearNullStyle+this.state.convertNotes+this.state.clearFmt;
-      if(!this.props.chosenTemplate.title){
-        temp_id = this.props.user_id + "_" + this.props.chosenTemplateId;
+      if(!this.props.match.params.tempid) {
+          if (!this.props.chosenTemplate.title) {
+              temp_id = this.props.user_id + "_" + this.props.chosenTemplateId;
+          }
+      }else{
+          temp_id = this.props.match.params.tempid;
       }
     this.props.composeStart(this.getSuccessList().map(file => file.response.id), temp_id, optioninf, coverinf);
   }
@@ -90,15 +94,36 @@ class UploadPage extends React.Component {
       });
   }
 
-  render() {
-    if (!this.props.chosenTemplateId) {
+    componentWillMount(){
+        const sharetplid = this.props.match.params.tempid;
+        console.log("componentWillMount");
+        if (sharetplid) {
+            this.props.changeChosenTemplate(sharetplid);
+        }
+       // this.props.changeChosenTemplate(sharetplid);
+    }
+
+    render() {
+        console.log("after");
+        var  title="";
+    if (!this.props.chosenTemplateId && !this.props.match.params.tempid) {
       return (
         <Redirect to={'/compose'}/>
       );
+    }else{
+
+        if (!this.props.match.params.tempid) {
+
+            title = this.props.chosenTemplate.title ? this.props.chosenTemplate.title : "自定义模版";
+
+        }else {
+            //console.log(this.props.match.params.search);
+            title =this.props.match.params.search;
+        }
     }
 
     const successList = this.getSuccessList();
-    const title = this.props.chosenTemplate.title?this.props.chosenTemplate.title:"自定义模版"
+
     return (
       <div>
         <InFlowTip
@@ -319,7 +344,7 @@ class Share extends React.Component{
   }
 
   showUrl=()=>{
-    console.log(this.props)
+    //console.log(this.props)
     return "url"
   }
 
@@ -332,6 +357,7 @@ class Share extends React.Component{
   handleCancel = () => {
     this.setState({ visible: false });
   }
+
   render() {
     const { visible, loading } = this.state;
     return (
@@ -369,6 +395,7 @@ const mapState = (state) => {
 };
 
 const mapDispatch = {
+  changeChosenTemplate,
   changeUploadFileList,
   composeStart,
 };

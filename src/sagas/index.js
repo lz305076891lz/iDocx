@@ -1,7 +1,7 @@
 import { put, call, all, takeLatest, takeEvery, spawn } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
 import { push } from 'react-router-redux';
-import { message } from 'antd'
+import { message } from 'antd';
 
 import { gotTemplates, getTemplates, composeStart, composeEnd } from '../actions/entities';
 import { examineComposeResult, uploadMyTempStart, uploadMyTempEnd, getMyTemplates, gotMyTemplates } from '../actions/usercenter';
@@ -9,7 +9,7 @@ import { changeDownloadFileList, changeChosenTemplate } from '../actions/compose
 import { autonumStart, autonumEnd, autonumRecordDelete } from '../actions/autonumber';
 import { docStart, docEnd, docRecordDelete } from '../actions/docompose';
 import {formuleStart, formuleEnd, formuleRecordDelete} from "../actions/formule";
-import { findcodeStart, findcodeEnd } from '../actions/findcode'
+import { findcodeStart, findcodeEnd } from '../actions/findcode';
 
 import { templates, fishes } from '../sources/schemas';
 import * as templatesSource from '../sources/templates';
@@ -57,12 +57,12 @@ export function* composeHandler({
     const data = yield all(fetchArr);
     const normalizedData = yield call(normalize, data, fishes);
 
-    const action = yield call(docEnd, normalizedData);
+    const action = yield call(composeEnd, normalizedData);
 
     yield put(action);
     yield put(push('/compose/download'));
   } catch (e) {
-    const errAction = yield call(docEnd, e);
+    const errAction = yield call(composeEnd, e);
 
     yield put(errAction);
   }
