@@ -117,8 +117,8 @@ class UploadPage extends React.Component {
             title = this.props.chosenTemplate.title ? this.props.chosenTemplate.title : "自定义模版";
 
         }else {
-            //console.log(this.props.match.params.search);
-            title =this.props.match.params.search;
+            //console.log(this.props.match.params.title);
+            title =this.props.match.params.title;
         }
     }
 

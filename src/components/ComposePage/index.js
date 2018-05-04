@@ -17,7 +17,7 @@ const ComposePage = () => (
       <Switch>
         <Route exact path="/compose" component={TemplatesPage}/>
         <Route path="/compose/download" component={DownloadPage}/>
-        <Route path="/compose/upload/id/:tempid/search/:search" component={UploadPage}/>
+        <Route path="/compose/upload/id/:tempid/title/:title" component={UploadPage}/>
         <Route path="/compose/upload" component={UploadPage}/>
         <Route path="/compose/search/:search" component={TemplatesPage}/>
         <Route render={()=><Redirect to='/compose'/>}/>
