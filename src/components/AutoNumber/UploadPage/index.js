@@ -17,10 +17,10 @@ class UploadPage extends React.Component {
   state = {
     fileList: this.props.fileList,
     coverList: [],
-    convertNotes: 1,
+    convertNotes: 0,
     clearFmt: 3,
-    clearNullStyle: 1,
-    adustComma: 1,
+    clearNullStyle: 0,
+    adustComma: 0,
   }
     handleConvertEndnotes=(e) => {
       this.setState({
@@ -58,7 +58,7 @@ class UploadPage extends React.Component {
   handleAutonumClick = (e) => {
     const coverinf = 'zz';
     let optioninf = '';
-    optioninf = optioninf + this.state.adustComma + this.state.clearNullStyle + this.state.convertNotes + this.state.clearFmt;
+    optioninf = optioninf + this.state.adustComma + this.state.clearNullStyle + this.state.convertNotes + this.state.clearFmt+this.props.match.params.functype;
     this.props.autonumStart(this.getSuccessList().map(file => file.response.id), optioninf, coverinf);
   }
 
@@ -81,6 +81,15 @@ class UploadPage extends React.Component {
 
   render() {
     const successList = this.getSuccessList();
+
+    let showtitle = '';
+    const functype = this.props.match.params.functype;
+    if (functype == 1) {
+      showtitle = '开始文字转编号';
+    }
+    if (functype == 2) {
+      showtitle = '开始公式修复';
+    }
 
     return (
       <div>
@@ -117,7 +126,7 @@ class UploadPage extends React.Component {
             disabled={successList.length < 1}
             onClick={this.handleAutonumClick}
             loading={this.props.isNumbering}>
-            开始文字转编号
+            {showtitle}
           </Button>
         </div>
       </div>

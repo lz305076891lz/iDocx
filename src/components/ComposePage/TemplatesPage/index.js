@@ -18,12 +18,14 @@ import { getTemplates } from '../../../actions/entities';
 class TemplatesPage extends React.Component {
   handleChange = (e) => {
     this.props.changeTemplatesSearch(e.target.value);
+    // console.log(this.props.changeTemplatesSearch);
   }
 
   handleSearch = (e) => {
     this.props.getTemplates({
       search: this.props.searchValue,
     });
+    console.log(this.props.getTemplates({ search: this.props.searchValue }));
   }
 
   handlePageChange = (page) => {
@@ -32,16 +34,17 @@ class TemplatesPage extends React.Component {
       page,
       search: this.props.searchValue,
     });
+    // console.log(this.props.changeTemplatesPage(page));
   }
 
   handleTmplClick = (tmplId) => {
-
     this.props.changeChosenTemplate(tmplId);
   }
 
   componentDidMount() {
     const sharesearch = this.props.match.params.search;
-     if (!sharesearch) {
+    // console.log(sharesearch);
+    if (!sharesearch) {
       this.props.getTemplates({
         page: this.props.page !== -1 ? this.props.page : 1,
       });

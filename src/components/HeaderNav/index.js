@@ -31,10 +31,10 @@ const menuData = [
 const more_menu = (
     <Menu>
         <Menu.Item>
-            <Link to="/autonumber">自动编号</Link>
+            <Link to="/autonumber/upload/1">自动编号</Link>
         </Menu.Item>
         <Menu.Item>
-            <Link to="/formule">公式修复</Link>
+            <Link to="/autonumber/upload/2">公式修复</Link>
         </Menu.Item>
         <Menu.Item>
             <Link to="/docompose">公文排版</Link>
@@ -82,7 +82,7 @@ const HeaderNav = (props) => {
 
                         <Menu.Item key="less">
                             <Dropdown overlay={more_menu}>
-                                <Link to="/autonumber">更多功能<Icon type="down" /></Link>
+                                <Link to="/home">更多功能<Icon type="down" /></Link>
                             </Dropdown>
                         </Menu.Item>
                     </Menu>
