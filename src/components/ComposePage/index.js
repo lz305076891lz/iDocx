@@ -16,10 +16,9 @@ const ComposePage = () => (
     <Container className={styles['compose-container']}>
       <Switch>
         <Route exact path="/compose" component={TemplatesPage}/>
-        <Route path="/compose/download" component={DownloadPage}/>
-        <Route path="/compose/upload/id/:tempid/title/:title" component={UploadPage}/>
+        <Route path="/compose/share/:tempid" component={TemplatesPage}/>
         <Route path="/compose/upload" component={UploadPage}/>
-        <Route path="/compose/search/:search" component={TemplatesPage}/>
+        <Route path="/compose/download" component={DownloadPage}/>
         <Route render={()=><Redirect to='/compose'/>}/>
       </Switch>
     </Container>

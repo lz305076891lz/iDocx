@@ -49,7 +49,6 @@ const template = handleActions(
   },
 );
 
-
 const upload = handleActions(
   {
     [composeStart](state) {

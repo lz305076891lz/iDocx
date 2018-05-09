@@ -4,15 +4,13 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { apiPublicPath } from '../../../../settings';
-
-import InFlowTip from '../../InFlowTip';
-
 import styles from './UploadPage.scss';
 import { changeUploadFileList } from '../../../actions/autonumber';
 import { autonumStart } from '../../../actions/autonumber';
 
 
 const RadioGroup = Radio.Group;
+
 class UploadPage extends React.Component {
   state = {
     fileList: this.props.fileList,
@@ -22,27 +20,32 @@ class UploadPage extends React.Component {
     clearNullStyle: 0,
     adustComma: 0,
   }
+
     handleConvertEndnotes=(e) => {
       this.setState({
         convertNotes: Number(e.target.checked),
       });
     }
-     handleClearStyle=(e) => {
+
+    handleClearStyle=(e) => {
        this.setState({
          clearNullStyle: Number(e.target.checked),
        });
-     }
+    }
+
     handleCommaChange=(e) => {
       this.setState({
         adustComma: Number(e.target.checked),
       });
     }
+
     handleClearOptChange = (e) => {
       /* console.log('radio checked', e.target.value); */
       this.setState({
         clearFmt: e.target.value,
       });
     }
+
     handleFileListChange = (fileList) => {
       this.setState(prevState => ({
         fileList,
@@ -55,39 +58,40 @@ class UploadPage extends React.Component {
       this.props.changeUploadFileList(this.getSuccessList());
     }
 
-  handleAutonumClick = (e) => {
-    const coverinf = 'zz';
-    let optioninf = '';
-    optioninf = optioninf + this.state.adustComma + this.state.clearNullStyle + this.state.convertNotes + this.state.clearFmt+this.props.match.params.functype;
-    this.props.autonumStart(this.getSuccessList().map(file => file.response.id), optioninf, coverinf);
-  }
+    handleAutonumClick = (e) => {
+      const coverinf = 'zz';
+      let optioninf = '';
+      optioninf = optioninf + this.state.adustComma + this.state.clearNullStyle + this.state.convertNotes + this.state.clearFmt + this.props.match.params.prtype;;
+      this.props.autonumStart(this.getSuccessList().map(file => file.response.id), optioninf, coverinf);
+    }
 
-  getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
+    getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
 
-  customRequest = (args) => {
-    const data = new FormData();
-    data.append('file', args.file);
+    customRequest = (args) => {
+      const data = new FormData();
+      data.append('file', args.file);
 
-    fetch(args.action, {
-      method: 'POST',
-      body: data,
-      credentials: 'include',
-    })
-      .then(data => data.json())
-      .then((data) => {
-        args.onSuccess(data);
-      });
-  }
+      fetch(args.action, {
+        method: 'POST',
+        body: data,
+        credentials: 'include',
+      })
+        .then(data => data.json())
+        .then((data) => {
+          args.onSuccess(data);
+        });
+    }
 
   render() {
     const successList = this.getSuccessList();
 
     let showtitle = '';
-    const functype = this.props.match.params.functype;
-    if (functype == 1) {
+    const prtype = this.props.match.params.prtype;
+
+    if (prtype == 1) {
       showtitle = '开始文字转编号';
     }
-    if (functype == 2) {
+    if (prtype == 2) {
       showtitle = '开始公式修复';
     }
 
@@ -101,20 +105,41 @@ class UploadPage extends React.Component {
             customRequest={this.customRequest}
           />
         </div>
-      <div className={styles['check-info-check']}>
-          <h4>
-          <Checkbox className={styles['chk-comma']} onChange={this.handleCommaChange}>规范标点　　　</Checkbox>
-          <Checkbox className={styles['chk-clearstyle']} onChange={this.handleClearStyle}>清理无实例样式　　　</Checkbox>
-          <Checkbox className={styles['chk-convertendnote']} onChange={this.handleConvertEndnotes}>尾注转文本</Checkbox>
+      <div className={styles['check-info-check']} hidden = {prtype != 1}>
+          <br/>
+          <h4> 写入转换项： 
+          <Checkbox className={styles['chk-clearstyle']} onChange={this.handleClearStyle}>图序</Checkbox>
+          <Checkbox className={styles['chk-clearstyle']} onChange={this.handleClearStyle}>表序</Checkbox>
+          <Checkbox className={styles['chk-convertendnote']} onChange={this.handleConvertEndnotes}>公式序</Checkbox>
+          <Checkbox className={styles['chk-convertendnote']} onChange={this.handleConvertEndnotes}>文献</Checkbox>
+          <Checkbox className={styles['chk-convertendnote']} onChange={this.handleConvertEndnotes}>根据独图增加图序</Checkbox>
+          <Checkbox className={styles['chk-convertendnote']} onChange={this.handleConvertEndnotes}>根据表格增加表序</Checkbox>
           </h4>
       </div>
-      <div className={styles['option-info-fmtclear']}>
-           <h4>格式清理：
+      <div className={styles['option-info-fmtclear']} hidden = {prtype != 1}>
+           <br/>
+           <h4>标题段落来源：
               <RadioGroup onChange={this.handleClearOptChange} name="fmtcleargroup" defaultValue={3}>
-              <Radio className={styles['options-fmtclear']} value={1}>不清理</Radio>
-              <Radio className={styles['options-fmtclear']} value={2}>轻度清理</Radio>
-              <Radio className={styles['options-fmtclear']} value={3}>默认清理</Radio>
-              <Radio className={styles['options-fmtclear']} value={4}>深度清理</Radio>
+              <Radio className={styles['options-fmtclear']} value={1}>大纲级别</Radio>
+              <Radio className={styles['options-fmtclear']} value={2}>内置标题</Radio>
+              <Radio className={styles['options-fmtclear']} value={3}>标题规划</Radio>
+          </RadioGroup>
+          </h4>
+      </div>
+      <div className={styles['check-info-check']} hidden = {prtype != 2}>
+          <br/>
+          <h4>
+          <Checkbox className={styles['chk-clearstyle']} onChange={this.handleClearStyle}>独立一行的MathType公式段落的自动添加编号</Checkbox>
+          <Checkbox className={styles['chk-clearstyle']} onChange={this.handleClearStyle}>独立一行的word自带公式段落的自动添加编号</Checkbox>
+          <Checkbox className={styles['chk-clearstyle']} onChange={this.handleClearStyle}>删除被转换区域</Checkbox>
+          </h4>
+          <br/>
+      </div>
+      <div className={styles['option-info-fmtclear']} hidden = {prtype != 2}>
+           <h4>公式修复转换：
+              <RadioGroup onChange={this.handleClearOptChange} name="fmtcleargroup" defaultValue={3}>
+              <Radio className={styles['options-fmtclear']} value={1}>转换为word内置公式</Radio>
+              <Radio className={styles['options-fmtclear']} value={2}>转换为Mathtype公式</Radio>
           </RadioGroup>
           </h4>
       </div>
@@ -138,8 +163,11 @@ class FileUpload extends React.Component {
   handleChange = (info) => {
     const fileList = info.fileList;
     this.props.handleFileListChange(fileList);
+    // alert(this.props.handleFileListChange(fileList));
   }
+
   render() {
+
     const props = {
       action: `${apiPublicPath}files`,
       onChange: this.handleChange,
@@ -148,6 +176,7 @@ class FileUpload extends React.Component {
       fileList: this.props.fileList,
       customRequest: this.props.customRequest,
     };
+
     const hasFile = this.props.fileList.length > 0;
 
     return (
@@ -170,7 +199,6 @@ class FileUpload extends React.Component {
     );
   }
 }
-
 
 const mapState = (state) => {
   const user_id = state.users.current.user_id;

@@ -37,7 +37,7 @@ const App = props => (
         <Route exact path="/" component={HomeContent}/>
         <Route path="/home" render={() => <Redirect to="/"/>}/>
         <Route path="/compose" component={ComposePage}/>
-        <Route path="/AutoNumber" component={AutoNumPage}/>
+        <Route path="/AutoNumber/:prtype" component={AutoNumPage}/>
         <Route path="/Docompose" component={DocomposePage}/>
         <Route path="/Formule" component={FormulePage}/>
         <Route path="/usercenter" component={UserCenterPage}/>

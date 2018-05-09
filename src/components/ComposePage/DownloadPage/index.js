@@ -32,10 +32,10 @@ class DownloadPage extends React.Component {
 
   render() {
     if (this.props.fishes.length < 1) {
-          return (
-              <Redirect to={'/compose'}/>
-          );
-      }
+      return (
+        <Redirect to={'/compose'}/>
+      );
+    }
 
     return (
       <div className={styles['download-page']}>

@@ -12,7 +12,7 @@ const autonumberPage = () => (
   <div>
     <Container className={styles['compose-container']}>
       <Switch>
-        <Route path="/autonumber/upload/:functype" component={UploadPage}/>
+        <Route path="/autonumber/upload/:prtype" component={UploadPage}/>
         <Route path="/autonumber/download" component={DownloadPage}/>
         <Route render={() => <Redirect to='/autonumber/upload'/>}/>
       </Switch>

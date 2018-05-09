@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './index.css';
+import './Findcode.css';
+import styles from '../node_modules/antd/dist/antd.css';
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
 
 const FormItem = Form.Item;
@@ -118,4 +119,5 @@ class RegistrationForm extends React.Component {
 
 const Findcode = Form.create()(RegistrationForm);
 
+export default Findcode;
 export default Findcode;

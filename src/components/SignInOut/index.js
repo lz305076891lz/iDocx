@@ -222,7 +222,7 @@ const LoginForm = Form.create({
         {activeKey === FORM_STATUS.LOGIN ?
          <FormItem {...formItemLayout} label=" " style={{ paddingLeft: 20, height:30}}>
            {getFieldDecorator('remember')(<Checkbox>记住密码</Checkbox>)}
-           <Link to="/Findcode" onClick={onCancel} >修改密码</Link>
+           <Link to="/Findcode" onClick={()=>{push('/Findcode')}} >修改密码</Link>
          </FormItem> : null}
       </Form>
     </Modal>
