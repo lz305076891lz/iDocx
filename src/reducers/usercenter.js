@@ -1,7 +1,8 @@
-import { combineReducers } from 'redux';
-import { handleActions } from 'redux-actions';
+import {combineReducers} from 'redux';
+import {handleActions} from 'redux-actions';
 
-import { gotComposeRecordList } from '../actions/users';
+import {gotComposeRecordList} from '../actions/users';
+import {gotMyTemplates} from '../actions/usercenter';
 
 export const composeRecordList = handleActions({
   [gotComposeRecordList](state, { payload }) {
@@ -9,6 +10,13 @@ export const composeRecordList = handleActions({
   },
 }, []);
 
+export const myTempList = handleActions({
+    [gotMyTemplates](state, {payload}) {
+        return payload;
+    },
+}, []);
+
 export default combineReducers({
   composeRecordList,
+    myTempList,
 });

@@ -1,0 +1,49 @@
+.compose-container {
+  padding-top: 70px;
+}
+
+.no-fit-tip {
+  background-color: #fff;
+  img {
+    max-width: 100%;
+    max-height: 50%;
+  }
+}
+
+.container {
+  height: 428px;
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+.img-wrapper {
+  display: inline-block;
+  margin-left: -5%;
+  width: 45%;
+  vertical-align: middle;
+
+}
+
+.tip-wrapper {
+  display: inline-block;
+  width: 60%;
+  text-align: right;
+  vertical-align: middle;
+  h2 {
+    font-size: 30px;
+    color: #666;
+  }
+  p {
+    margin: 35px 0 92px;
+    font-size: 18px;
+  }
+  button {
+    width: 330px;
+    height: 50px;
+    font-size: 18px;
+  }
+}

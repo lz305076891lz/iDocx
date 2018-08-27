@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Row, Col, Card, Select, Button, Tabs } from 'antd';
-import { Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {Button, Card, Col, Row, Select, Tabs, WhiteSpace} from 'antd';
+import {Redirect} from 'react-router-dom';
 
 import styles from './DownloadPage.scss';
 
@@ -21,17 +21,19 @@ class DownloadPage extends React.Component {
     });
   }
 
-  handleDownloadButtonCllick = (e) => {
-    this.props.fishes.forEach((fish) => {
-      window.open(fish.downloadLinks[this.state.downloadType].downloadLink);
-    });
+    handleDownloadButtonCllick = (e, index) => {
+        if (this.props.loginflag) {
+            window.open(this.props.fishes[index].downloadLinks[this.state.downloadType].downloadLink);
+        } else {
+            alert("请先登陆")
+        }
   }
 
   render() {
     if (this.props.fishes.length < 1) {
-      return (
-        <Redirect to={'/compose'}/>
-      );
+        return (
+            <Redirect to={'/compose'}/>
+        );
     }
 
     return (
@@ -40,23 +42,31 @@ class DownloadPage extends React.Component {
           tip="排版成功！"
           linkTo="/compose/upload"
           linkText="重新上传"/>
-        <Row gutter={36}>
+          <Row gutter={24}>
           <Col span={6}>
             <div className={styles.wrapper}>
               <Card title="下载">
-                <Select placeholder="请选择下载版本" value={this.state.downloadType} onChange={this.handleSelectChange}>
-                  {Object.keys(this.props.fishes[0].downloadLinks).map((typeName) => {
-                    const type = this.props.fishes[0].downloadLinks[typeName];
-                    return <Option value={typeName} key={type.id}>{type.name}</Option>;
-                  })}
-                </Select>
-                <Button
-                  type="primary"
-                  className={styles['btn-download']}
-                  onClick={this.handleDownloadButtonCllick}
-                  disabled={!this.state.downloadType}>
-                  下载
-                </Button>
+                  {this.props.fishes.map((fish, index) => {
+                      return (
+                          <div className='downpart'>
+                              <Select style={{width: 165}} key={fish.id} placeholder="请选择下载版本"
+                                      value={this.state.downloadType} onChange={this.handleSelectChange}>
+                                  {Object.keys(fish.downloadLinks).map((typeName) => {
+                                      const type = fish.downloadLinks[typeName];
+                                      return (<Option value={typeName}
+                                                      key={type.id}>{type.name}：{fish.doc_title ? fish.doc_title : fish.id}</Option>);
+                                  })}
+                              </Select>
+                              <Button type="primary" className={styles['btn-download']}
+                                      onClick={(e) => this.handleDownloadButtonCllick(e, index)}
+                                      disabled={!this.state.downloadType}>
+                                  下载
+                              </Button>
+                              <br/>
+                          </div>
+                      )
+                  })
+                  }
               </Card>
             </div>
           </Col>
@@ -65,7 +75,7 @@ class DownloadPage extends React.Component {
             <div className={styles.wrapper}>
               <Tabs>
                 {this.props.fishes.map(fish => (
-                  <TabPane tab={fish.fileName} key={fish.id}>
+                    <TabPane tab={fish.doc_title ? fish.doc_title : fish.id} key={fish.id}>
                     <div className={styles['preview-wrapper']}>
                       <iframe src={fish.previewHref} frameBorder="0"/>
 
@@ -85,9 +95,11 @@ class DownloadPage extends React.Component {
 
 const mapState = (state) => {
   const page = state.compose.download;
+    const user_id = state.users.current.user_id;
   return ({
     ...page,
     fishes: page.fishIds ? page.fishIds.map(fishId => state.entities.fishes[fishId]) : [],
+      loginflag: user_id
   });
 };
 

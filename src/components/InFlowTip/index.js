@@ -1,6 +1,6 @@
 import React from 'react';
-import { Icon } from 'antd';
-import { Link } from 'react-router-dom';
+import {Icon} from 'antd';
+import {Link} from 'react-router-dom';
 
 import styles from './InFlowTip.scss';
 

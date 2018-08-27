@@ -1,5 +1,5 @@
-import { createActions } from 'redux-actions';
-import { identity } from 'ramda';
+import {createActions} from 'redux-actions';
+import {identity} from 'ramda';
 
 export const {
   user: {
@@ -8,6 +8,7 @@ export const {
     logout,
     loginFinished,
     signupFinished,
+      logoutFinished,
     getComposeRecordList,
     gotComposeRecordList,
     editProfile,
@@ -15,26 +16,28 @@ export const {
   },
 } = createActions({
   USER: {
-    LOGIN: ({ tel, email, password }) => ({
+      LOGIN: ({tel, email, password, remeber, captcha}) => ({
       tel,
       email,
       password,
+          remeber,
+          captcha,
     }),
-    SIGNUP: ({ tel, password, username, email }) => ({
-      tel,
+      SIGNUP: ({tel, email, password, username, captcha}) => ({
+          tel,
+          email,
       password,
       username,
-      email,
+          captcha,
     }),
-    LOGOUT:({username,tel,email,avatar_path,success})=>({
-      username,
+      LOGOUT: ({tel, email, user_id}) => ({
       tel,
       email,
-      avatar_path,
-      success,
+          user_id,
     }),
     LOGIN_FINISHED: identity,
     SIGNUP_FINISHED: identity,
+      LOGOUT_FINISHED: identity,
     GET_COMPOSE_RECORD_LIST: identity,
     GOT_COMPOSE_RECORD_LIST: normalizedData => normalizedData,
     EDIT_PROFILE: userInfo => userInfo,

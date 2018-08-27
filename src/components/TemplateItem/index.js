@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, Col } from 'antd';
+import {Link} from 'react-router-dom';
+import {Card, Col} from 'antd';
 
 import styles from './TemplateItem.scss';
+import {connect} from 'react-redux';
 
 const TemplateItem = ({ template, linkTo = '/compose/upload', onClick }) => (
     <Col span={6} className={styles['template-item-wrapper']}>
@@ -20,8 +21,6 @@ const TemplateItem = ({ template, linkTo = '/compose/upload', onClick }) => (
       </Link>
     </Col>
 );
-
-import { connect } from 'react-redux';
 
 const mapState = (state, ownProps) => ({
   template: state.entities.templates[ownProps.entityId],

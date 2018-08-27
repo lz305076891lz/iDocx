@@ -1,4 +1,4 @@
-import { mergeDeepRight, path } from 'ramda';
+import {mergeDeepRight, path} from 'ramda';
 
 export function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {

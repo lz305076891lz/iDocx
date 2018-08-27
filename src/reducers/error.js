@@ -1,9 +1,6 @@
-import { handleActions, combineActions } from 'redux-actions';
+import {combineActions, handleActions} from 'redux-actions';
 
-import {
-  loginFinished,
-  signupFinished,
-} from '../actions/users';
+import {loginFinished, signupFinished,} from '../actions/users';
 
 
 export default handleActions({

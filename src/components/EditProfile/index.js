@@ -1,11 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { Row, Col, Button, Form, Input, message } from 'antd';
+import {Button, Col, Divider, Form, Input, message, Row} from 'antd';
 
-import { getCurrentUserObj } from '../../selectors/users';
+import {getCurrentUserObj} from '../../selectors/users';
 
-import { editProfile } from '../../actions/users';
+import {editProfile} from '../../actions/users';
 
 import styles from './EditProfile.scss';
 
@@ -27,14 +27,7 @@ export function ProfileItem({ title, value }) {
     </Row>
   )
 }
-/**
- * interface UserObj {
- *  string username;
- *  string tel;
- *  string email;
- *  string avatar_path;
- * }
- */
+
 export function ShowProfile({ user, onSubmit }) {
   const button = <Button type="primary" className={styles.button} onClick={onSubmit}>编辑</Button>;
 
@@ -49,27 +42,16 @@ export function ShowProfile({ user, onSubmit }) {
 }
 
 
-@connect(undefined, {
-  editProfile,
-})
-@Form.create()
+@connect(
+    state => ({user_id: state.users.current.user_id}),
+    {editProfile,}
+)
+@Form.create({})
 export class EditProfileForm extends React.Component {
   state = {
     isTelChanged: false,
     defaultValue: this.props.user,
     isLoading: false,
-  }
-
-  componentDidUpdate({ user }) {
-    if (this.state.isLoading
-      && user !== this.props.user) {
-      this.setState({
-        isLoading: false,
-      });
-
-      message.success('修改资料成功');
-      this.props.onSubmit();
-    }
   }
 
   handleSubmit = (e) => {
@@ -80,10 +62,27 @@ export class EditProfileForm extends React.Component {
 
     this.props.form.validateFieldsAndScroll((err, values) => {
       if(!err) {
-        this.props.editProfile(values);
+          let newValues = {
+              newName: values.username,
+              newTel: values.tel,
+              newEmail: values.email,
+              user_id: this.props.user_id
+          }
+          this.props.editProfile(newValues);
       }
     })
   }
+
+    componentDidUpdate({user}) {
+        if (this.state.isLoading) {
+            this.setState({
+                isLoading: false,
+            });
+            message.success('修改资料成功');
+            this.props.onSubmit();
+        }
+
+    }
 
   handleTelChange = () => {
     this.setState(() => ({
@@ -118,27 +117,29 @@ export class EditProfileForm extends React.Component {
     const { getFieldDecorator } = form;
 
     return (
-      <Form layout="vertical" onSubmit={this.handleSubmit}>
-        <Form.Item {...formItemLayout} label="用户名">
-          {getFieldDecorator('username', {
-            initialValue: user.username,
-          })(<Input />)}
-        </Form.Item>
-        <Form.Item {...formItemLayout} label="手机号">
-          {getFieldDecorator('tel', {
-            initialValue: user.tel,
-          })(<Input onChange={this.handleTelChange} />)}
-        </Form.Item>
-        {this.renderPhoneCode()}
-        <Form.Item {...formItemLayout} label="Email">
-          {getFieldDecorator('email', {
-            initialValue: user.email,
-          })(<Input />)}
-        </Form.Item>
-        <Form.Item {...formTailLayout}>
-          <Button htmlType="submit" loading={isLoading}>提交</Button>
-        </Form.Item>
-      </Form>
+        <div>
+            <Form layout="vertical" onSubmit={this.handleSubmit}>
+                <Form.Item {...formItemLayout} label="用户名">
+                    {getFieldDecorator('username', {
+                        initialValue: user.username,
+                    })(<Input/>)}
+                </Form.Item>
+                <Form.Item {...formItemLayout} label="手机号">
+                    {getFieldDecorator('tel', {
+                        initialValue: user.tel,
+                    })(<Input onChange={this.handleTelChange}/>)}
+                </Form.Item>
+                {this.renderPhoneCode()}
+                <Form.Item {...formItemLayout} label="Email">
+                    {getFieldDecorator('email', {
+                        initialValue: user.email,
+                    })(<Input/>)}
+                </Form.Item>
+                <Form.Item {...formTailLayout}>
+                    <Button htmlType="submit" loading={isLoading}>提交</Button>
+                </Form.Item>
+            </Form>
+        </div>
     );
   }
 }
@@ -178,9 +179,9 @@ export default class EditProfile extends React.Component {
 
     return (
       <div className={styles.main}>
+          <Divider/>
         {main}
       </div>
     )
   }
 }
-

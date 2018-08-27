@@ -1,25 +1,33 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
-import { normalize } from 'normalizr';
+import {call, put, takeLatest} from 'redux-saga/effects';
+import {normalize} from 'normalizr';
+
+import {message} from 'antd'
 
 import * as usersSource from '../sources/users';
-import { plainFishes } from '../sources/schemas';
+import {plainFishes} from '../sources/schemas';
 
 import {
-  login,
-  signup,
-  loginFinished,
-  signupFinished,
-  getComposeRecordList,
-  gotComposeRecordList,
-  editProfile,
-  editProfileSuccess,
+    editProfile,
+    editProfileSuccess,
+    getComposeRecordList,
+    gotComposeRecordList,
+    login,
+    loginFinished,
+    logout,
+    logoutFinished,
+    signup,
+    signupFinished,
 } from '../actions/users';
 
 export function* loginHandler({ payload }) {
   try {
     const result = yield call(usersSource.login, payload);
-
     const action = yield call(loginFinished, result);
+
+      if (result.error) {
+          message.error(result.error)
+
+      }
 
     yield put(action);
   } catch (e) {
@@ -29,11 +37,27 @@ export function* loginHandler({ payload }) {
   }
 }
 
+function* logoutHandler({payload}) {
+    try {
+        const result = yield call(usersSource.logout, payload);
+        const action = yield call(logoutFinished, result);
+
+        yield put(action);
+    } catch (e) {
+        console.log(e);
+
+        yield put(logoutFinished(e));
+    }
+}
+
 function* signupHandler({ payload }) {
   try {
     const result = yield call(usersSource.register, payload);
-
     const action = yield call(signupFinished, result);
+      console.log(payload);
+      if (result.error) {
+          message.error(result.error)
+      }
 
     yield put(action);
   } catch (e) {
@@ -43,11 +67,12 @@ function* signupHandler({ payload }) {
   }
 }
 
-function* composeRecordHandler() {
+function* composeRecordHandler({payload}) {
   try {
-    const result = yield call(usersSource.getComposeRecordList);
+      const result = yield call(usersSource.getComposeRecordList, payload);
 
     const normalizedData = yield call(normalize, result, plainFishes);
+      // console.log(normalizedData)
 
     const action = yield call(gotComposeRecordList, normalizedData);
 
@@ -59,10 +84,9 @@ function* composeRecordHandler() {
   }
 }
 
-function* editProfileHandler() {
+function* editProfileHandler({payload}) {
   try {
-    const result = yield call(usersSource.editProfile);
-
+      const result = yield call(usersSource.editProfile, payload);
     if (result.success) {
       const action = yield call(editProfileSuccess, result.data);
       yield put(action);
@@ -80,6 +104,7 @@ function* editProfileHandler() {
 export default function* userSaga() {
   yield takeLatest(login, loginHandler);
   yield takeLatest(signup, signupHandler);
+    yield takeLatest(logout, logoutHandler);
   yield takeLatest(getComposeRecordList, composeRecordHandler);
   yield takeLatest(editProfile, editProfileHandler);
 }

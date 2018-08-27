@@ -1,4 +1,4 @@
-import { getFullFishObjFromId } from './fishes';
+import {getFullFishObjFromId} from './fishes';
 
 export const getComposeRecordList = state => state.usercenter.composeRecordList;
 

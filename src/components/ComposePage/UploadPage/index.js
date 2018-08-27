@@ -1,62 +1,67 @@
 import React from 'react';
-import { Icon, Upload, Button, Tabs, Form, Input, Radio, Checkbox} from 'antd';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-import { apiPublicPath } from '../../../../settings';
-
+import copy from 'copy-to-clipboard';
+import {Button, Checkbox, Divider, Form, Icon, Input, Modal, Radio, Tabs, Upload} from 'antd';
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {apiPublicPath, root} from '../../../../settings';
 import InFlowTip from '../../InFlowTip';
-
 import styles from './UploadPage.scss';
-import { changeUploadFileList } from '../../../actions/compose';
-import { composeStart } from '../../../actions/entities';
+import {changeUploadFileList} from '../../../actions/compose';
+import {composeStart} from '../../../actions/entities';
+
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
+
 class UploadPage extends React.Component {
   state = {
-    fileList: this.props.fileList,
-    coverList: [],
+      fileList: this.props.fileList, // 这个地方存在问题，不太清楚；
+      coverList: [], // 空数组，
       convertNotes: 1,
       clearFmt: 3,
       clearNullStyle: 1,
-      adustComma:1
+      adustComma: 1,
   }
-    handleConvertEndnotes=(e)=>{
+    handleConvertEndnotes = (e) => {
         this.setState({
-            convertNotes: Number(e.target.checked) ,
+            convertNotes: Number(e.target.checked), // 尾注转文本
         });
-
+        // alert(e.target.checked)
+        //  alert(Number(false));
+        // alert(this.state.fileList);
     }
-     handleClearStyle=(e)=>{
-         this.setState({
-              clearNullStyle: Number(e.target.checked) ,
-         });
-
-    }
-    handleCommaChange=(e)=>{
+    handleClearStyle = (e) => {
         this.setState({
-            adustComma: Number(e.target.checked)  ,
+            clearNullStyle: Number(e.target.checked), // 清理无实例样式
         });
-        console.log(this.state.adustComma);
+    }
+    handleCommaChange = (e) => {
+        this.setState({
+            adustComma: Number(e.target.checked), // 规范标点
+        });
+        //  alert(e.target.checked);弹窗结果为true；
+        //  alert(Number(e.target.checked));弹窗结果为1；不知道这个1是不是state定义的；
     }
     handleClearOptChange = (e) => {
-       /* console.log('radio checked', e.target.value);*/
+        // alert('radio checked', e.target.value);
         this.setState({
-            clearFmt: e.target.value,
+            clearFmt: e.target.value, // 格式清理
         });
+        // alert(e.target.value); 选择不同的option 分别会弹出不同的1234；
     }
-  handleFileListChange = (fileList) => {
-    this.setState(prevState => ({
-      fileList,
-      coverList: prevState.coverList
-        .filter(cover => fileList
-          .map(file => file.uid)
-          .includes(cover)),
-    }));
+    handleFileListChange = (fileList) => {
+        this.setState(prevState => ({
+            fileList,
+            coverList: prevState.coverList
+                .filter(cover => fileList
+                    .map(file => file.uid)
+                    .includes(cover)),
+        }));
+        // console.log(this.props); //这个打印出来的是文件；
+        // Filelist 是选择的文件；
 
-    this.props.changeUploadFileList(this.getSuccessList());
-  }
+        this.props.changeUploadFileList(this.getSuccessList());
+    }
 
   handleCoverSelectChange = (value) => {
     this.setState({
@@ -65,11 +70,18 @@ class UploadPage extends React.Component {
   }
 
   handleComposeClick = (e) => {
-      var coverinf='zz';
-      var optioninf='';
-      optioninf=optioninf+this.state.adustComma +this.state.clearNullStyle+this.state.convertNotes+this.state.clearFmt;
+      let temp_id = this.props.chosenTemplateId;
+      const coverinf = 'zz';
+      let optioninf = '';
+      optioninf = optioninf + this.state.adustComma + this.state.clearNullStyle + this.state.convertNotes + this.state.clearFmt;
 
-    this.props.composeStart(this.getSuccessList().map(file => file.response.id), this.props.chosenTemplateId,optioninf,coverinf);
+      if (this.props.chosenTemplate.ownerid === '0') {
+
+      } else {
+          temp_id = `${this.props.chosenTemplate.ownerid}_${this.props.chosenTemplateId}`;
+      }
+      console.log(temp_id);
+      this.props.composeStart(this.getSuccessList().map(file => file.response.id), temp_id, optioninf, coverinf);
   }
 
   getSuccessList = () => this.state.fileList.filter(file => file.status === 'done')
@@ -77,34 +89,40 @@ class UploadPage extends React.Component {
   customRequest = (args) => {
     const data = new FormData();
     data.append('file', args.file);
-    // data.append(`template_name`, this.props.chosenTemplate.id)
-
     fetch(args.action, {
       method: 'POST',
       body: data,
       credentials: 'include',
     })
       .then(data => data.json())
-      .then((data) => {
+        .then((data) => {
         args.onSuccess(data);
       });
   }
 
-  render() {
-    if (!this.props.chosenTemplate) {
+    render() {
+        // console.log(this.props);
+        if (!this.props.chosenTemplateId) {
       return (
         <Redirect to={'/compose'}/>
       );
     }
 
     const successList = this.getSuccessList();
+        let title = '还没有指定模板名称';
+        // console.log(this.props.chosenTemplate);
+        if (this.props.chosenTemplate === undefined) {
+
+        } else {
+            title = this.props.chosenTemplate.title;// ? this.props.chosenTemplate.title : this.props.chosenTemplate.tpl_name
+        }
 
     return (
       <div>
         <InFlowTip
-          tip={`已选模板：${this.props.chosenTemplate.title}`}
-          linkTo="/compose"
-          linkText="修改模板"/>
+            tip={`已选模板：${title}`}
+            linkTo="/compose"
+            linkText="修改模板"/>
         <div className={styles['upload-file-container']}>
           <FileUpload
             handleFileListChange={this.handleFileListChange}
@@ -112,22 +130,6 @@ class UploadPage extends React.Component {
             loading={this.props.isComposing}
             customRequest={this.customRequest}
           />
-          {/* <div className={styles['cover-select-list-container']}> */}
-          {/* <span className={styles['tip']}> */}
-          {/* 选择需要生成封面的论文: */}
-          {/* <span>不需生成封面，可跳过此步</span> */}
-          {/* </span> */}
-          {/* <Select */}
-          {/* mode="multiple" */}
-          {/* className={styles['cover-select-list']} */}
-          {/* value={this.state.coverList} */}
-          {/* onChange={this.handleCoverSelectChange} */}
-          {/* > */}
-          {/* { */}
-          {/* successList.map(file => <Option key={file.uid}>{file.name}</Option>) */}
-          {/* } */}
-          {/* </Select> */}
-          {/* </div> */}
         </div>
       <div className={styles['check-info-check']}>
           <h4>
@@ -137,7 +139,7 @@ class UploadPage extends React.Component {
           </h4>
       </div>
       <div className={styles['option-info-fmtclear']}>
-           <h4>格式清理：　
+          <h4>格式清理：
               <RadioGroup onChange={this.handleClearOptChange} name="fmtcleargroup" defaultValue={3}>
               <Radio className={styles['options-fmtclear']} value={1}>不清理</Radio>
               <Radio className={styles['options-fmtclear']} value={2}>轻度清理</Radio>
@@ -148,6 +150,9 @@ class UploadPage extends React.Component {
       </div>
         {/* <CoverInfo fileList={this.state.fileList.filter(file => this.state.coverList.includes(file.uid))}/> */}
         <div className={styles['btn-wrapper']}>
+            <Divider/>
+            <Share tempid={this.props.chosenTemplateId} tempuser_id={this.props.user_id}
+                   tempTemplate={this.props.chosenTemplate}></Share>
           <Button
             type="primary"
             className={styles['start-btn']}
@@ -157,6 +162,7 @@ class UploadPage extends React.Component {
             开始排版
           </Button>
         </div>
+
       </div>
     );
   }
@@ -211,7 +217,6 @@ class CoverInfo extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.fileList.filter(file => file.uid === this.state.activeKey));
     if (nextProps.fileList.length > 0 && (!this.state.activeKey || nextProps.fileList.filter(file => file.uid === this.state.activeKey).length < 1)) {
       this.setState({
         activeKey: nextProps.fileList[0].uid,
@@ -327,14 +332,77 @@ class CoverInfoForm extends React.Component {
   }
 }
 
+class Share extends React.Component {
+    state = {// 使用组件回改变我的state，然后这个组件，根据state来作出相应的动作；定义参数，接受使用方传进来的值；
+        loading: false,
+        visible: false, // 最开始定义的默认值；defalult
+    }
+    showModal = () => {
+        this.setState({
+            visible: true, // state的值只能通过setState方法才能够修改state的值；
+        });
+    }// 这些都是定义的一个方法；
+
+    handleCancel = () => {
+        this.setState({visible: false});
+    }
+    copyUrl2 = (value) => {
+        if (this.state.visible == true) {
+            copy(value);
+        }
+    }
+    showUrl = () => {
+        console.log(this.props);
+        let url;
+        const tempid = this.props.tempid; // 变量用 const 来定义；
+        if (this.props.tempTemplate === undefined) {
+            url = `${root}compose/share/${tempid}`;
+        } else {
+            console.log(this.props.tempTemplate.ownerid);
+            if (this.props.tempTemplate.ownerid === '0') {
+                url = `${root}compose/share/${tempid}`;
+            } else {
+                url = `${root}compose/share/${this.props.tempTemplate.ownerid}_${tempid}`;
+            }
+        }
+        return url;
+    } // 这个也是定义的 一个方法，自定义；
+    render() { // render 就是页面要渲染的；
+        // const { visible, loading } = this.state; // 定义两个参数，接受state的值； 这个可以不要，直接下面用this.state.visibel
+
+        return (
+            <div>
+                <Button type="primary" onClick={this.showModal}>
+                    分享模版链接
+                </Button>
+                <Modal
+                    visible={this.state.visible}
+                    title="已经复制下面链接到剪贴板中了！"
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                    footer={[
+                        <Button key="copy" ghost='true' onClick={this.copyUrl2(this.showUrl())}>复制</Button>,
+                        // <Button key="copy" onClick={copy('hello')}>复制</Button>,
+                        <Button key="back" onClick={this.handleCancel}>返回</Button>,
+                    ]}
+                >
+                    <p>{this.showUrl()}</p>
+                </Modal>
+            </div>
+        );
+    }
+}
+
 const WrappedCoverInfoForm = Form.create()(CoverInfoForm);
 
 const mapState = (state) => {
+    const user_id = state.users.current.user_id;
   const page = state.compose.upload;
-
+    const mytemplate = state.usercenter.myTempList ? state.usercenter.myTempList.find(v => v.id == page.chosenTemplateId) : [];
   return {
+      user_id,
     ...page,
-    chosenTemplate: state.entities.templates[page.chosenTemplateId],
+      chosenTemplate: state.entities.templates[page.chosenTemplateId] ? state.entities.templates[page.chosenTemplateId] : mytemplate,
   };
 };
 

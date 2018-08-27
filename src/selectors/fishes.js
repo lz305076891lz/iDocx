@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import {createSelector} from 'reselect';
 
 export const getFish = (state, { fishId }) => state.entities.fishes[fishId];
 export const getTemplates = state => state.entities.templates;

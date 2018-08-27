@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import { Button } from 'antd';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import {Button} from 'antd';
 
 import styles from './ComposePage.scss';
 
@@ -14,11 +14,16 @@ import imgNoFitTip from '../../assets/compose-no-fit-tip.png';
 const ComposePage = () => (
   <div>
     <Container className={styles['compose-container']}>
-      <Route path="/compose/upload" component={UploadPage}/>
-      <Route path="/compose/download" component={DownloadPage}/>
-      <Route exact path="/compose" component={TemplatesPage}/>
+        <Switch>
+            <Route exact path="/compose/ebook" component={TemplatesPage}/>
+            <Route path="/compose/ebook/：ebookid" component={TemplatesPage}/>
+            <Route exact path="/compose" component={TemplatesPage}/>
+            <Route path="/compose/share/:tempid" component={TemplatesPage}/>
+            <Route path="/compose/upload" component={UploadPage}/>
+            <Route path="/compose/download" component={DownloadPage}/>
+            <Route render={() => <Redirect to='/compose'/>}/>
+        </Switch>
     </Container>
-    {/* <Route exact path="/compose" component={NoFitTip}/> */}
   </div>
 );
 

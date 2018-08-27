@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row } from 'antd';
+import {Row} from 'antd';
 
 import styles from './EntityList.scss';
 

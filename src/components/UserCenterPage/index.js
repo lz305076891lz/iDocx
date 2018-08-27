@@ -1,19 +1,16 @@
 import React from 'react';
 import cx from 'classnames';
-import { connect } from 'react-redux';
-import { Layout, Menu } from 'antd';
-import { Link, Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import { indexBy, prop, compose } from 'ramda';
+import {connect} from 'react-redux';
+import {Layout, Menu} from 'antd';
+import {Link, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import {compose, indexBy, prop} from 'ramda';
 
 import styles from './userCenterPage.scss';
-import {
-  getCurrentUserName,
-  getCurrentUserAvatar,
-} from '../../selectors/users';
+import {getCurrentUserAvatar, getCurrentUserName,} from '../../selectors/users';
 
 import ComposeRecordList from '../ComposeRecordList';
 import EditProfile from '../EditProfile';
-import UploadTemplate from '../UploadTemplate';
+import MyTemplate from '../MyTemplate';
 
 const { Sider } = Layout;
 
@@ -31,8 +28,8 @@ function createSubRoute(path, text, title = text, component = NullComponent) {
 }
 
 const subRoutes = [
-  createSubRoute('compose-result', '排版记录', '我的排版记录', ComposeRecordList),
-  createSubRoute('upload', '上传模版', undefined, UploadTemplate),
+    createSubRoute('mytemplate', '我的方案', undefined, MyTemplate),
+    createSubRoute('compose-result', '排版记录', '排版记录', ComposeRecordList),
   createSubRoute('edit', '个人资料', undefined, EditProfile),
 ];
 
@@ -65,9 +62,11 @@ function getCurrentSubRoutePath({ location, match }) {
   return subPath.split('/')[0];
 }
 
-function UserCenterPage({ avatar, username, match, location }) {
+function UserCenterPage({
+                            avatar, username, match, location,
+                        }) {
   if (match.isExact) {
-    return <Redirect to={`${match.path}/compose-result`} />;
+      return <Redirect to={`${match.path}/mytemplate`}/>;
   }
 
   if (!username) {

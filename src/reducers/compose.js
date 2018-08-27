@@ -1,30 +1,28 @@
-import { combineReducers } from 'redux';
-import { handleActions, combineActions } from 'redux-actions';
+import {combineReducers} from 'redux';
+import {handleActions} from 'redux-actions';
 
 import {
-  changeChosenTemplate,
-  changeTemplatesPage,
-  changeTemplatesSearch,
-  changeUploadFileList,
-  changeDownloadFileList,
+    changeChosenTemplate,
+    changeDownloadFileList,
+    changeTemplatesPage,
+    changeTemplatesSearch,
+    changeTemplatesType,
+    changeUploadFileList,
 } from '../actions/compose';
-import {
-  gotTemplates,
-  composeStart,
-  composeEnd,
-} from '../actions/entities';
+import {composeEnd, composeStart, gotTemplates,} from '../actions/entities';
 
 const template = handleActions(
   {
     [gotTemplates](state, {
       payload: {
-        page, list, total,
+          page, list, total, searchType,
       },
     }) {
       return {
         ...state,
         page,
         total,
+          searchType,
         list: list.result,
       };
     },
@@ -40,15 +38,21 @@ const template = handleActions(
         searchValue: payload,
       };
     },
+      [changeTemplatesType](state, {payload}) {
+          return {
+              ...state,
+              searchType: payload,
+          };
+      },
   },
   {
     searchValue: '',
+      searchType: '1',
     list: [],
     page: -1,
     total: 0,
   },
 );
-
 
 const upload = handleActions(
   {
@@ -105,8 +109,8 @@ const download = handleActions(
         ...state,
         isLoading: false,
         fishIds: fileIds,
-      }
-    }
+      };
+    },
   },
   {
     isLoading: false,

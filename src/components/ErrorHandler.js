@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { message } from 'antd'
+import {connect} from 'react-redux';
+import {message} from 'antd'
 
 @connect(state => ({
   error: state.error,

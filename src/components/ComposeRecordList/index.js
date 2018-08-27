@@ -1,26 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Table } from 'antd';
+import {connect} from 'react-redux';
+import {Divider, Table} from 'antd';
 
-import {
-  examineComposeResult,
-} from '../../actions/usercenter';
-import { getComposeRecordList } from '../../actions/users'
+import {examineComposeResult,} from '../../actions/usercenter';
+import {getComposeRecordList} from '../../actions/users'
 
-import { getFullComposeRecordList } from '../../selectors/usercenter';
+import {getFullComposeRecordList} from '../../selectors/usercenter';
 
 const { Column } = Table;
 
-/**
- * interface DataItem {
- *  string id;
- *  string fileName;
- *  Template template;
- *  int uploadDate;
- * }
- */
 @connect(state => ({
   composeRecordList: getFullComposeRecordList(state),
+    user_id: {user_id: state.users.current.user_id},
 }), {
   examineComposeResult,
   getComposeRecordList,
@@ -30,12 +21,14 @@ export default class ComposeRecordList extends React.Component {
     isLoading: false,
   }
 
-  componentDidMount() {
-    this.setState(() => ({
-      isLoading: true,
-    }))
-
-    this.props.getComposeRecordList();
+    renderOperations = (text, record) => {
+        return (
+            <span>
+        <a onClick={() => {
+            this.props.examineComposeResult(record.comp_id)
+        }}>查看</a>
+      </span>
+        );
   }
 
   componentDidUpdate(prevProps) {
@@ -47,16 +40,12 @@ export default class ComposeRecordList extends React.Component {
     }
   }
 
-  renderUploadDate(text) {
-    return (new Date(text)).toDateString();
-  }
+    componentDidMount() {
+        this.setState(() => ({
+            isLoading: true,
+        }))
 
-  renderOperations = (text, record) => {
-    return (
-      <span>
-        <a onClick={() => this.props.examineComposeResult(record.comp_id)}>查看</a>
-      </span>
-    );
+        this.props.getComposeRecordList(this.props.user_id);
   }
 
   render() {
@@ -64,25 +53,28 @@ export default class ComposeRecordList extends React.Component {
     const { isLoading }  = this.state;
 
     return (
-      <Table dataSource={composeRecordList} rowKey="id" loading={isLoading}>
+        <div>
+            <Divider/>
+            <Table dataSource={composeRecordList} rowKey="id" loading={isLoading} pagination={{defaultPageSize: 4}}>
         <Column
-          title="文裆名称"
-          dataIndex="fileName"
-          key="fileName"/>
+            width="300px"
+            title="文裆名称"
+            dataIndex="doc_title"
+            key="doc_title"/>
         <Column
           title="模版"
           dataIndex="template.title"
           key="template.title"/>
         <Column
-          title="上传时间"
-          dataIndex="uploadDate"
-          key="uploadDate"
-          render={this.renderUploadDate}/>
+            title="上传时间"
+            dataIndex="compose_time"
+            key="compose_time"/>
         <Column
           title="操作"
           key="operations"
           render={this.renderOperations}/>
       </Table>
+        </div>
     );
   }
 }

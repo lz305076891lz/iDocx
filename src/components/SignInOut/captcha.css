@@ -1,0 +1,13 @@
+#captchaImg{
+    position:absolute;
+    left:150px;
+    width:80px;
+    height:30px;
+}
+
+#changeImg{
+    position:absolute;
+    left:240px;
+    width:60px;
+    height:30px;
+}

@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import {createSelector} from 'reselect';
 
 export const getCurrentUserObj = state => state.users.current;
 export const getCurrentUserName = createSelector(

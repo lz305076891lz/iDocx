@@ -1,8 +1,9 @@
-import { combineReducers } from 'redux';
-import { handleActions, combineActions } from 'redux-actions';
-
-import { gotTemplates, composeEnd } from '../actions/entities';
-import { gotComposeRecordList } from '../actions/users';
+import {combineReducers} from 'redux';
+import {combineActions, handleActions} from 'redux-actions';
+import {composeEnd, gotTemplates} from '../actions/entities';
+import {gotComposeRecordList} from '../actions/users';
+import {morefuncEnd} from '../actions/morefunc';
+import {docEnd} from '../actions/docompose';
 
 const templates = handleActions({
   [gotTemplates](state, { payload }) {
@@ -15,12 +16,12 @@ const templates = handleActions({
     return {
       ...state,
       ...payload.entities.templates,
-    };
+    }
   },
 }, {});
 
 const fishes = handleActions({
-  [combineActions(composeEnd, gotComposeRecordList)](state, { payload }) {
+    [combineActions(composeEnd, morefuncEnd, docEnd, gotComposeRecordList)](state, {payload}) {
     return {
       ...state,
       ...payload.entities.fishes,
@@ -32,4 +33,3 @@ export default combineReducers({
   templates,
   fishes,
 });
-

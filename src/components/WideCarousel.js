@@ -1,6 +1,6 @@
 import React from 'react';
-import { Row, Col, Carousel, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import {Button, Carousel, Col, Row} from 'antd';
+import {Link} from 'react-router-dom';
 import Container from 'components/ResponsiveContainer';
 
 const WideCarousel = ({ pageData, style, className }) => (
