@@ -1,6 +1,5 @@
-import { schema } from 'normalizr';
-
-const root = 'http://www.aidocx.cn/';
+import {schema} from 'normalizr';
+import {root} from '../../settings';
 
 export const template = new schema.Entity('templates');
 export const templates = [template];

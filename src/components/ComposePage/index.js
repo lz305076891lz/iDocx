@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { Button } from 'antd';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import {Button} from 'antd';
 
 import styles from './ComposePage.scss';
 
@@ -15,11 +15,13 @@ const ComposePage = () => (
   <div>
     <Container className={styles['compose-container']}>
       <Switch>
+          <Route exact path="/compose/ebook" component={TemplatesPage}/>
+          <Route path="/compose/ebook/：ebookid" component={TemplatesPage}/>
         <Route exact path="/compose" component={TemplatesPage}/>
+          <Route path="/compose/share/:tempid" component={TemplatesPage}/>
+          <Route path="/compose/upload/share/:tempid" component={UploadPage}/>
+          <Route path="/compose/upload" component={UploadPage}/>
         <Route path="/compose/download" component={DownloadPage}/>
-        <Route path="/compose/upload/id/:tempid/title/:title" component={UploadPage}/>
-        <Route path="/compose/upload" component={UploadPage}/>
-        <Route path="/compose/search/:search" component={TemplatesPage}/>
         <Route render={()=><Redirect to='/compose'/>}/>
       </Switch>
     </Container>

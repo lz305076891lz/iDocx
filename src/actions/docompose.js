@@ -1,5 +1,5 @@
-import { createActions } from "redux-actions";
-import { identity } from "ramda";
+import {createActions} from "redux-actions";
+import {identity} from "ramda";
 
 export const {
   docompose: {

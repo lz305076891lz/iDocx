@@ -1,34 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import './index.css';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
-import { findcodeStart } from '../../actions/findcode'
-
+import {AutoComplete, Button, Form, Input, Select} from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
-@connect(
-  state=>state.findcode,
-  {findcodeStart}
-)
+
 class RegistrationForm extends React.Component {
     state = {
         confirmDirty: false,
         autoCompleteResult: [],
     };
-
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-              let newVal = {
-                username:values.username,
-                tel:values.tel,
-                email:values.email,
-              }
-              this.props.findcodeStart(newVal)
+                console.log('Received values of form: ', values);
             }
         });
     }
@@ -44,7 +32,6 @@ class RegistrationForm extends React.Component {
         callback();
     }
     render() {
-      console.log(this.props)
         const { getFieldDecorator } = this.props.form;
         const { autoCompleteResult } = this.state;
 
@@ -80,7 +67,6 @@ class RegistrationForm extends React.Component {
         );
 
         return (
-          <div>
             <Form id="form"onSubmit={this.handleSubmit}>
                 <div>
                     <br/><br/><br/><br/><br/><br/>
@@ -90,7 +76,7 @@ class RegistrationForm extends React.Component {
                     {...formItemLayout}
                     label="用户名"
                 >
-                    {getFieldDecorator('username', {
+                    {getFieldDecorator('Username', {
                         rules: [{ required: true, message: 'Please input your Username!', whitespace: true }],
                     })(
                         <Input />
@@ -101,7 +87,7 @@ class RegistrationForm extends React.Component {
                     {...formItemLayout}
                     label="电话号码"
                 >
-                    {getFieldDecorator('tel', {
+                    {getFieldDecorator('phone', {
                         rules: [{ required: true, message: 'Please input your phone number!' }],
                     })(
                         <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
@@ -123,11 +109,9 @@ class RegistrationForm extends React.Component {
                 </FormItem>
 
                 <FormItem {...tailFormItemLayout}>
-                        <Button onClick = {this.handleSubmit} id="button" type="primary" htmlType="submit">确定</Button>
+                    <Button id="button" type="primary" htmlType="submit">确定</Button>
                 </FormItem>
             </Form>
-
-          </div>
         );
     }
 }

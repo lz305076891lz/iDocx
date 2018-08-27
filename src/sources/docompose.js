@@ -1,5 +1,5 @@
-import { apiPublicPath } from '../../settings';
-import { handleFetch } from './utils';
+import {apiPublicPath} from '../../settings';
+import {handleFetch} from './utils';
 
 export async function docompose({
   fileId, composeOpt, coverInf,

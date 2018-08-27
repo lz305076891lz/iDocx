@@ -1,15 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Redirect, Route, Link, Switch } from 'react-router-dom';
-import { Table, Button, Divider, Pagination, List, Upload, Icon, message } from 'antd';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {Divider, Icon, message, Table, Upload} from 'antd';
+import {apiPublicPath, root} from '../../../settings';
+import {getMyTemplates} from '../../actions/usercenter';
+import {changeChosenTemplate} from '../../actions/compose'
 
-import { apiPublicPath } from '../../../settings';
-import { getMyTemplates } from '../../actions/usercenter';
-import { changeChosenTemplate } from '../../actions/compose'
-import { getFullComposeRecordList } from '../../selectors/usercenter';
-import ComposePage from '../ComposePage'
-
-const root = 'http://www.aidocx.cn/';
 const { Column } = Table;
 const { Dragger } = Upload;
 
@@ -76,7 +72,7 @@ export default class MyTemplate extends React.Component {
              },
            }
            this.node.scrollIntoView();
-         }}>重新生成</Link>
+         }}>修改配置</Link>
       </span>
     );
   }
@@ -110,7 +106,10 @@ export default class MyTemplate extends React.Component {
             },
           }
           this.node.scrollIntoView();
-          // this.dragger.click();
+            console.log(this.node);
+            window.open(`${root}tpls/results/${record.fish_path}`);
+            //console.log(document.getElementById('ant-upload ant-upload-drag').name);
+            //this.dragger.click();
         }}>上传</Link>
       </span>
     )
@@ -221,10 +220,10 @@ export default class MyTemplate extends React.Component {
         <br/>
         <Table dataSource={mytemplates} rowKey="tpl_id" loading={isLoading} pagination={{defaultPageSize:3}}>
           <Column
-            width="250px"
-            title="方案名称"
-            dataIndex="tpl_name"
-            key="tpl_name"/>
+              width="250px"
+              title="方案名称"
+              dataIndex="title"
+              key="title"/>
           <Column
             width="110px"
             title="更新时间"

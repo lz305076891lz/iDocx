@@ -1,5 +1,5 @@
-import { createActions } from 'redux-actions';
-import { identity } from 'ramda';
+import {createActions} from 'redux-actions';
+import {identity} from 'ramda';
 
 export const {
   user: {
@@ -16,16 +16,19 @@ export const {
   },
 } = createActions({
   USER: {
-    LOGIN: ({ tel, email, password }) => ({
+      LOGIN: ({tel, email, password, remeber, captcha}) => ({
       tel,
       email,
       password,
+          remeber,
+          captcha,
     }),
-    SIGNUP: ({ tel, password, username, email }) => ({
-      tel,
+      SIGNUP: ({tel, email, password, username, captcha}) => ({
+          tel,
+          email,
       password,
       username,
-      email,
+          captcha,
     }),
     LOGOUT: ({ tel, email, user_id }) => ({
       tel,

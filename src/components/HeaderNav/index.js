@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { Link } from 'react-router-dom';
-import { Menu, Row, Col, Dropdown, Icon  } from 'antd';
+import {Link} from 'react-router-dom';
+import {Col, Dropdown, Icon, Menu, Row} from 'antd';
 import Container from '../ResponsiveContainer';
 import SignInOut from '../SignInOut';
 import styles from './HeaderNav.scss';
@@ -19,6 +19,11 @@ const menuData = [
         title: '智能排版',
     },
     {
+        name: 'compose/ebook',
+        title: '转电子书',
+    },
+
+    {
         name: 'usercenter',
         title: '个人中心',
         willShow(props) {
@@ -31,13 +36,13 @@ const menuData = [
 const more_menu = (
     <Menu>
         <Menu.Item>
-            <Link to="/autonumber">自动编号</Link>
+            <Link to="/Morefunc/upload/1">自动编号</Link>
         </Menu.Item>
         <Menu.Item>
-            <Link to="/formule">公式修复</Link>
+            <Link to="/Morefunc/upload/2">公式修复</Link>
         </Menu.Item>
         <Menu.Item>
-            <Link to="/docompose">公文排版</Link>
+            <Link to="/ComposePage/upload">公文排版</Link>
         </Menu.Item>
     </Menu>
 )
@@ -82,7 +87,7 @@ const HeaderNav = (props) => {
 
                         <Menu.Item key="less">
                             <Dropdown overlay={more_menu}>
-                                <Link to="/autonumber">更多功能<Icon type="down" /></Link>
+                                <Link to="/home">更多功能<Icon type="down"/></Link>
                             </Dropdown>
                         </Menu.Item>
                     </Menu>

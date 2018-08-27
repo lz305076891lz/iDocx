@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Layout, Menu, Icon, Collapse } from 'antd';
+import React from 'react';
+import {Button, Collapse, Icon, Layout, Menu} from 'antd';
 
 const {
   Header, Content, Footer, Sider,
@@ -32,6 +32,7 @@ class App extends React.Component {
     render() {
       return (
             <div>
+                <Button type='primary' id='button'>test</Button>
                 <Layout>
                     <Sider
                         breakpoint="1g"
@@ -72,28 +73,33 @@ display: 'block', padding: 24, background: '#fff', minHeight: '87vh',
 }}>
                                 <Collapse bordered={false} disabled={false}>
                                     <Panel header="在线智能排版" key="4" style={customPanelStyle}>
-                                        <p>　　高度智能化排版长文档，能排版多种类型长文档。</p><p>　　当前主要针对学位论文排版：5秒排版好博士论文，3秒排好
-                                            硕士论文，秒杀本科论文，再也不用担心论文格式问题。</p><p>　　2018年将陆续开发学术期刊排版和公文排版等功能。
-                                            具体请参考帮助中心。</p>
+                                        <p> 高度智能化排版长文档，能排版多种类型长文档。</p><p> 当前主要针对学位论文排版：5秒排版好博士论文，3秒排好
+                                        硕士论文，秒杀本科论文，再也不用担心论文格式问题。</p><p> 2018年将陆续开发学术期刊排版和公文排版等功能。
+                                        具体请参考帮助中心。</p>
                                     </Panel>
                                     <Panel header="文本转自动编号" key="5" style={customPanelStyle}>
-                                        <p>　　极速智能转换文本编号为对应的多级编号、题注、尾注和交叉引用，修补缺失编号，调整编号引用位置为交叉
-                                            引用，以方便合并长文档与多人协作编辑文档。</p><p>　　2018年上半年将上线，
-                                            您可以<a href="http://aidocx.net/word" target="_blank " rel="noopener noreferrer">提前体验</a>。</p>
+                                        <p> 极速智能转换文本编号为对应的多级编号、题注、尾注和交叉引用，修补缺失编号，调整编号引用位置为交叉
+                                            引用，以方便合并长文档与多人协作编辑文档。</p><p> 2018年上半年将上线，
+                                        您可以<a href="http://aidocx.net/word" target="_blank "
+                                              rel="noopener noreferrer">提前体验</a>。</p>
                                     </Panel>
                                     <Panel header="公式修复与转换" key="6" style={customPanelStyle}>
-                                        <p>　　一是批量将所有公式转换为Word公式（Omath公式），包括损坏的MathType公式与公式域；
-                                            二是批量将所有公式转换为MathType公式，包括损坏的MathType公式、公式域和Omath公式。</p><p>　　2018年上半年将上线，您可以<a href="http://aidocx.net/word" target="_blank" rel="noopener noreferrer">提前体验</a>。
-                                        </p>
+                                        <p> 一是批量将所有公式转换为Word公式（Omath公式），包括损坏的MathType公式与公式域；
+                                            二是批量将所有公式转换为MathType公式，包括损坏的MathType公式、公式域和Omath公式。</p><p> 2018年上半年将上线，您可以<a
+                                        href="http://aidocx.net/word" target="_blank" rel="noopener noreferrer">提前体验</a>。
+                                    </p>
                                     </Panel>
                                     <Panel header="Word百宝箱" key="7" style={customPanelStyle}>
-                                        <p>　　Word百宝箱（原名Word灵感百宝箱，）是一款国内外功能最强大最丰富的Microsoft Office Word通用型插件。
-                                        </p><p>　　Word灵感百宝箱下载地址：<a href="http://www.xiazaiba.com/tags/t102604-1.html" target="_blank" rel="noopener noreferrer">Word灵感百宝箱（兼容64位office）</a>，
-                                            <a href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=word%E7%81%B5%E6%84%9F%E7%99%BE%E5%AE%9D%E7%AE%B1&rsv_pq=fcaaeaa80000c05a&rsv_t=5118Nbl%2Bv99QB9horeQdaA8tu2Y26sQyuZnAbkfAejqtCFRDHuXg3rKX87Y&rqlang=cn&rsv_enter=1&rsv_sug3=10&rsv_sug1=1&rsv_sug7=100" target="_blank" rel="noopener noreferrer">Word灵感百宝箱（32位office）</a>。
-                                           </p>
+                                        <p> Word百宝箱（原名Word灵感百宝箱，）是一款国内外功能最强大最丰富的Microsoft Office Word通用型插件。
+                                        </p><p> Word灵感百宝箱下载地址：<a href="http://www.xiazaiba.com/tags/t102604-1.html"
+                                                                 target="_blank"
+                                                                 rel="noopener noreferrer">Word灵感百宝箱（兼容64位office）</a>，
+                                        <a href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=word%E7%81%B5%E6%84%9F%E7%99%BE%E5%AE%9D%E7%AE%B1&rsv_pq=fcaaeaa80000c05a&rsv_t=5118Nbl%2Bv99QB9horeQdaA8tu2Y26sQyuZnAbkfAejqtCFRDHuXg3rKX87Y&rqlang=cn&rsv_enter=1&rsv_sug3=10&rsv_sug1=1&rsv_sug7=100"
+                                           target="_blank" rel="noopener noreferrer">Word灵感百宝箱（32位office）</a>。
+                                    </p>
                                     </Panel>
                                     <Panel header="其它在线工具" key="8" style={customPanelStyle}>
-                                        <p>　　集成文档处理中常用优秀工具，部分经过技术处理，省去用户安装软件的麻烦。</p>
+                                        <p> 集成文档处理中常用优秀工具，部分经过技术处理，省去用户安装软件的麻烦。</p>
                                     </Panel>
                                 </Collapse>
                             </div>

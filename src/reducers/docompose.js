@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
-import { handleActions, combineActions } from 'redux-actions';
+import {combineReducers} from 'redux';
+import {handleActions} from 'redux-actions';
 
-import { docStart, docEnd, changeUploadFileList, changeDownloadFileList } from '../actions/docompose';
+import {changeDownloadFileList, changeUploadFileList, docEnd, docStart} from '../actions/docompose';
 
 const upload = handleActions(
   {

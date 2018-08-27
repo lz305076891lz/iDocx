@@ -1,22 +1,22 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
-import { normalize } from 'normalizr';
+import {call, put, takeLatest} from 'redux-saga/effects';
+import {normalize} from 'normalizr';
 
-import { message } from 'antd'
+import {message} from 'antd'
 
 import * as usersSource from '../sources/users';
-import { plainFishes, fishes } from '../sources/schemas';
+import {plainFishes} from '../sources/schemas';
 
 import {
-  login,
-  signup,
-  logout,
-  loginFinished,
-  signupFinished,
-  logoutFinished,
-  getComposeRecordList,
-  gotComposeRecordList,
-  editProfile,
-  editProfileSuccess,
+    editProfile,
+    editProfileSuccess,
+    getComposeRecordList,
+    gotComposeRecordList,
+    login,
+    loginFinished,
+    logout,
+    logoutFinished,
+    signup,
+    signupFinished,
 } from '../actions/users';
 
 export function* loginHandler({ payload }) {
@@ -26,6 +26,7 @@ export function* loginHandler({ payload }) {
 
     if(result.error){
       message.error(result.error)
+
     }
 
     yield put(action);
@@ -39,7 +40,6 @@ export function* loginHandler({ payload }) {
 function* logoutHandler({ payload }) {
   try {
     const result = yield call(usersSource.logout, payload);
-
     const action = yield call(logoutFinished, result);
 
     yield put(action);
@@ -54,7 +54,7 @@ function* signupHandler({ payload }) {
   try {
     const result = yield call(usersSource.register, payload);
     const action = yield call(signupFinished, result);
-
+      console.log(payload);
     if(result.error){
       message.error(result.error)
     }

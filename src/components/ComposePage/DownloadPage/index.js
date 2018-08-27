@@ -1,8 +1,7 @@
 import React from 'react';
-import { push } from 'react-router-redux';
-import { connect } from 'react-redux';
-import { Row, Col, Card, Select, Button, Tabs, WhiteSpace } from 'antd';
-import { Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {Button, Card, Col, Row, Select, Tabs, WhiteSpace} from 'antd';
+import {Redirect} from 'react-router-dom';
 
 import styles from './DownloadPage.scss';
 
@@ -32,10 +31,10 @@ class DownloadPage extends React.Component {
 
   render() {
     if (this.props.fishes.length < 1) {
-          return (
-              <Redirect to={'/compose'}/>
-          );
-      }
+        return (
+            <Redirect to={'/compose'}/>
+        );
+    }
 
     return (
       <div className={styles['download-page']}>

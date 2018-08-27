@@ -1,14 +1,16 @@
-import { handleFetch } from './utils';
-import { apiPublicPath } from '../../settings';
+import {handleFetch} from './utils';
+import {apiPublicPath} from '../../settings';
 
 /**
  * interface UserObj {
+ *   string tel;
  *   string email;
  *   string password;
- *   string tel;
  *   string username;
+ *   string:captcha;
  * }
  */
+
 export function register(userObj) {
   return handleFetch(`${apiPublicPath}users/register`, {
     method: 'POST',
